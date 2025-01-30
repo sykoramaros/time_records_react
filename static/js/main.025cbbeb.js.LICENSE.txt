@@ -4,6 +4,12 @@
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 
+/*!
+  react-datepicker v7.6.0
+  https://github.com/Hacker0x01/react-datepicker
+  Released under the MIT License.
+*/
+
 /**
  * @license React
  * react-dom.production.min.js
