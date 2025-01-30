@@ -22,3 +22,18 @@ export const getSumActualMonthTotalRecordTime = async () => {
   const response = await axios.get(`${baseURL}/SumActualMonthTotalRecordTime`)
   return response.data
 }
+
+export const getMonthRecordProgress = async () => {
+  const response = await axios.get(`${baseURL}/MonthRecordProgress`)
+  return response.data
+}
+
+export const getSumActualWeekTotalRecordTime = async () => {
+  const response = await axios.get(`${baseURL}/SumActualWeekTotalRecordTime`)
+  return response.data
+}
+
+export const getWeekRecordProgress = async () => {
+  const response = await axios.get(`${baseURL}/WeekRecordProgress`)
+  return response.data
+}
