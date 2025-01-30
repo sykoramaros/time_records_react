@@ -3,12 +3,14 @@ import { useState, useEffect } from "react"
 import {
   getSumActualMonthTotalRecordTime,
   getMonthRecordProgress,
+  getMonthRemainingTime,
 } from "../../Services/DashboardService/DashboardService"
 
 const MonthProgressInfo = () => {
   const [sumActualMonthTotalRecordTime, setSumActualMonthTotalRecordTime] =
     useState(0)
   const [monthRecordProgress, setMonthRecordProgress] = useState(0)
+  const [monthRemainingTime, setMonthRemainingTime] = useState(0)
 
   useEffect(() => {
     const fetchSumActualMonthTotalRecordTime = async () => {
@@ -32,6 +34,17 @@ const MonthProgressInfo = () => {
       }
     }
     fetchMonthRecordProgress()
+
+    const fetchMonthRemainingTime = async () => {
+      try {
+        const response = await getMonthRemainingTime()
+        setMonthRemainingTime(response)
+        console.log(response)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchMonthRemainingTime()
   }, [])
 
   return (
@@ -48,17 +61,26 @@ const MonthProgressInfo = () => {
           aria-valuemax="100"
         >
           <div
-            className="progress-bar fs-5"
+            className="progress-bar bg-success fs-5"
             style={{ width: `${monthRecordProgress}%` }}
           >
             {monthRecordProgress}%
           </div>
         </div>
       </div>
-      <p className="text-center fs-5 mt-4">
-        {sumActualMonthTotalRecordTime.hours} :{" "}
-        {sumActualMonthTotalRecordTime.minutes}
-      </p>
+      <div className="row row-cols-3 d-flex justify-content-center mt-4 mx-auto">
+        <div className="col">
+          <p className="text-center text-success fs-5 mt-4">
+            {sumActualMonthTotalRecordTime.hours} :{" "}
+            {sumActualMonthTotalRecordTime.minutes}
+          </p>
+        </div>
+        <div className="col">
+          <p className="text-center text-danger fs-5 mt-4">
+            {monthRemainingTime.hours} : {monthRemainingTime.minutes}
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

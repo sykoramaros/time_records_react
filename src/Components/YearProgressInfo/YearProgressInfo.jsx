@@ -3,12 +3,14 @@ import { useState, useEffect } from "react"
 import {
   getSumMinistryYearTotalRecordTime,
   getYearRecordProgress,
+  getYearRemainingTime,
 } from "../../Services/DashboardService/DashboardService"
 
 const YearProgressInfo = () => {
   const [sumMinistryYearTotalRecordTime, setSumMinistryYearTotalRecordTime] =
     useState(0)
   const [yearRecordProgress, setYearRecordProgress] = useState(0)
+  const [yearRemainingTime, setYearRemainingTime] = useState(0)
 
   useEffect(() => {
     const fetchSumMinistryYearTotalRecordTime = async () => {
@@ -32,6 +34,17 @@ const YearProgressInfo = () => {
       }
     }
     fetchYearRecordProgress()
+
+    const fetchYearRemainingTime = async () => {
+      try {
+        const response = await getYearRemainingTime()
+        setYearRemainingTime(response)
+        console.log(response)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchYearRemainingTime()
   }, [])
 
   return (
@@ -48,17 +61,26 @@ const YearProgressInfo = () => {
           aria-valuemax="100"
         >
           <div
-            className="progress-bar fs-5"
+            className="progress-bar bg-success fs-5"
             style={{ width: `${yearRecordProgress}%` }}
           >
             {yearRecordProgress}%
           </div>
         </div>
       </div>
-      <p className="text-center fs-5 mt-4">
-        {sumMinistryYearTotalRecordTime.hours} :{" "}
-        {sumMinistryYearTotalRecordTime.minutes}
-      </p>
+      <div className="row row-cols-3 d-flex justify-content-center mt-4 mx-auto">
+        <div className="col">
+          <p className="text-center fs-5 text-success">
+            {sumMinistryYearTotalRecordTime.hours} :{" "}
+            {sumMinistryYearTotalRecordTime.minutes}
+          </p>
+        </div>
+        <div className="col">
+          <p className="text-center fs-5 text-danger">
+            {yearRemainingTime.hours} : {yearRemainingTime.minutes}
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

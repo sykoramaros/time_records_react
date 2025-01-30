@@ -18,6 +18,11 @@ export const getYearRecordProgress = async () => {
   return response.data
 }
 
+export const getYearRemainingTime = async () => {
+  const response = await axios.get(`${baseURL}/YearRemainingTime`)
+  return response.data
+}
+
 export const getSumActualMonthTotalRecordTime = async () => {
   const response = await axios.get(`${baseURL}/SumActualMonthTotalRecordTime`)
   return response.data
@@ -28,6 +33,11 @@ export const getMonthRecordProgress = async () => {
   return response.data
 }
 
+export const getMonthRemainingTime = async () => {
+  const response = await axios.get(`${baseURL}/MonthRemainingTime`)
+  return response.data
+}
+
 export const getSumActualWeekTotalRecordTime = async () => {
   const response = await axios.get(`${baseURL}/SumActualWeekTotalRecordTime`)
   return response.data
@@ -35,5 +45,10 @@ export const getSumActualWeekTotalRecordTime = async () => {
 
 export const getWeekRecordProgress = async () => {
   const response = await axios.get(`${baseURL}/WeekRecordProgress`)
+  return response.data
+}
+
+export const getWeekRemainingTime = async () => {
+  const response = await axios.get(`${baseURL}/WeekRemainingTime`)
   return response.data
 }

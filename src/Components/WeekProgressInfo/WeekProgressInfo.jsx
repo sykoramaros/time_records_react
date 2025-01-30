@@ -3,12 +3,14 @@ import { useState, useEffect } from "react"
 import {
   getSumActualWeekTotalRecordTime,
   getWeekRecordProgress,
+  getWeekRemainingTime,
 } from "../../Services/DashboardService/DashboardService"
 
 const WeekProgressInfo = () => {
   const [sumActualWeekTotalRecordTime, setSumActualWeekTotalRecordTime] =
     useState(0)
   const [weekRecordProgress, setWeekRecordProgress] = useState(0)
+  const [weekRemainingTime, setWeekRemainingTime] = useState(0)
 
   useEffect(() => {
     const fetchSumActualWeekTotalRecordTime = async () => {
@@ -32,11 +34,22 @@ const WeekProgressInfo = () => {
       }
     }
     fetchWeekRecordProgress()
+
+    const fetchWeekRemainingTime = async () => {
+      try {
+        const response = await getWeekRemainingTime()
+        setWeekRemainingTime(response)
+        console.log(response)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchWeekRemainingTime()
   }, [])
 
   return (
     <div>
-      <h3 className="text-center fs-4 fw-light">Month Progress</h3>
+      <h3 className="text-center fs-4 fw-light">Week Progress</h3>
       <div className="d-flex justify-content-center mt-4">
         <div
           className="progress rounded-5 w-75"
@@ -48,17 +61,26 @@ const WeekProgressInfo = () => {
           aria-valuemax="100"
         >
           <div
-            className="progress-bar fs-5"
+            className="progress-bar bg-success fs-5"
             style={{ width: `${weekRecordProgress}%` }}
           >
             {weekRecordProgress}%
           </div>
         </div>
       </div>
-      <p className="text-center fs-5 mt-4">
-        {sumActualWeekTotalRecordTime.hours} :{" "}
-        {sumActualWeekTotalRecordTime.minutes}
-      </p>
+      <div className="row row-cols-3 d-flex justify-content-center mt-4 mx-auto">
+        <div className="col">
+          <p className="text-center text-success fs-5 mt-4">
+            {sumActualWeekTotalRecordTime.hours} :{" "}
+            {sumActualWeekTotalRecordTime.minutes}
+          </p>
+        </div>
+        <div className="col">
+          <p className="text-center text-danger fs-5 mt-4">
+            {weekRemainingTime.hours} : {weekRemainingTime.minutes}
+          </p>
+        </div>
+      </div>
     </div>
   )
 }
