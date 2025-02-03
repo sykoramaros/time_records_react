@@ -22,10 +22,6 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
     if (show) {
       modalInstance.current.show()
     }
-
-    const handleModalClose = () => {
-      if (onClose) onClose()
-    }
   }, [show, onClose])
 
   const handleTimeChange = (e) => {
