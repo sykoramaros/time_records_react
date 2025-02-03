@@ -1,13 +1,15 @@
 import React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import ReactDatepicker from "react-datepicker"
 import "./ReactDatePickerCalendar.css"
 import { cs } from "date-fns/locale"
+import { getAllRecords } from "../../Services/ReactDatepickerService/ReactDatepickerService"
 import AddRecordModal from "../AddRecordModal/AddRecordModal"
 
 const ReactDatepickerCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [showModal, setShowModal] = useState(false)
+  const [highlightedDates, setHighlightedDates] = useState([])
 
   const handleDateChange = (date) => {
     setSelectedDate(date)
@@ -19,6 +21,19 @@ const ReactDatepickerCalendar = () => {
     setShowModal(false)
     console.log("showModal set to:", false)
   }
+
+  useEffect(() => {
+    const fetchHighlightedDates = async () => {
+      try {
+        const records = await getAllRecords()
+        const dates = records.map((record) => new Date(record.date))
+        setHighlightedDates(dates)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchHighlightedDates()
+  }, [])
 
   return (
     <div className="datepicker-wrapper">
@@ -34,6 +49,7 @@ const ReactDatepickerCalendar = () => {
         fixedHeight
         inline
         className="custom-datepicker"
+        highlightDates={highlightedDates}
       />
 
       <AddRecordModal
