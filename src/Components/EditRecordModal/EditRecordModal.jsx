@@ -4,6 +4,7 @@ import { Modal } from "bootstrap"
 import {
   getRecordByDate,
   editRecordByDate,
+  deleteRecordByDate,
 } from "../../Services/EditRecordModalService copy/EditRecordModalService"
 
 const EditRecordModal = ({ selectedDate, show, onClose }) => {
@@ -107,6 +108,19 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
     }
   }
 
+  const handleDeleteRecord = async () => {
+    try {
+      const response = await deleteRecordByDate(selectedDate)
+      console.log("Record deleted:", response)
+      alert("Record deleted successfully!")
+      handleCloseModal()
+      window.location.reload()
+    } catch (error) {
+      console.error("Error deleting record:", error)
+      alert("Error deleting record. Please try again.")
+    }
+  }
+
   const handleCloseModal = () => {
     if (modalInstance.current) {
       modalInstance.current.hide()
@@ -189,21 +203,36 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
             </form>
           </div>
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={handleCloseModal}
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleAddRecord}
-              // disabled={!recordTime || !recordStudy || !recordText}
-            >
-              Save changes
-            </button>
+            <div className="row g-2 d-flex">
+              <div className="col-6">
+                <button
+                  type="button"
+                  className="btn btn-secondary d-block mx-auto"
+                  onClick={handleCloseModal}
+                >
+                  Close
+                </button>
+              </div>
+              <div className="col-6">
+                <button
+                  type="button"
+                  className="btn btn-success d-block mx-auto"
+                  onClick={handleAddRecord}
+                  // disabled={!recordTime || !recordStudy || !recordText}
+                >
+                  Save
+                </button>
+              </div>
+              <div className="col-12">
+                <button
+                  type="button"
+                  className="btn btn-danger d-block mx-auto"
+                  onClick={handleDeleteRecord}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -39,3 +39,16 @@ export const editRecordByDate = async (recordData, selectedDate) => {
     throw error
   }
 }
+
+export const deleteRecordByDate = async (date) => {
+  try {
+    const formattedDate = date.toISOString().split("T")[0]
+    const response = await axios.delete(
+      `${baseURL}/DeleteRecordByDate/${formattedDate}`
+    )
+    return response.data
+  } catch (error) {
+    console.error("Error deleting record:", error)
+    throw error
+  }
+}

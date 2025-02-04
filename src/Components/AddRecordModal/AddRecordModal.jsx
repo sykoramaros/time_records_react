@@ -148,7 +148,7 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
               </button>
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-success"
                 onClick={handleAddRecord}
                 disabled={!recordTime}
               >

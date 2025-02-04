@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
   return (
@@ -46,7 +47,18 @@ const Navbar = () => {
                   Calendar
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link fs-5 fw-light" to="/users">
+                  Users
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link fs-5 fw-light" to="/roles">
+                  Roles
+                </Link>
+              </li>
             </ul>
+            <LogoutButton />
           </div>
         </div>
       </nav>
