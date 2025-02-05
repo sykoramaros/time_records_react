@@ -9,6 +9,7 @@ import Home from "./Pages/Home/Home"
 import Calendar from "./Pages/Calendar/Calendar"
 import Users from "./Pages/Users/Users"
 import Roles from "./Pages/Roles/Roles"
+import EditRole from "./Pages/Roles/EditRole"
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="calendar" element={<Calendar />} />
           <Route path="users" element={<Users />} />
           <Route path="roles" element={<Roles />} />
+          <Route path="roles/edit/:id" element={<EditRole />} />
         </Route>
       </Routes>
     </HashRouter>

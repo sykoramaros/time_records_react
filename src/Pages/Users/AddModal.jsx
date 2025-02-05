@@ -1,11 +1,6 @@
 import React from "react"
 import { useState } from "react"
-import {
-  createUser,
-  setUsers,
-  getAllUsers,
-  getUserByEmail,
-} from "../../Services/UsersService/UsersService"
+import { createUser } from "../../Services/UsersService/UsersService"
 
 const AddModal = ({ showModal, setShowModal }) => {
   const [users, setUsers] = useState([])
@@ -19,24 +14,6 @@ const AddModal = ({ showModal, setShowModal }) => {
   const handlePasswordType = (e) => setPassword(e.target.value)
   const handlePhoneNumberType = (e) => setPhoneNumber(e.target.value)
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault()
-  //   const userData = { name, email, password, phoneNumber }
-  //   handleCreateUser(userData)
-  //   window.location.reload()
-  // }
-
-  // const handleCreateUser = async (userData) => {
-  //   const result = await createUser(userData) // Zavolá API pro vytvoření uživatele
-  //   if (result.success) {
-  //     setUsers([...users, result.user]) // Přidá nového uživatele do seznamu
-  //     handleCloseModal() // Zavře modal pro přidání uživatele
-  //     console.log("User created successfully:", result.user)
-  //   } else {
-  //     console.error("Chyba při vytvaření uživatele:", result)
-  //   }
-  // }
-
   const handleSubmit = async (event) => {
     event.preventDefault()
     const userData = { name, email, password, phoneNumber }
@@ -45,6 +22,7 @@ const AddModal = ({ showModal, setShowModal }) => {
       setUsers([...users, result.user]) // Přidá nového uživatele do seznamu
       handleCloseModal() // Zavře modal pro přidání uživatele
       console.log("User created successfully:", result.user)
+      window.location.reload()
     } else {
       console.error("Chyba při vytvaření uživatele:", result)
     }

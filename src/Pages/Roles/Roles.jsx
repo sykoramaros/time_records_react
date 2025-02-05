@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {
-  getRoles,
+  getAllRoles,
   createRole,
   deleteRole,
-  getRoleById,
-  updateRole,
-  modificationsRoleEdit,
 } from "../../Services/RolesService/RolesService"
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -18,13 +15,13 @@ const Roles = () => {
   useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const rolesData = await getRoles()
+        const rolesData = await getAllRoles()
         setRoles(rolesData)
+        console.log("fetchRoles:", rolesData)
       } catch (error) {
         console.error("Error loading roles:", error)
       }
     }
-
     fetchRoles()
   }, [])
 

@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import RoleService from "../../Services/RolesService/RolesService"
+import {
+  getRoleById,
+  modificationsRoleEdit,
+} from "../../Services/RolesService/RolesService"
 
 const EditRole = () => {
   const { id } = useParams() // Získání ID role z URL
-  const navigate = useNavigate()
+  const [role, setRole] = useState()
   const [roleName, setRoleName] = useState("") // Název role zobrazený pouze jako text
-  const [nonMembers, setNonMembers] = useState([])
   const [members, setMembers] = useState([])
+  const [nonMembers, setNonMembers] = useState([])
   const [addIds, setAddIds] = useState([])
   const [deleteIds, setDeleteIds] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const roleData = await RoleService.getRoleById(id)
-        setRoleName(roleData.name) // Nastavení názvu role pouze pro zobrazení
-        setNonMembers(roleData.nonMembers || [])
-        setMembers(roleData.members || [])
+        const response = await getRoleById(id)
+        setRole(response.role)
+        setRoleName(response.role.name) // Nastavení názvu role pouze pro zobrazení
+        setMembers(response.members || [])
+        setNonMembers(response.nonMembers || [])
+        console.log("fetchData", response)
       } catch (error) {
         console.error("Error loading role data:", error)
       }
     }
-
     fetchData()
   }, [id])
 
@@ -32,6 +37,7 @@ const EditRole = () => {
         ? prev.filter((id) => id !== userId)
         : [...prev, userId]
     )
+    console.log("handleAddIdsChange", addIds)
   }
 
   const handleDeleteIdsChange = (userId) => {
@@ -40,25 +46,31 @@ const EditRole = () => {
         ? prev.filter((id) => id !== userId)
         : [...prev, userId]
     )
+    console.log("handleDeleteIdsChange", deleteIds)
   }
 
   const handleSave = async () => {
     try {
-      await RoleService.updateRole(id, {
-        addIds: addIds,
-        deleteIds: deleteIds,
-      })
+      const requestData = {
+        roleId: id,
+        roleName: role.name || roleName,
+        addIds: addIds || [],
+        deleteIds: (deleteIds || []).filter((id) => id !== ""),
+      }
+      console.log("Sending data:", requestData) // pro debugging
+      // Změna zde - posíláme jen requestData
+      await modificationsRoleEdit(requestData)
       alert("Role updated successfully.")
       navigate("/roles")
     } catch (error) {
-      console.error("Error updating role:", error)
-      alert("Failed to update role.")
+      console.error("handleSave error:", error)
+      alert(`Failed to update role: ${error.message || "Unknown error"}`)
     }
   }
 
   return (
     <div className="container">
-      <h1>Edit Role: {roleName}</h1>
+      <h1>Edit Role: {roleName} </h1>
       <button
         className="btn btn-secondary mb-3"
         onClick={() => navigate("/roles")}

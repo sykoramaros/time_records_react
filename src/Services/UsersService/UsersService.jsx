@@ -15,7 +15,7 @@ export const getAllUsers = async () => {
 
 export const getUserByEmail = async (email) => {
   try {
-    const response = await axios.get(baseURL + `/GetByEmail/${email}`)
+    const response = await axios.get(baseURL + `/GetUserByEmail/${email}`)
     return response.data
   } catch (error) {
     console.error("Error fetching user:", error)
@@ -55,12 +55,14 @@ export const createUser = async (user) => {
 }
 
 export const editUser = async (userId, user) => {
+  console.log("editUser:", user)
   try {
     const response = await axios.put(
       baseURL + `/EditUser/${userId}`,
       {
         Name: user.name,
         Email: user.email,
+        phoneNumber: user.phoneNumber,
       },
       {
         headers: {

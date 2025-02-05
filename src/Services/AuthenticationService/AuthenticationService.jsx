@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode"
 // Funkce pro získání tokenu
 export const getAuthToken = () => {
   console.log(
-    "From AuthenticationService getAuthToken: Getting token in localStorage:",
+    "getAuthToken token in localStorage:",
     localStorage.getItem("token")
   )
   return localStorage.getItem("token") // Získání tokenu z localStorage
@@ -13,23 +13,15 @@ export const getAuthToken = () => {
 export const getDecodedToken = () => {
   const token = getAuthToken() // Získání tokenu
   if (!token) {
-    console.error(
-      "From AuthenticationService getDecodedToken: Token is missing."
-    ) // Chybová zpráva
+    console.error("getDecodedToken: return null.") // Chybová zpráva
     return null
   }
   try {
-    console.log(
-      "From AuthenticationService getDecodedToken: Decoding token:",
-      token
-    )
+    console.log("getDecodedToken:", token)
     const decodedToken = jwtDecode(token) // Získání dekodovaného tokenu
     return decodedToken
   } catch (error) {
-    console.error(
-      "From AuthenticationService getDecodedToken: Error decoding token:",
-      error
-    ) // Chybová zpráva
+    console.error("getDecodedToken:", error) // Chybová zpráva
     return null
   }
 }
@@ -38,10 +30,7 @@ export const getDecodedToken = () => {
 export const authAxios = (method, url, data = null) => {
   const token = getAuthToken() // Získání tokenu
   if (!token) {
-    console.error(
-      "From AuthenticationService authAxios: Token is missing.",
-      token
-    ) // Chybová zpráva
+    console.error("authAxios:", token) // Chybová zpráva
     return Promise.reject("Authentiation token not found")
   }
   const headers = {
@@ -77,12 +66,11 @@ export const getUserRole = () => {
       console.error("Role not found in token.")
       return null
     }
-    console.log("From AuthenticationService getUserRole: Role:", role)
-    console.log("From AuthenticationService getUserRole: Token:", token)
+    console.log("getUserRole: Role:", role)
+    console.log("getUserRole: Token:", token)
     return role // Získání správné role
   } catch (error) {
     console.error("Error decoding token:", error)
     return null
   }
 }
-
