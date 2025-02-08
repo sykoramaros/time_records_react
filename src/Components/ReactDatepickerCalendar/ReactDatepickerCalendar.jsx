@@ -2,8 +2,8 @@ import React from "react"
 import { useState, useEffect } from "react"
 import ReactDatepicker from "react-datepicker"
 import "./ReactDatePickerCalendar.css"
-import { cs } from "date-fns/locale"
-import { getAllRecords } from "../../Services/ReactDatepickerService/ReactDatepickerService"
+import { cs, se } from "date-fns/locale"
+import { getAllRecordsQuery } from "../../Services/ReactDatepickerService/ReactDatepickerService"
 import AddRecordModal from "../AddRecordModal/AddRecordModal"
 import EditRecordModal from "../EditRecordModal/EditRecordModal"
 
@@ -11,15 +11,19 @@ const ReactDatepickerCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [showModal, setShowModal] = useState(false)
   const [highlightedDates, setHighlightedDates] = useState([])
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchHighlightedDates = async () => {
       try {
-        const records = await getAllRecords()
+        const records = await getAllRecordsQuery()
         const dates = records.map((record) => new Date(record.date))
         setHighlightedDates(dates)
+        setError(null)
       } catch (error) {
-        console.error(error)
+        console.error("Error fetching highlighted dates:", error)
+        setError(error.message)
+        setHighlightedDates([])
       }
     }
     fetchHighlightedDates()

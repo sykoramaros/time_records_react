@@ -1,9 +1,9 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import {
-  getSumActualWeekTotalRecordTime,
-  getWeekRecordProgress,
-  getWeekRemainingTime,
+  getSumActualWeekTotalRecordTimeQuery,
+  getWeekRecordProgressQuery,
+  getWeekRemainingTimeQuery,
 } from "../../Services/DashboardService/DashboardService"
 
 const WeekProgressInfo = () => {
@@ -15,7 +15,7 @@ const WeekProgressInfo = () => {
   useEffect(() => {
     const fetchSumActualWeekTotalRecordTime = async () => {
       try {
-        const response = await getSumActualWeekTotalRecordTime()
+        const response = await getSumActualWeekTotalRecordTimeQuery()
         setSumActualWeekTotalRecordTime(response)
         console.log(response)
       } catch (error) {
@@ -26,7 +26,7 @@ const WeekProgressInfo = () => {
 
     const fetchWeekRecordProgress = async () => {
       try {
-        const response = await getWeekRecordProgress()
+        const response = await getWeekRecordProgressQuery()
         setWeekRecordProgress(response)
         console.log(response)
       } catch (error) {
@@ -37,7 +37,7 @@ const WeekProgressInfo = () => {
 
     const fetchWeekRemainingTime = async () => {
       try {
-        const response = await getWeekRemainingTime()
+        const response = await getWeekRemainingTimeQuery()
         setWeekRemainingTime(response)
         console.log(response)
       } catch (error) {

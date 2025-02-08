@@ -1,9 +1,9 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import {
-  getSumActualMonthTotalRecordTime,
-  getMonthRecordProgress,
-  getMonthRemainingTime,
+  getSumActualMonthTotalRecordTimeQuery,
+  getMonthRecordProgressQuery,
+  getMonthRemainingTimeQuery,
 } from "../../Services/DashboardService/DashboardService"
 
 const MonthProgressInfo = () => {
@@ -15,7 +15,7 @@ const MonthProgressInfo = () => {
   useEffect(() => {
     const fetchSumActualMonthTotalRecordTime = async () => {
       try {
-        const response = await getSumActualMonthTotalRecordTime()
+        const response = await getSumActualMonthTotalRecordTimeQuery()
         setSumActualMonthTotalRecordTime(response)
         console.log(response)
       } catch (error) {
@@ -26,7 +26,7 @@ const MonthProgressInfo = () => {
 
     const fetchMonthRecordProgress = async () => {
       try {
-        const response = await getMonthRecordProgress()
+        const response = await getMonthRecordProgressQuery()
         setMonthRecordProgress(response)
         console.log(response)
       } catch (error) {
@@ -37,7 +37,7 @@ const MonthProgressInfo = () => {
 
     const fetchMonthRemainingTime = async () => {
       try {
-        const response = await getMonthRemainingTime()
+        const response = await getMonthRemainingTimeQuery()
         setMonthRemainingTime(response)
         console.log(response)
       } catch (error) {

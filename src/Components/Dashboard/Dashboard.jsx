@@ -13,12 +13,6 @@ const Dashboard = () => {
           <MonthProgressInfo />
           <WeekProgressInfo />
         </div>
-        <hr />
-        <div className="row row-cols-1 row-cols-md-3 mt-5">
-          <YearProgressInfo />
-          <MonthProgressInfo />
-          <WeekProgressInfo />
-        </div>
       </div>
     </div>
   )

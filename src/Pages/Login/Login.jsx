@@ -1,13 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import {
-  login,
-  logout,
-  getDecodedToken,
-  getCurrentUser,
-  isTokenValid,
-} from "../../Services/LoginService/LoginService"
+import { login } from "../../Services/LoginService/LoginService"
 import { Tooltip } from "bootstrap"
 
 const Login = () => {
@@ -33,14 +27,14 @@ const Login = () => {
     try {
       console.log("Logging in...")
       const result = await login({
-        username: username.trim(),
+        userName: username.trim(),
         password: password,
       })
       console.log("Login result:", result)
       if (result.success) {
         console.log("Login successful, redirecting to:", result.returnUrl)
         // navigate(result.returnUrl || "/home")
-        navigate("/home")
+        navigate("/calendar")
       } else {
         console.log("Login failed:", errorMessage)
         setErrorMessage(result.message)

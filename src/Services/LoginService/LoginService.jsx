@@ -4,12 +4,12 @@ import { jwtDecode } from "jwt-decode" // Import funkce pro dekódování JWT to
 // const baseURL = "http://localhost:5113/api/Account"
 const baseURL = "https://localhost:7081/api/Account"
 
-export const login = async ({ username, password }) => {
+export const login = async ({ userName, password }) => {
   try {
     const response = await axios.post(
       `${baseURL}/Jwt-login`, // URL pro přihlášení
       {
-        username: username, // Uživatelské jméno
+        userName: userName, // Uživatelské jméno
         password: password, // Heslo
       },
       {
@@ -35,12 +35,24 @@ export const login = async ({ username, password }) => {
       JSON.stringify({
         username:
           decodedToken[
-            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-          ], // Jméno uživatele
+            ["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
+          ],
         roles:
           decodedToken[
             "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-          ], // Role uživatele
+          ],
+        userId:
+          decodedToken[
+            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+          ],
+        email:
+          decodedToken[
+            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+          ],
+        phoneNumber:
+          decodedToken[
+            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone"
+          ],
       })
     )
 
