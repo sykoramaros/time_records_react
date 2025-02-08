@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "bootstrap"
-import { createRecord } from "../../Services/AddRecordModalService/AddRecordModalService"
+import { createRecordQuery } from "../../Services/AddRecordModalService/AddRecordModalService"
 
 const AddRecordModal = ({ selectedDate, show, onClose }) => {
   const [recordTime, setRecordTime] = useState("00:00")
@@ -49,7 +49,7 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
         description: formattedText, // Nastavte podle potřeby
       }
 
-      const response = await createRecord(recordData)
+      const response = await createRecordQuery(recordData)
       console.log("Record created:", response)
       alert("Record created successfully!")
       // Zavření modálu po úspěšném vytvoření
@@ -85,6 +85,7 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
                 className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                onClick={onClose}
               ></button>
             </div>
             <div className="modal-body">

@@ -2,9 +2,9 @@ import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "bootstrap"
 import {
-  getRecordByDate,
-  editRecordByDate,
-  deleteRecordByDate,
+  getRecordByDateQuery,
+  editRecordByDateQuery,
+  deleteRecordByDateQuery,
 } from "../../Services/EditRecordModalService copy/EditRecordModalService"
 
 const EditRecordModal = ({ selectedDate, show, onClose }) => {
@@ -20,7 +20,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
     const fetchData = async () => {
       if (selectedDate) {
         try {
-          const recordData = await getRecordByDate(selectedDate)
+          const recordData = await getRecordByDateQuery(selectedDate)
           if (recordData) {
             setRecordTime(recordData.recordTime || "00:00")
             setRecordStudy(recordData.recordStudy || 0)
@@ -97,7 +97,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
         recordStudy: recordStudy,
         description: recordText,
       }
-      const response = await editRecordByDate(recordData, selectedDate)
+      const response = await editRecordByDateQuery(recordData, selectedDate)
       console.log("Record edited:", response)
       alert("Record edited successfully!")
       handleCloseModal()
@@ -110,7 +110,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
 
   const handleDeleteRecord = async () => {
     try {
-      const response = await deleteRecordByDate(selectedDate)
+      const response = await deleteRecordByDateQuery(selectedDate)
       console.log("Record deleted:", response)
       alert("Record deleted successfully!")
       handleCloseModal()

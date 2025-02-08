@@ -1,8 +1,20 @@
 import React from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { getUserRole } from "../../Services/AuthenticationService/AuthenticationService"
 import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
+  const [role, setRole] = useState(null)
+
+  useEffect(() => {
+    const fetchRole = async () => {
+      const fetchedRole = await getUserRole()
+      setRole(fetchedRole)
+    }
+    fetchRole()
+  }, [])
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -37,7 +49,7 @@ const Navbar = () => {
                 <Link
                   className="nav-link active fs-5 fw-light"
                   aria-current="page"
-                  to="/"
+                  to="/home"
                 >
                   Home
                 </Link>
@@ -47,16 +59,20 @@ const Navbar = () => {
                   Calendar
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link fs-5 fw-light" to="/users">
-                  Users
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link fs-5 fw-light" to="/roles">
-                  Roles
-                </Link>
-              </li>
+              {role === "Admin" && (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link fs-5 fw-light" to="/users">
+                      Users
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link fs-5 fw-light" to="/roles">
+                      Roles
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
             <LogoutButton />
           </div>

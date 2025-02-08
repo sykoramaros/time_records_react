@@ -10,18 +10,46 @@ import Calendar from "./Pages/Calendar/Calendar"
 import Users from "./Pages/Users/Users"
 import Roles from "./Pages/Roles/Roles"
 import EditRole from "./Pages/Roles/EditRole"
+import AccessDenied from "./Pages/AccessDenied/AccessDenied"
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute"
 
 const App = () => {
   return (
     <HashRouter>
       <Routes>
+        <Route index element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/access-denied" element={<AccessDenied />} />
         <Route path="/" element={<Layout />}>
-          <Route path="login" element={<Login />} />
-          <Route index element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="calendar" element={<Calendar />} />
-          <Route path="users" element={<Users />} />
-          <Route path="roles" element={<Roles />} />
-          <Route path="roles/edit/:id" element={<EditRole />} />
+
+          {/* Layout s chranenymi trasami */}
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute roles={["Admin"]}>
+                <Users />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="roles"
+            element={
+              <ProtectedRoute roles={["Admin"]}>
+                <Roles />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="roles/edit/:id"
+            element={
+              <ProtectedRoute roles={["Admin"]}>
+                <EditRole />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<AccessDenied />} />
         </Route>
       </Routes>
     </HashRouter>
