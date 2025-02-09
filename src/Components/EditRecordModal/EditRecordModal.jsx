@@ -91,19 +91,35 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
 
   const handleAddRecord = async () => {
     try {
+      // Formátování času do správného formátu pro TimeSpan (HH:mm:ss)
+      const formattedTime =
+        recordTime.length < 6
+          ? `${recordTime}:00` // Pokud je čas ve formátu HH:mm, přidáme sekundy
+          : recordTime
+
       const recordData = {
         date: selectedDate.toISOString().split("T")[0],
-        recordTime: recordTime,
-        recordStudy: recordStudy,
+        recordTime: formattedTime,
+        recordStudy: parseInt(recordStudy),
         description: recordText,
+        identityUserId: JSON.parse(localStorage.getItem("user")).userId, // Získáme userId rovnou zde
       }
-      const response = await editRecordByDateQuery(recordData, selectedDate)
+
+      console.log("Sending data:", recordData)
+
+      // Posíláme recordData přímo
+      const response = await editRecordByDateQuery(
+        recordData.date, // datum pro query parametr
+        recordData // celý objekt jako tělo požadavku
+      )
+
       console.log("Record edited:", response)
       alert("Record edited successfully!")
       handleCloseModal()
       window.location.reload()
     } catch (error) {
       console.error("Error editing record:", error)
+      console.error("Error details:", error.response?.data)
       alert("Error editing record. Please try again.")
     }
   }

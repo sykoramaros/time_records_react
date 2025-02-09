@@ -52,25 +52,20 @@ export const getRecordByDateQuery = async (date) => {
 //   }
 // }
 
-export const editRecordByDateQuery = async (recordData, selectedDate) => {
+export const editRecordByDateQuery = async (date, editedRecord) => {
   try {
     const user = JSON.parse(localStorage.getItem("user"))
     if (!user || !user.userId) {
       throw new Error("User information not found")
     }
-    const formattedData = {
-      date: selectedDate.toISOString().split("T")[0],
-      recordTime: recordData.recordTime,
-      recordStudy: parseInt(recordData.recordStudy), // Zajistíme,ých study je číslo
-      description: recordData.description,
-    }
+
     const response = await axios.put(
-      `${baseURL}/EditRecordByDateQuery?userId=${user.userId}&date=${formattedData.date}`,
-      formattedData
+      `${baseURL}/EditRecordByDateQuery?userId=${user.userId}&date=${date}`,
+      editedRecord
     )
     return response.data
   } catch (error) {
-    console.error("Error updating record:", error)
+    console.error("Error editing record:", error)
     throw error
   }
 }
