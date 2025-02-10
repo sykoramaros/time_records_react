@@ -1,7 +1,8 @@
 import axios from "axios"
 
 // const baseURL = "http://localhost:5113/api/Users"
-const baseURL = "https://localhost:7081/api/Users"
+// const baseURL = "https://localhost:7081/api/Users"
+const baseURL = "https://recordsapi.runasp.net/api/Users"
 
 export const getAllUsers = async () => {
   try {

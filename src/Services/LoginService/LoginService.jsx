@@ -2,7 +2,8 @@ import axios from "axios" // Import knihovny Axios pro HTTP požadavky
 import { jwtDecode } from "jwt-decode" // Import funkce pro dekódování JWT tokenů
 
 // const baseURL = "http://localhost:5113/api/Account"
-const baseURL = "https://localhost:7081/api/Account"
+// const baseURL = "https://localhost:7081/api/Account"
+const baseURL = "https://recordsapi.runasp.net/api/Account"
 
 export const login = async ({ userName, password }) => {
   try {

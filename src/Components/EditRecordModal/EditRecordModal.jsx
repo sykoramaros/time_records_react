@@ -89,7 +89,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
     setRecordText(e.target.value)
   }
 
-  const handleAddRecord = async () => {
+  const handleEditRecord = async () => {
     try {
       // Formátování času do správného formátu pro TimeSpan (HH:mm:ss)
       const formattedTime =
@@ -233,7 +233,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                 <button
                   type="button"
                   className="btn btn-success d-block mx-auto"
-                  onClick={handleAddRecord}
+                  onClick={handleEditRecord}
                   // disabled={!recordTime || !recordStudy || !recordText}
                 >
                   Save

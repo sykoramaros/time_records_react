@@ -1,7 +1,8 @@
 import axios from "axios"
 
 // const baseURL = "http://localhost:5113/api/Records"
-const baseURL = "https://localhost:7081/api/Records"
+// const baseURL = "https://localhost:7081/api/Records"
+const baseURL = "https://recordsapi.runasp.net/api/Records"
 
 // export const getRecordByDate = async (date) => {
 //   // Převod datumu na formát YYYY-MM-DD

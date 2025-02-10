@@ -1,7 +1,8 @@
 import axios from "axios"
 
 // const baseURL = "http://localhost:5113/api/Roles"
-const baseURL = "https://localhost:7081/api/Roles"
+// const baseURL = "https://localhost:7081/api/Roles"
+const baseURL = "https://recordsapi.runasp.net/api/Roles"
 
 // Získání seznamu všech rolí
 export const getAllRoles = async () => {
