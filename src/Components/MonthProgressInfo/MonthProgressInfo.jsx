@@ -11,6 +11,7 @@ const MonthProgressInfo = () => {
     useState(0)
   const [monthRecordProgress, setMonthRecordProgress] = useState(0)
   const [monthRemainingTime, setMonthRemainingTime] = useState(0)
+  const [bgProgress, setBgProgress] = useState("bg-danger")
 
   useEffect(() => {
     const fetchSumActualMonthTotalRecordTime = async () => {
@@ -47,6 +48,16 @@ const MonthProgressInfo = () => {
     fetchMonthRemainingTime()
   }, [])
 
+  useEffect(() => {
+    if (monthRecordProgress > 30 && monthRecordProgress < 50) {
+      setBgProgress("bg-warning")
+    } else if (monthRecordProgress >= 50) {
+      setBgProgress("bg-success")
+    } else {
+      setBgProgress("bg-danger")
+    }
+  }, [monthRecordProgress])
+
   return (
     <div>
       <h3 className="text-center fs-4 fw-light">Month Progress</h3>
@@ -61,7 +72,7 @@ const MonthProgressInfo = () => {
           aria-valuemax="100"
         >
           <div
-            className="progress-bar bg-success fs-5"
+            className={`progress-bar ${bgProgress} fs-5`}
             style={{ width: `${monthRecordProgress}%` }}
           >
             {monthRecordProgress}%

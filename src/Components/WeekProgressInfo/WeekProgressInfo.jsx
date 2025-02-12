@@ -11,6 +11,7 @@ const WeekProgressInfo = () => {
     useState(0)
   const [weekRecordProgress, setWeekRecordProgress] = useState(0)
   const [weekRemainingTime, setWeekRemainingTime] = useState(0)
+  const [bgProgress, setBgProgress] = useState("bg-danger")
 
   useEffect(() => {
     const fetchSumActualWeekTotalRecordTime = async () => {
@@ -47,6 +48,16 @@ const WeekProgressInfo = () => {
     fetchWeekRemainingTime()
   }, [])
 
+  useEffect(() => {
+    if (weekRecordProgress > 30 && weekRecordProgress < 50) {
+      setBgProgress("bg-warning")
+    } else if (weekRecordProgress >= 50) {
+      setBgProgress("bg-success")
+    } else {
+      setBgProgress("bg-danger")
+    }
+  }, [weekRecordProgress])
+
   return (
     <div>
       <h3 className="text-center fs-4 fw-light">Week Progress</h3>
@@ -61,7 +72,7 @@ const WeekProgressInfo = () => {
           aria-valuemax="100"
         >
           <div
-            className="progress-bar bg-success fs-5"
+            className={`progress-bar ${bgProgress} fs-5`}
             style={{ width: `${weekRecordProgress}%` }}
           >
             {weekRecordProgress}%

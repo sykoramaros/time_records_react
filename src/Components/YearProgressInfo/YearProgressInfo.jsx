@@ -11,6 +11,7 @@ const YearProgressInfo = () => {
     useState(0)
   const [yearRecordProgress, setYearRecordProgress] = useState(0)
   const [yearRemainingTime, setYearRemainingTime] = useState(0)
+  const [bgProgress, setBgProgress] = useState("bg-danger")
 
   useEffect(() => {
     const fetchSumMinistryYearTotalRecordTime = async () => {
@@ -47,6 +48,16 @@ const YearProgressInfo = () => {
     fetchYearRemainingTime()
   }, [])
 
+  useEffect(() => {
+    if (yearRecordProgress > 30 && yearRecordProgress < 50) {
+      setBgProgress("bg-warning")
+    } else if (yearRecordProgress >= 50) {
+      setBgProgress("bg-success")
+    } else {
+      setBgProgress("bg-danger")
+    }
+  }, [yearRecordProgress])
+
   return (
     <div>
       <h3 className="text-center fs-4 fw-light">Year Progress</h3>
@@ -61,7 +72,7 @@ const YearProgressInfo = () => {
           aria-valuemax="100"
         >
           <div
-            className="progress-bar bg-success fs-5"
+            className={`progress-bar ${bgProgress} fs-5`}
             style={{ width: `${yearRecordProgress}%` }}
           >
             {yearRecordProgress}%

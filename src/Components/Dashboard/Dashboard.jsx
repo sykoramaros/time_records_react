@@ -9,9 +9,9 @@ const Dashboard = () => {
       <div className="container-sm bg-light p-5 rounded-4">
         <h2 className="text-center">Dashboard</h2>
         <div className="row row-cols-1 mt-5 gap-4">
-          <YearProgressInfo />
-          <MonthProgressInfo />
           <WeekProgressInfo />
+          <MonthProgressInfo />
+          <YearProgressInfo />
         </div>
       </div>
     </div>
