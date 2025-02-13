@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 const AccessDenied = () => {
   return (
@@ -10,18 +11,27 @@ const AccessDenied = () => {
           </h1>
           <div className="d-flex justify-content-center">
             <img
-              className="img-fluid mt-5 rounded-circle"
-              src="./Photos/AccessDenied.jpg"
+              className="img-fluid mt-4 rounded-circle w-75"
+              src={`${process.env.PUBLIC_URL}/Photos/AccessDenied.jpg`}
               alt="Forbidden"
             />
           </div>
-          <a
-            className="d-flex justify-content-center m-auto btn btn-lg btn-secondary"
-            type="button"
-            href="/login"
-          >
-            Go back to login
-          </a>
+          <div className="row row-col-2 gap-5 mt-3 mx-auto d-flex justify-content-center">
+            <Link
+              className="btn btn-lg btn-success w-auto"
+              type="button"
+              to="/home"
+            >
+              Home
+            </Link>
+            <Link
+              className="btn btn-lg btn-danger w-auto"
+              type="button"
+              to="/login"
+            >
+              Login
+            </Link>
+          </div>
         </div>
       </div>
     </div>
