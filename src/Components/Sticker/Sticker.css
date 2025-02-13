@@ -1,0 +1,20 @@
+.position {
+  position: absolute;
+  z-index: 1000;
+  top: -3%;
+  right: -3%;
+}
+
+.rounded {
+  border: solid 1vw #008000bb;
+  border-radius: 50% !important;
+  background-color: #0000001d;
+  width: 10vw;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.text {
+  font-size: 5.6vw;
+  margin: 0;
+}

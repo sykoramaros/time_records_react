@@ -12,6 +12,7 @@ const YearProgressInfo = () => {
   const [yearRecordProgress, setYearRecordProgress] = useState(0)
   const [yearRemainingTime, setYearRemainingTime] = useState(0)
   const [bgProgress, setBgProgress] = useState("bg-danger")
+  const [sumTextColor, setSumTextColor] = useState("text-danger")
 
   useEffect(() => {
     const fetchSumMinistryYearTotalRecordTime = async () => {
@@ -51,10 +52,13 @@ const YearProgressInfo = () => {
   useEffect(() => {
     if (yearRecordProgress > 30 && yearRecordProgress < 50) {
       setBgProgress("bg-warning")
+      setSumTextColor("text-warning")
     } else if (yearRecordProgress >= 50) {
       setBgProgress("bg-success")
+      setSumTextColor("text-success")
     } else {
       setBgProgress("bg-danger")
+      setSumTextColor("text-danger")
     }
   }, [yearRecordProgress])
 
@@ -81,13 +85,13 @@ const YearProgressInfo = () => {
       </div>
       <div className="row row-cols-3 d-flex justify-content-center mt-4 mx-auto">
         <div className="col">
-          <p className="text-center fs-5 text-success">
+          <p className={`text-center ${sumTextColor} fs-5 fw-bold mt-4`}>
             {sumMinistryYearTotalRecordTime.hours} :{" "}
             {sumMinistryYearTotalRecordTime.minutes}
           </p>
         </div>
         <div className="col">
-          <p className="text-center fs-5 text-danger">
+          <p className={`text-center ${sumTextColor} fs-5 mt-4`}>
             {yearRemainingTime.hours} : {yearRemainingTime.minutes}
           </p>
         </div>

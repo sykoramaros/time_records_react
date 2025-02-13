@@ -12,6 +12,7 @@ const WeekProgressInfo = () => {
   const [weekRecordProgress, setWeekRecordProgress] = useState(0)
   const [weekRemainingTime, setWeekRemainingTime] = useState(0)
   const [bgProgress, setBgProgress] = useState("bg-danger")
+  const [sumTextColor, setSumTextColor] = useState("text-danger")
 
   useEffect(() => {
     const fetchSumActualWeekTotalRecordTime = async () => {
@@ -51,10 +52,13 @@ const WeekProgressInfo = () => {
   useEffect(() => {
     if (weekRecordProgress > 30 && weekRecordProgress < 50) {
       setBgProgress("bg-warning")
+      setSumTextColor("text-warning")
     } else if (weekRecordProgress >= 50) {
       setBgProgress("bg-success")
+      setSumTextColor("text-success")
     } else {
       setBgProgress("bg-danger")
+      setSumTextColor("text-danger")
     }
   }, [weekRecordProgress])
 
@@ -81,13 +85,13 @@ const WeekProgressInfo = () => {
       </div>
       <div className="row row-cols-3 d-flex justify-content-center mt-4 mx-auto">
         <div className="col">
-          <p className="text-center text-success fs-5 mt-4">
+          <p className={`text-center ${sumTextColor} fs-5 fw-bold mt-4`}>
             {sumActualWeekTotalRecordTime.hours} :{" "}
             {sumActualWeekTotalRecordTime.minutes}
           </p>
         </div>
         <div className="col">
-          <p className="text-center text-danger fs-5 mt-4">
+          <p className={`text-center ${sumTextColor} fs-5 mt-4`}>
             {weekRemainingTime.hours} : {weekRemainingTime.minutes}
           </p>
         </div>
