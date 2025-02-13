@@ -4,6 +4,7 @@ import {
   getSumActualMonthTotalRecordTimeQuery,
   getMonthRecordProgressQuery,
   getMonthRemainingTimeQuery,
+  getWeekRemainingTimeQuery,
 } from "../../Services/DashboardService/DashboardService"
 import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min"
 
@@ -15,6 +16,7 @@ const MonthProgressInfo = () => {
   const [bgProgress, setBgProgress] = useState("bg-danger")
   const [sumTextColor, setSumTextColor] = useState("text-danger")
   const sumActualMonthTotalRecordTimeRef = useRef(null)
+  const monthRemainingTimeRef = useRef(null)
 
   useEffect(() => {
     const fetchSumActualMonthTotalRecordTime = async () => {
@@ -52,6 +54,9 @@ const MonthProgressInfo = () => {
 
     if (sumActualMonthTotalRecordTimeRef.current) {
       new Tooltip(sumActualMonthTotalRecordTimeRef.current)
+    }
+    if (monthRemainingTimeRef.current) {
+      new Tooltip(monthRemainingTimeRef.current)
     }
   }, [])
 
@@ -105,8 +110,17 @@ const MonthProgressInfo = () => {
           </p>
         </div>
         <div className="col">
-          <p className={`text-center ${sumTextColor} fs-5 mt-4`}>
-            {monthRemainingTime.hours} : {monthRemainingTime.minutes}
+          <p
+            className={`text-center text-secondary fs-5 mt-4`}
+            ref={monthRemainingTimeRef}
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-html="true"
+            data-bs-title="Remaining <strong>month's</strong> time"
+            style={{ cursor: "pointer" }}
+          >
+            {" "}
+            - {monthRemainingTime.hours} : {monthRemainingTime.minutes}
           </p>
         </div>
       </div>

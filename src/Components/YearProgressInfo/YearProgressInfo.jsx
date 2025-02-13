@@ -15,6 +15,7 @@ const YearProgressInfo = () => {
   const [bgProgress, setBgProgress] = useState("bg-danger")
   const [sumTextColor, setSumTextColor] = useState("text-danger")
   const sumMinistryYearTotalRecordTimeRef = useRef(null)
+  const yearRemainingTimeRef = useRef(null)
 
   useEffect(() => {
     const fetchSumMinistryYearTotalRecordTime = async () => {
@@ -52,6 +53,9 @@ const YearProgressInfo = () => {
 
     if (sumMinistryYearTotalRecordTimeRef.current) {
       new Tooltip(sumMinistryYearTotalRecordTimeRef.current)
+    }
+    if (yearRemainingTimeRef.current) {
+      new Tooltip(yearRemainingTimeRef.current)
     }
   }, [])
 
@@ -105,8 +109,16 @@ const YearProgressInfo = () => {
           </p>
         </div>
         <div className="col">
-          <p className={`text-center ${sumTextColor} fs-5 mt-4`}>
-            {yearRemainingTime.hours} : {yearRemainingTime.minutes}
+          <p
+            className={`text-center text-secondary fs-5 mt-4`}
+            ref={yearRemainingTimeRef}
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-html="true"
+            data-bs-title="Current <strong>year's</strong> time"
+            style={{ cursor: "pointer" }}
+          >
+            - {yearRemainingTime.hours} : {yearRemainingTime.minutes}
           </p>
         </div>
       </div>

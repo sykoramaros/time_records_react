@@ -15,6 +15,7 @@ const WeekProgressInfo = () => {
   const [bgProgress, setBgProgress] = useState("bg-danger")
   const [sumTextColor, setSumTextColor] = useState("text-danger")
   const sumActualWeekTotalRecordTimeRef = useRef(null)
+  const weekRemainingTimeRef = useRef(null)
 
   useEffect(() => {
     const fetchSumActualWeekTotalRecordTime = async () => {
@@ -52,6 +53,9 @@ const WeekProgressInfo = () => {
 
     if (sumActualWeekTotalRecordTimeRef.current) {
       new Tooltip(sumActualWeekTotalRecordTimeRef.current)
+    }
+    if (weekRemainingTimeRef.current) {
+      new Tooltip(weekRemainingTimeRef.current)
     }
   }, [])
 
@@ -105,8 +109,16 @@ const WeekProgressInfo = () => {
           </p>
         </div>
         <div className="col">
-          <p className={`text-center ${sumTextColor} fs-5 mt-4`}>
-            {weekRemainingTime.hours} : {weekRemainingTime.minutes}
+          <p
+            className={`text-center text-secondary fs-5 mt-4`}
+            ref={weekRemainingTimeRef}
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-html="true"
+            data-bs-title="Remaining <strong>week's</strong> time"
+            style={{ cursor: "pointer" }}
+          >
+            - {weekRemainingTime.hours} : {weekRemainingTime.minutes}
           </p>
         </div>
       </div>
