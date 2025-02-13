@@ -1,10 +1,11 @@
 import React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import {
   getSumActualWeekTotalRecordTimeQuery,
   getWeekRecordProgressQuery,
   getWeekRemainingTimeQuery,
 } from "../../Services/DashboardService/DashboardService"
+import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min"
 
 const WeekProgressInfo = () => {
   const [sumActualWeekTotalRecordTime, setSumActualWeekTotalRecordTime] =
@@ -13,6 +14,7 @@ const WeekProgressInfo = () => {
   const [weekRemainingTime, setWeekRemainingTime] = useState(0)
   const [bgProgress, setBgProgress] = useState("bg-danger")
   const [sumTextColor, setSumTextColor] = useState("text-danger")
+  const sumActualWeekTotalRecordTimeRef = useRef(null)
 
   useEffect(() => {
     const fetchSumActualWeekTotalRecordTime = async () => {
@@ -47,6 +49,10 @@ const WeekProgressInfo = () => {
       }
     }
     fetchWeekRemainingTime()
+
+    if (sumActualWeekTotalRecordTimeRef.current) {
+      new Tooltip(sumActualWeekTotalRecordTimeRef.current)
+    }
   }, [])
 
   useEffect(() => {
@@ -85,7 +91,15 @@ const WeekProgressInfo = () => {
       </div>
       <div className="row row-cols-3 d-flex justify-content-center mt-4 mx-auto">
         <div className="col">
-          <p className={`text-center ${sumTextColor} fs-5 fw-bold mt-4`}>
+          <p
+            className={`text-center ${sumTextColor} fs-5 fw-bold mt-4`}
+            ref={sumActualWeekTotalRecordTimeRef}
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-html="true"
+            data-bs-title="Current <strong>week's</strong> time"
+            style={{ cursor: "pointer" }}
+          >
             {sumActualWeekTotalRecordTime.hours} :{" "}
             {sumActualWeekTotalRecordTime.minutes}
           </p>

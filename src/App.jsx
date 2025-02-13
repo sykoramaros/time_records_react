@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/access-denied" element={<AccessDenied />} />
         <Route path="/" element={<Layout />}>
           <Route path="/home" element={<Home />} />
-          <Route path="calendar" element={<Calendar />} />
+          <Route path="/calendar" element={<Calendar />} />
 
           {/* Layout s chranenymi trasami */}
           <Route

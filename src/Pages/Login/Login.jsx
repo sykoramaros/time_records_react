@@ -68,6 +68,7 @@ const Login = () => {
               data-bs-title="Username: '<strong class='text-warning'>sef</strong>' or '<strong class='text-warning'>guest</strong>'"
               data-bs-html="true"
               data-bs-placement="top"
+              style={{ cursor: "pointer" }}
               autoFocus
               required
             />
