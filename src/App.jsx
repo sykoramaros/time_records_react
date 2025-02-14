@@ -10,6 +10,7 @@ import Calendar from "./Pages/Calendar/Calendar"
 import Users from "./Pages/Users/Users"
 import Roles from "./Pages/Roles/Roles"
 import EditRole from "./Pages/Roles/EditRole"
+import Settings from "./Pages/Settings/Settings"
 import AccessDenied from "./Pages/AccessDenied/AccessDenied"
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute"
 
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/" element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/settings" element={<Settings />} />
 
           {/* Layout s chranenymi trasami */}
           <Route

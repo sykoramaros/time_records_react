@@ -9,7 +9,7 @@ const Dashboard = () => {
     <div className="d-flex justify-content-center">
       <div
         className="w-75 bg-light p-5 rounded-4"
-        style={{ position: "absolute"}}
+        style={{ position: "absolute" }}
       >
         <Sticker />
         <h2 className="text-center">Dashboard</h2>

@@ -59,6 +59,11 @@ const Navbar = () => {
                   Calendar
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link fs-5 fw-light" to="/settings">
+                  Settings
+                </Link>
+              </li>
               {role === "Admin" && (
                 <>
                   <li className="nav-item">
