@@ -7,6 +7,7 @@ const EditModal = ({ show, user, onClose }) => {
     name: user?.userName || "",
     email: user?.email || "",
     phoneNumber: user?.phoneNumber || "",
+    monthTimeGoal: user?.monthTimeGoal || 0,
   })
 
   // pro zpomalene asynchronni nacitani z API
@@ -15,9 +16,10 @@ const EditModal = ({ show, user, onClose }) => {
       name: user?.userName || "",
       email: user?.email || "",
       phoneNumber: user?.phoneNumber || "",
+      monthTimeGoal: user?.monthTimeGoal || 0,
     })
     console.log("Setting form data:", user)
-  }, [user?.userName, user?.email, user?.phoneNumber])
+  }, [user])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -91,6 +93,18 @@ const EditModal = ({ show, user, onClose }) => {
                   id="phoneNumber"
                   name="phoneNumber"
                   value={formData.phoneNumber}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-group mb-2">
+                <label htmlFor="phoneNumber">Month time goal</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="monthTimeGoal"
+                  name="monthTimeGoal"
+                  value={formData.monthTimeGoal}
                   onChange={handleChange}
                   required
                 />

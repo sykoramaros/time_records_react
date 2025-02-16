@@ -64,6 +64,7 @@ export const editUser = async (userId, user) => {
         Name: user.name,
         Email: user.email,
         phoneNumber: user.phoneNumber,
+        monthTimeGoal: user.monthTimeGoal,
       },
       {
         headers: {

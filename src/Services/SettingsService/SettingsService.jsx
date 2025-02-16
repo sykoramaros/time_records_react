@@ -21,20 +21,94 @@ export const getMonthTimeGoalByUserId = async (userId) => {
   }
 }
 
-export const editMonthTimeGoal = async (userId, monthTimeGoal) => {
+// export const editMonthTimeGoal = async (userId, data) => {
+//   try {
+//     const user = JSON.parse(localStorage.getItem("user"))
+//     console.log("editMonthTimeGoal:", user)
+//     const response = await axios.put(
+//       `${baseURL}/EditMonthTimeGoal?userId=${user.userId}`,
+//       {
+//         monthTimeGoal: user.monthTimeGoal,
+//       },
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     )
+//     return response.data
+//   } catch (error) {
+//     console.error("Failed to edit month time goal:", error)
+//     throw error
+//   }
+// }
+
+export const editMonthTimeGoal = async (monthTimeGoal) => {
   try {
+    const user = JSON.parse(localStorage.getItem("user"))
+    
+    // Vytvoříme objekt podle původní struktury
+    const payload = {
+      Name: user.name || "",
+      Email: user.email || "",
+      phoneNumber: user.phoneNumber || "",
+      monthTimeGoal: Number(monthTimeGoal),
+      userId: user.userId
+    }
+    
+    console.log("Request URL:", `${baseURL}/EditMonthTimeGoal?userId=${user.userId}`)
+    console.log("Request payload:", payload)
+    console.log("User from localStorage:", user)
+    
     const response = await axios.put(
-      baseURL + `/EditMonthTimeGoal?userId=${userId}`,
+      `${baseURL}/EditMonthTimeGoal?userId=${user.userId}`,
+      payload,
       {
-        monthTimeGoal: monthTimeGoal,
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
       }
     )
+    
+    console.log("Server response:", response)
     return response.data
   } catch (error) {
-    console.log("Failed to edit month time goal: ", error)
+    // Detailní výpis chyby
+    console.log("Error details:", {
+      data: error.response?.data,
+      status: error.response?.status,
+      headers: error.response?.headers,
+      config: error.config
+    })
     throw error
   }
 }
+
+// export const editMonthTimeGoal = async (userId, newMonthTimeGoal) => {
+//   try {
+//     const user = JSON.parse(localStorage.getItem("user"))
+//     if (!user.userId) {
+//       console.error("UserId is required but was null or undefined")
+//       return null
+//     }
+//     const response = await axios.put(
+//       `${baseURL}/EditMonthTimeGoal?userId=${userId}`,
+//       {
+//         monthTimeGoal: newMonthTimeGoal,
+//       },
+//       {
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     )
+//     return response.data
+//   } catch (error) {
+//     console.log("Failed to edit month time goal: ", error)
+//     throw error
+//   }
+// }
 
 // export const getMonthTimeGoalByUserId = async (userId) => {
 //   try {

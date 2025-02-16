@@ -97,6 +97,8 @@ const Users = () => {
                     Email: {user.email}
                     <br />
                     Phone number: {user.phoneNumber}
+                    <br />
+                    Month time goal: {user.monthTimeGoal}
                   </p>
                 </div>
                 <div className="card-footer bg-transparent border-primary">
