@@ -4,16 +4,16 @@ import YearProgressInfo from "../YearProgressInfo/YearProgressInfo"
 import MonthProgressInfo from "../MonthProgressInfo/MonthProgressInfo"
 import WeekProgressInfo from "../WeekProgressInfo/WeekProgressInfo"
 import Sticker from "../Sticker/Sticker"
-import { getMonthTimeGoalByUserId } from "../../Services/SettingsService/SettingsService"
+import { getUserByIdQuery } from "../../Services/SettingsService/SettingsService"
 
 const Dashboard = () => {
   const [monthTimeGoal, setMonthTimeGoal] = useState(null)
-  const [titleZero, setTitleZero] = useState("text-danger fw-bold")
+  const [titleZero, setTitleZero] = useState("d-none")
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getMonthTimeGoalByUserId()
+        const response = await getUserByIdQuery()
         console.log("Settings fetchData:", response.monthTimeGoal)
         setMonthTimeGoal(response.monthTimeGoal)
         console.log("fetchData", response.monthTimeGoal + " " + response.userId)
@@ -22,8 +22,8 @@ const Dashboard = () => {
       }
     }
     fetchData()
-    if (monthTimeGoal > 0) {
-      setTitleZero("d-none")
+    if (monthTimeGoal === 0) {
+      setTitleZero("text-danger fw-bold")
     }
   }, [monthTimeGoal])
 

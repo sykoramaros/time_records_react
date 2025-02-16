@@ -34,7 +34,7 @@ const Login = () => {
       if (result.success) {
         console.log("Login successful, redirecting to:", result.returnUrl)
         // navigate(result.returnUrl || "/home")
-        navigate("/calendar")
+        navigate("/home")
       } else {
         console.log("Login failed:", errorMessage)
         setErrorMessage(result.message)

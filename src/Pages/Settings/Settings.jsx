@@ -1,67 +1,59 @@
 import React, { useState, useEffect } from "react"
 import {
-  getMonthTimeGoalByUserId,
-  editMonthTimeGoal,
+  getUserByIdQuery,
+  editUserByIdQuery,
 } from "../../Services/SettingsService/SettingsService"
 
 const Settings = () => {
-  const [editUserId, setEditUserId] = useState(null)
-  const [editedMonthTimeGoal, setEditedMonthTimeGoal] = useState(0)
+  const [user, setUser] = useState([])
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUser = async () => {
       try {
-        const response = await getMonthTimeGoalByUserId()
-        console.log("Settings fetchData:", response.monthTimeGoal)
-        setEditedMonthTimeGoal(response.monthTimeGoal)
-        setEditUserId(response.userId)
-        console.log("fetchData", response.monthTimeGoal + " " + response.userId)
+        const fetchedUser = await getUserByIdQuery()
+        console.log("fetchedUser:", fetchedUser)
+        if (!fetchedUser) {
+          console.error("Failed to fetch user data")
+          return
+        }
+        console.log("fetchedUser:", fetchedUser)
+        setUser(fetchedUser)
       } catch (error) {
-        console.error(error)
+        console.error("Error in fetchUsers:", error)
       }
     }
-    fetchData()
+    fetchUser()
   }, [])
 
-  // const handleEditMonthTimeGoal = async () => {
-  //   try {
-  //     const editedData = {
-  //       monthTimeGoal: editedMonthTimeGoal,
-  //     }
-  //     console.log("Sending data:", editedData)
-  //     const sendData = await editMonthTimeGoal(editUserId, editedData)
-  //     alert("Month time goal edited successfully")
-  //     console.log("Month time goal edited:", sendData)
-  //     setEditedMonthTimeGoal(editedData.monthTimeGoal)
-  //   } catch (error) {
-  //     console.error("Error editing month time goal", error)
-  //     alert("Error editing month time goal. Please try again")
-  //     window.location.reload()
-  //   }
-  // }
-
-  const handleEditMonthTimeGoal = async () => {
-    try {
-      console.log("Input value:", editedMonthTimeGoal)
-      console.log("Input value type:", typeof editedMonthTimeGoal)
-
-      if (!editedMonthTimeGoal || isNaN(Number(editedMonthTimeGoal))) {
-        alert("Please enter a valid number for month time goal")
-        return
-      }
-
-      const sendData = await editMonthTimeGoal(editedMonthTimeGoal)
-      alert("Month time goal edited successfully")
-      setEditedMonthTimeGoal(editedMonthTimeGoal)
-    } catch (error) {
-      const errorMessage = error.response?.data?.message || error.message
-      alert(`Error editing month time goal: ${errorMessage}`)
-      console.error("Full error:", error)
-    }
+  const handleDataChange = (e) => {
+    const { id, value } = e.target
+    setUser((prevUser) => ({
+      ...prevUser,
+      [id]: value,
+    }))
   }
 
-  const handleMonthTimeGoalChange = (e) => {
-    setEditedMonthTimeGoal(e.target.value)
+  const handleEditUser = async (e) => {
+    e.preventDefault()
+    try {
+      const payload = {
+        name: user.userName,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        monthTimeGoal:
+          Number(user.monthTimeGoal) === 0 ? 15 : Number(user.monthTimeGoal),
+      }
+      console.log("handleEditUser - Input user:", user)
+      console.log("handleEditUser - Prepared payload:", payload)
+      const editedUser = await editUserByIdQuery(payload)
+      console.log("handleEditUser - Response:", editedUser)
+      alert("User edited successfully")
+    } catch (error) {
+      console.log("handleEditUser - Full error response:", error.response)
+      const errorMessage = error.response?.data?.message || error.message
+      alert(`Error editing user: ${errorMessage}`)
+      console.error("Full error:", error)
+    }
   }
 
   return (
@@ -69,29 +61,62 @@ const Settings = () => {
       <div className="container">
         <h1 className="text-center py-4">Settings</h1>
         <div className="mx-auto">
-          <div className="input-group mb-3 d-flex justify-content-center">
-            <span className="input-group-text">Monthly time goal</span>
-            <input
-              type="number"
-              className="form-control text-center"
-              placeholder="1"
-              value={editedMonthTimeGoal}
-              min={1}
-              onChange={handleMonthTimeGoalChange}
-              aria-label="Example text with button addon"
-              aria-describedby="button-addon1"
-              style={{ maxWidth: "7ch" }}
-            />
-            <button
-              className="btn btn-outline-success"
-              type="button"
-              id="button-addon1"
-              onClick={handleEditMonthTimeGoal}
-              disabled={!editedMonthTimeGoal || editedMonthTimeGoal < 0}
-            >
-              Save
-            </button>
-          </div>
+          <form
+            onSubmit={handleEditUser}
+            className="row d-flex g-3 w-75 w-md-25 mx-auto justify-content-start"
+          >
+            <div className="form-group col-4 col-md-3">
+              <label htmlFor="monthTimeGoal">Goal</label>
+              <input
+                type="number"
+                className="form-control"
+                style={{ maxWidth: "7ch" }}
+                id="monthTimeGoal"
+                name="monthTimeGoal"
+                defaultValue={user.monthTimeGoal}
+                onChange={handleDataChange}
+                min="1"
+              />
+            </div>
+            <div className="form-group col-12">
+              <label htmlFor="userName">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="userName"
+                name="userName"
+                value={user.userName || ""}
+                onChange={handleDataChange}
+              />
+            </div>
+            <div className="form-group col-12">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                value={user.email || ""}
+                onChange={handleDataChange}
+              />
+            </div>
+            <div className="form-group col-8 col-md-9">
+              <label htmlFor="phoneNumber">Phone number</label>
+              <input
+                type="text"
+                className="form-control"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={user.phoneNumber || ""}
+                onChange={handleDataChange}
+              />
+            </div>
+            <div className="form-group">
+              <button type="submit" className="btn btn-primary">
+                Save
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
