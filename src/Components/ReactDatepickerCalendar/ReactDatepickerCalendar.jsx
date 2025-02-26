@@ -1,22 +1,132 @@
+// import React from "react"
+// import { useState, useEffect, useRef } from "react"
+// import ReactDatepicker from "react-datepicker"
+// import "./ReactDatePickerCalendar.css"
+// import { cs, se } from "date-fns/locale"
+// import { getAllRecordsQuery } from "../../Services/ReactDatepickerService/ReactDatepickerService"
+// import AddRecordModal from "../AddRecordModal/AddRecordModal"
+// import EditRecordModal from "../EditRecordModal/EditRecordModal"
+
+// const ReactDatepickerCalendar = () => {
+//   const [selectedDate, setSelectedDate] = useState(new Date())
+//   const [showModal, setShowModal] = useState(false)
+//   const [highlightedDates, setHighlightedDates] = useState([])
+//   const [error, setError] = useState(null)
+
+//   useEffect(() => {
+//     const fetchHighlightedDates = async () => {
+//       try {
+//         const records = await getAllRecordsQuery()
+//         const dates = records.map((record) => new Date(record.date))
+//         setHighlightedDates(dates)
+//         setError(null)
+//       } catch (error) {
+//         console.error("Error fetching highlighted dates:", error)
+//         setError(error.message)
+//         setHighlightedDates([])
+//       }
+//     }
+//     fetchHighlightedDates()
+//   }, [])
+
+//   const handleDateChange = (date) => {
+//     const isHighlighted = highlightedDates.some(
+//       (highlightedDate) =>
+//         highlightedDate.toDateString() === date.toDateString()
+//     )
+//     setSelectedDate(date)
+//     if (!isHighlighted) {
+//       // AddRecordModal se spustí jen pokud datum není highlightedDates
+//       setShowModal(true)
+//       console.log("AddRecordModal set to:", true)
+//     } else {
+//       // EditRecordModal se spustí jen pokud datum je highlightedDates
+//       setShowModal(true)
+//       console.log("EditRecordModal set to:", true)
+//     }
+//   }
+
+//   const handleCloseModal = () => {
+//     setShowModal(false)
+//     window.location.reload()
+//     console.log("showModal set to:", false)
+//   }
+
+//   return (
+//     <div className="datepicker-wrapper">
+//       <ReactDatepicker
+//         selected={selectedDate}
+//         onChange={handleDateChange}
+//         dateFormat={"dd.MM.yyyy"}
+//         calendarStartDay={1}
+//         // onBlur={() => setSelectedDate(new Date())}
+//         locale={cs}
+//         showYearDropdown
+//         dropdownMode=""
+//         fixedHeight
+//         inline
+//         className="custom-datepicker"
+//         highlightDates={highlightedDates}
+//       />
+
+//       {/* Zobrazí AddRecordModal, pokud datum není zvýrazněné */}
+//       {!highlightedDates.some(
+//         (highlightedDate) =>
+//           highlightedDate.toDateString() === selectedDate.toDateString()
+//       ) &&
+//         showModal && (
+//           <AddRecordModal
+//             selectedDate={selectedDate}
+//             show={showModal}
+//             onClose={handleCloseModal}
+//           />
+//         )}
+
+//       {/* Zobrazí EditRecordModal, pokud datum je zvýrazněné */}
+//       {highlightedDates.some(
+//         (highlightedDate) =>
+//           highlightedDate.toDateString() === selectedDate.toDateString()
+//       ) &&
+//         showModal && (
+//           <EditRecordModal
+//             selectedDate={selectedDate}
+//             show={showModal}
+//             onClose={() => setShowModal(false)}
+//           />
+//         )}
+//     </div>
+//   )
+// }
+
+// export default ReactDatepickerCalendar
+
 import React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import ReactDatepicker from "react-datepicker"
 import "./ReactDatePickerCalendar.css"
 import { cs, se } from "date-fns/locale"
-import { getAllRecordsQuery } from "../../Services/ReactDatepickerService/ReactDatepickerService"
+import {
+  getAllRecordsQuery,
+  getRecordByDate,
+} from "../../Services/ReactDatepickerService/ReactDatepickerService"
 import AddRecordModal from "../AddRecordModal/AddRecordModal"
 import EditRecordModal from "../EditRecordModal/EditRecordModal"
+import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min"
 
 const ReactDatepickerCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [showModal, setShowModal] = useState(false)
   const [highlightedDates, setHighlightedDates] = useState([])
+  const [records, setRecords] = useState([])
+  const [currentRecord, setCurrentRecord] = useState(null)
   const [error, setError] = useState(null)
+  const tooltipInstancesRef = useRef([])
 
   useEffect(() => {
     const fetchHighlightedDates = async () => {
       try {
         const records = await getAllRecordsQuery()
+        setRecords(records)
         const dates = records.map((record) => new Date(record.date))
         setHighlightedDates(dates)
         setError(null)
@@ -29,27 +139,126 @@ const ReactDatepickerCalendar = () => {
     fetchHighlightedDates()
   }, [])
 
-  const handleDateChange = (date) => {
+  // Inicializace tooltipů po načtení dat
+  useEffect(() => {
+    if (highlightedDates.length > 0) {
+      // Nejprve zrušíme předchozí instance tooltipů
+      tooltipInstancesRef.current.forEach((tooltip) => {
+        if (tooltip && tooltip.dispose) {
+          tooltip.dispose()
+        }
+      })
+      tooltipInstancesRef.current = []
+
+      // Počkáme na dokončení vykreslení
+      setTimeout(() => {
+        // Inicializujeme nové tooltipy
+        const tooltipElements = document.querySelectorAll(
+          '[data-bs-toggle="tooltip"]'
+        )
+        tooltipElements.forEach((element) => {
+          const tooltipInstance = new Tooltip(element)
+          tooltipInstancesRef.current.push(tooltipInstance)
+        })
+      }, 200)
+    }
+
+    // Cleanup při unmount
+    return () => {
+      tooltipInstancesRef.current.forEach((tooltip) => {
+        if (tooltip && tooltip.dispose) {
+          tooltip.dispose()
+        }
+      })
+    }
+  }, [highlightedDates])
+
+  const handleDateChange = async (date) => {
     const isHighlighted = highlightedDates.some(
       (highlightedDate) =>
         highlightedDate.toDateString() === date.toDateString()
     )
     setSelectedDate(date)
-    if (!isHighlighted) {
-      // AddRecordModal se spustí jen pokud datum není highlightedDates
-      setShowModal(true)
-      console.log("AddRecordModal set to:", true)
+
+    if (isHighlighted) {
+      try {
+        // Použití getRecordByDate pro získání záznamu pro vybrané datum
+        const record = await getRecordByDate(date)
+        setCurrentRecord(record)
+      } catch (error) {
+        console.error("Error fetching record:", error)
+        setCurrentRecord(null)
+      }
     } else {
-      // EditRecordModal se spustí jen pokud datum je highlightedDates
-      setShowModal(true)
-      console.log("EditRecordModal set to:", true)
+      setCurrentRecord(null)
     }
+
+    setShowModal(true)
   }
 
   const handleCloseModal = () => {
     setShowModal(false)
     window.location.reload()
     console.log("showModal set to:", false)
+  }
+
+  // Asynchronní funkce pro získání záznamu pro konkrétní datum
+  const fetchRecordForDate = async (date) => {
+    try {
+      return await getRecordByDate(date)
+    } catch (error) {
+      console.error(`Error fetching record for date ${date}:`, error)
+      return null
+    }
+  }
+
+  // Vytvoření obsahu tooltipu pro konkrétní datum
+  const getTooltipContent = (date) => {
+    const record = records.find(
+      (record) => new Date(record.date).toDateString() === date.toDateString()
+    )
+
+    if (!record) return ""
+
+    const formattedTime = record.recordTime
+      ? record.recordTime.substring(0, 5)
+      : ""
+
+    // Upravte podle skutečné struktury vašich záznamů
+    let tooltipContent = `<span class="fs-7">Recorded time:</span><br/><strong class="text-warning fs-3">${formattedTime}</strong>`
+    if (record.recordStudy) {
+      tooltipContent += `<hr class="my-0 mx-auto w-75"/><span class="fs-7">Study:</span><br/><strong class="text-success fs-3">${record.recordStudy}</strong>`
+    }
+    if (record.description) {
+      tooltipContent += `<hr class="m-0 mx-auto w-75"/><span class="fs-7">Description:</span><br/><strong class="text-info fs-6">"${record.description}"</strong>`
+    }
+
+    return tooltipContent
+  }
+
+  // Vlastní renderer obsahu dne
+  const renderDayContents = (day, date) => {
+    const isHighlighted = highlightedDates.some(
+      (highlightedDate) =>
+        highlightedDate.toDateString() === date.toDateString()
+    )
+
+    if (isHighlighted) {
+      const tooltipContent = getTooltipContent(date)
+
+      return (
+        <span
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          data-bs-html="true"
+          data-bs-title={tooltipContent}
+          className="highlighted-date"
+        >
+          {day}
+        </span>
+      )
+    }
+    return day
   }
 
   return (
@@ -59,7 +268,6 @@ const ReactDatepickerCalendar = () => {
         onChange={handleDateChange}
         dateFormat={"dd.MM.yyyy"}
         calendarStartDay={1}
-        // onBlur={() => setSelectedDate(new Date())}
         locale={cs}
         showYearDropdown
         dropdownMode=""
@@ -67,6 +275,7 @@ const ReactDatepickerCalendar = () => {
         inline
         className="custom-datepicker"
         highlightDates={highlightedDates}
+        renderDayContents={renderDayContents}
       />
 
       {/* Zobrazí AddRecordModal, pokud datum není zvýrazněné */}
@@ -90,22 +299,11 @@ const ReactDatepickerCalendar = () => {
         showModal && (
           <EditRecordModal
             selectedDate={selectedDate}
+            record={currentRecord}
             show={showModal}
             onClose={() => setShowModal(false)}
           />
         )}
-
-      {/* <AddRecordModal
-        selectedDate={selectedDate}
-        show={showModal}
-        onClose={handleCloseModal}
-      />
-
-      <EditRecordModal
-        selectedDate={selectedDate}
-        show={showModal}
-        onClose={handleCloseModal}
-      /> */}
     </div>
   )
 }
