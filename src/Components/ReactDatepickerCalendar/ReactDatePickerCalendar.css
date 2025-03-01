@@ -27,7 +27,8 @@
 
 /* 🔵 */
 .react-datepicker {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Krub", sans-serif;
+  font-weight: 600;
   font-size: 2.5vw;
   background-color: #fff;
   color: #000;
@@ -99,7 +100,7 @@
 .react-datepicker-year-header {
   margin-top: 0;
   color: #000;
-  font-weight: bold;
+  font-weight: 400;
   font-size: 2vw;
 }
 
@@ -325,7 +326,7 @@ h2.react-datepicker__current-month {
   li.react-datepicker__time-list-item--selected {
   background-color: #216ba5;
   color: white;
-  font-weight: bold;
+  font-weight: 600;
 }
 .react-datepicker__time-container
   .react-datepicker__time
@@ -426,7 +427,7 @@ h2.react-datepicker__current-month {
 .react-datepicker__month-text--today,
 .react-datepicker__quarter-text--today,
 .react-datepicker__year-text--today {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 /* 🔵 */
@@ -835,7 +836,7 @@ h2.react-datepicker__current-month {
   border-top: 1px solid #aeaeae;
   cursor: pointer;
   text-align: center;
-  font-weight: bold;
+  font-weight: 600;
   padding: 5px 0;
   clear: left;
 }

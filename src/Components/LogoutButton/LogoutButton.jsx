@@ -16,6 +16,7 @@ const LogoutButton = () => {
     <button
       onClick={handleLogout}
       className="btn bg-danger text-white fs-5 ms-auto"
+      style={{ fontWeight: "600" }}
     >
       Logout
     </button>

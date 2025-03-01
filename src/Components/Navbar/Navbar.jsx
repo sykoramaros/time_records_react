@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import "./Navbar.css"
 import { getUserRole } from "../../Services/AuthenticationService/AuthenticationService"
 import LogoutButton from "../LogoutButton/LogoutButton"
 
@@ -17,7 +18,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar fixed-top navbar-expand-sm bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/home">
             <svg
@@ -44,10 +45,10 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav gap-2">
               <li className="nav-item">
                 <Link
-                  className="nav-link active fs-5 fw-light"
+                  className="nav-link active fs-4"
                   aria-current="page"
                   to="/home"
                 >
@@ -55,24 +56,24 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link fs-5 fw-light" to="/calendar">
+                <Link className="nav-link fs-4" to="/calendar">
                   Calendar
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link fs-5 fw-light" to="/settings">
+                <Link className="nav-link fs-4" to="/settings">
                   Settings
                 </Link>
               </li>
               {role === "Admin" && (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link fs-5 fw-light" to="/users">
+                    <Link className="nav-link fs-4" to="/users">
                       Users
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link fs-5 fw-light" to="/roles">
+                    <Link className="nav-link fs-4" to="/roles">
                       Roles
                     </Link>
                   </li>
