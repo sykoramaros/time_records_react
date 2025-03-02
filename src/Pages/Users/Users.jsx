@@ -72,7 +72,9 @@ const Users = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="text-center py-4">Users</h1>
+        <h1 className="text-center text-white display-3 text-shadow-primary py-4">
+          Users
+        </h1>
         <button
           type="button"
           className="btn btn-success"

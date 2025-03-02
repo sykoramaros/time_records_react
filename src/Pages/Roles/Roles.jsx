@@ -60,7 +60,7 @@ const Roles = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center py-4">Roles</h1>
+      <h1 className="text-center text-white display-3 text-shadow-primary py-4">Roles</h1>
       <button
         className="btn btn-success mb-3"
         onClick={() => setShowModal(true)}

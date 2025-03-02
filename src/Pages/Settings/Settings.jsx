@@ -59,7 +59,9 @@ const Settings = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="text-center py-4">Settings</h1>
+        <h1 className="text-center text-white display-3 text-shadow-primary py-4">
+          Settings
+        </h1>
         <div className="mx-auto">
           <form
             onSubmit={handleEditUser}

@@ -8,7 +8,9 @@ const Calendar = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="text-center py-4">Calendar</h1>
+        <h1 className="text-center text-white display-3 text-shadow-primary py-4">
+          Calendar
+        </h1>
         {/* <h2>User ID: {user.userId || "No user ID found"}</h2>
         <h3>Role: {user.email}</h3>
         <h4>Role: {user.phoneNumber}</h4> */}

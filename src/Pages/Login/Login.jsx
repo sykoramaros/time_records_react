@@ -50,7 +50,9 @@ const Login = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="text-center text-danger display-4 mt-4">Login</h1>
+        <h1 className="text-center text-white display-3 text-shadow-primary py-4">
+          Login
+        </h1>
         <form className="w-75 mt-5 mx-auto" onSubmit={handleLogin}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
