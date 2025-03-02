@@ -30,19 +30,19 @@ const Dashboard = () => {
   return (
     <div className="d-flex justify-content-center">
       <div
-        className="w-75 bg-light p-5 rounded-4"
+        className="w-75 bg-info p-5 rounded-4 shadow"
         style={{ position: "absolute" }}
       >
         <Sticker />
-        <h2 className="text-center">Dashboard</h2>
+        <h2 className="text-center text-primary text-uppercase">Dashboard</h2>
         <h3 className={`text-center ${titleZero}`}>
           Your month time goal is zero or not set!
         </h3>
         <div className="row row-cols-1 mt-5 gap-4">
           <WeekProgressInfo />
-          <hr className="mx-auto w-75" />
+          <hr className="mx-auto w-75 border-primary" />
           <MonthProgressInfo />
-          <hr className="mx-auto w-75" />
+          <hr className="mx-auto w-75 border-primary" />
           <YearProgressInfo />
         </div>
       </div>

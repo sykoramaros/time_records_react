@@ -1,12 +1,13 @@
 import React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import "./Navbar.css"
 import { getUserRole } from "../../Services/AuthenticationService/AuthenticationService"
 import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
   const [role, setRole] = useState(null)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const navbarCollapseRef = useRef(null)
 
   useEffect(() => {
     const fetchRole = async () => {
@@ -16,17 +17,40 @@ const Navbar = () => {
     fetchRole()
   }, [])
 
+  // Funkce pro přepínání stavu menu
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
+  // Funkce pro zavření menu
+  const closeMenu = () => {
+    if (menuOpen) {
+      setMenuOpen(false)
+    }
+  }
+
+  // Aktualizace tříd po změně stavu
+  useEffect(() => {
+    if (navbarCollapseRef.current) {
+      if (menuOpen) {
+        navbarCollapseRef.current.classList.add("show")
+      } else {
+        navbarCollapseRef.current.classList.remove("show")
+      }
+    }
+  }, [menuOpen])
+
   return (
     <div>
-      <nav className="navbar fixed-top navbar-expand-sm bg-body-tertiary">
+      <nav className="navbar fixed-top navbar-expand-sm bg-primary">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/home">
+          <Link className="navbar-brand" to="/home" onClick={closeMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="30"
               height="30"
               fill="currentColor"
-              className="bi bi-calendar3"
+              className="bi bi-calendar3 text-light"
               viewBox="0 0 16 16"
             >
               <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z" />
@@ -34,46 +58,72 @@ const Navbar = () => {
             </svg>
           </Link>
           <button
-            className="navbar-toggler"
+            className="border-0 bg-primary navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
+            onClick={toggleMenu}
             aria-controls="navbarNav"
-            aria-expanded="false"
+            aria-expanded={menuOpen}
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <img
+              src={`${process.env.PUBLIC_URL}/Photos/Menu.svg`}
+              className=""
+              width={40}
+              height={40}
+            />
+            {/* <span className="navbar-toggler-icon toggler-icon"></span> */}
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav gap-2">
+          <div
+            className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`}
+            id="navbarNav"
+            ref={navbarCollapseRef}
+          >
+            <ul className="navbar-nav gap-2 fw-medium">
               <li className="nav-item">
                 <Link
-                  className="nav-link active fs-4"
+                  className="nav-link active fs-4 text-white"
                   aria-current="page"
                   to="/home"
+                  onClick={closeMenu}
                 >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link fs-4" to="/calendar">
+                <Link
+                  className="nav-link fs-4 text-white"
+                  to="/calendar"
+                  onClick={closeMenu}
+                >
                   Calendar
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link fs-4" to="/settings">
+                <Link
+                  className="nav-link fs-4 text-white"
+                  to="/settings"
+                  onClick={closeMenu}
+                >
                   Settings
                 </Link>
               </li>
               {role === "Admin" && (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link fs-4" to="/users">
+                    <Link
+                      className="nav-link fs-4 text-white"
+                      to="/users"
+                      onClick={closeMenu}
+                    >
                       Users
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link fs-4" to="/roles">
+                    <Link
+                      className="nav-link fs-4 text-white"
+                      to="/roles"
+                      onClick={closeMenu}
+                    >
                       Roles
                     </Link>
                   </li>

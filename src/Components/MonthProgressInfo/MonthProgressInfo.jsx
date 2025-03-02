@@ -75,7 +75,7 @@ const MonthProgressInfo = () => {
 
   return (
     <div>
-      <h3 className="text-center fs-4 fw-light">Month Progress</h3>
+      <h3 className="text-center fs-4 fw-light text-primary">Month Progress</h3>
       <div className="d-flex justify-content-center mt-4">
         <div
           className="progress rounded-5 w-75"
@@ -111,7 +111,7 @@ const MonthProgressInfo = () => {
         </div>
         <div className="col">
           <p
-            className={`text-center text-secondary fs-5 mt-4`}
+            className={`text-center text-primary fs-5 mt-4`}
             ref={monthRemainingTimeRef}
             data-bs-toggle="tooltip"
             data-bs-placement="top"

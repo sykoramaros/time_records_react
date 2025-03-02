@@ -34,7 +34,7 @@ const Sticker = () => {
       required
     >
       <div className="rounded p-4 d-flex justify-content-center align-items-center">
-        <span className="text-white text fw-bold">
+        <span className="text-primary text fw-semibold">
           {sumActualMonthYearRecordStudy}
         </span>
       </div>

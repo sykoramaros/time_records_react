@@ -5,7 +5,7 @@ import Footer from "../../Components/Footer/Footer"
 
 const Layout = () => {
   return (
-    <div>
+    <div style={{ marginTop: "80px" }}>
       <Navbar />
       <Outlet />
       <Footer />

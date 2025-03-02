@@ -2,6 +2,7 @@ import React from "react"
 import { HashRouter, Routes, Route } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
+
 import "./App.css"
 import Layout from "./Pages/Layout/Layout"
 import Login from "./Pages/Login/Login"

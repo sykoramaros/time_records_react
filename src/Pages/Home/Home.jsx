@@ -7,7 +7,9 @@ const Home = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="text-center py-4">Welcome {user.username}</h1>
+        <h1 className="text-center text-white display-3 text-shadow-primary py-4">
+          Welcome {user.username}
+        </h1>
         <Dashboard />
       </div>
     </div>
