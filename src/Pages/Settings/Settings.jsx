@@ -68,10 +68,15 @@ const Settings = () => {
             className="row d-flex g-3 w-75 w-md-25 mx-auto justify-content-start"
           >
             <div className="form-group col-4 col-md-3">
-              <label htmlFor="monthTimeGoal">Goal</label>
+              <label
+                htmlFor="monthTimeGoal"
+                className="fs-5 text-info fw-medium"
+              >
+                Goal
+              </label>
               <input
                 type="number"
-                className="form-control"
+                className="form-control bg-info fs-5 fw-semibold text-primary"
                 style={{ maxWidth: "7ch" }}
                 id="monthTimeGoal"
                 name="monthTimeGoal"
@@ -81,10 +86,12 @@ const Settings = () => {
               />
             </div>
             <div className="form-group col-12">
-              <label htmlFor="userName">Name</label>
+              <label htmlFor="userName" className="fs-5 text-info fw-medium">
+                Name
+              </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control bg-info fs-5 fw-semibold text-primary"
                 id="userName"
                 name="userName"
                 value={user.userName || ""}
@@ -92,10 +99,12 @@ const Settings = () => {
               />
             </div>
             <div className="form-group col-12">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email" className="fs-5 text-info fw-medium">
+                Email
+              </label>
               <input
                 type="email"
-                className="form-control"
+                className="form-control bg-info fs-5 fw-semibold text-primary"
                 id="email"
                 name="email"
                 value={user.email || ""}
@@ -103,10 +112,12 @@ const Settings = () => {
               />
             </div>
             <div className="form-group col-8 col-md-9">
-              <label htmlFor="phoneNumber">Phone number</label>
+              <label htmlFor="phoneNumber" className="fs-5 text-info fw-medium">
+                Phone number
+              </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control bg-info fs-5 fw-semibold text-primary"
                 id="phoneNumber"
                 name="phoneNumber"
                 value={user.phoneNumber || ""}
@@ -114,7 +125,10 @@ const Settings = () => {
               />
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-success fw-semibold shadow-sm fs-5"
+              >
                 Save
               </button>
             </div>

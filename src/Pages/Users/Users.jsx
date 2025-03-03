@@ -77,7 +77,7 @@ const Users = () => {
         </h1>
         <button
           type="button"
-          className="btn btn-success"
+          className="btn btn-success shadow-sm fs-5 fw-semibold"
           onClick={handleOpenCreateModal}
         >
           ＋ Add User
@@ -85,13 +85,13 @@ const Users = () => {
         <div className="row row-cols-1 row-cols-md-3 g-4 mt-3">
           {users.map((user, index) => (
             <div key={index} className="col">
-              <div className="card border-primary mb-3 shadow-sm w-100 h-100">
-                <h5 className="card-header bg-transparent border-primary">
-                  Info
+              <div className="card border-primary mb-3 shadow-sm w-100 h-100 bg-info shadow">
+                <h5 className="card-header text-info bg-primary border-primary fw-semibold fs-4">
+                  {user.userName}
                 </h5>
                 <div className="card-body">
-                  <h4 className="card-title text-success">{user.userName}</h4>
-                  <p className="card-text fst-italic">
+                  {/* <h4 className="card-title text-success">{user.userName}</h4> */}
+                  <p className="card-text fst-italic fw-medium">
                     <span>ID: {user.id}</span>
                     <br />
                     Name: {user.userName}
@@ -109,14 +109,14 @@ const Users = () => {
                       <button
                         onClick={() => handleLoadUser(user.id)}
                         type="button"
-                        className="btn btn-warning w-100 rounded-1"
+                        className="btn btn-warning w-100 rounded-1 fw-semibold fs-5 shadow-sm"
                       >
                         Edit
                       </button>
                     </div>
                     <div className="col">
                       <button
-                        className="btn btn-danger w-100 rounded-1"
+                        className="btn btn-danger w-100 rounded-1 fw-semibold fs-5 shadow-sm"
                         onClick={() => handleOpenDeleteModal(user.id)}
                       >
                         Delete

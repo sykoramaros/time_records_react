@@ -4,7 +4,6 @@ import {
   getSumActualMonthTotalRecordTimeQuery,
   getMonthRecordProgressQuery,
   getMonthRemainingTimeQuery,
-  getWeekRemainingTimeQuery,
 } from "../../Services/DashboardService/DashboardService"
 import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min"
 
@@ -75,7 +74,7 @@ const MonthProgressInfo = () => {
 
   return (
     <div>
-      <h3 className="text-center fs-4 fw-light text-primary">Month Progress</h3>
+      <h3 className="text-center fs-3 fw-light text-primary">Month Progress</h3>
       <div className="d-flex justify-content-center mt-4">
         <div
           className="progress rounded-5 w-75"

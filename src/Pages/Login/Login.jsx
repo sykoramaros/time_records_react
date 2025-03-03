@@ -1,6 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { login } from "../../Services/LoginService/LoginService"
 import { Tooltip } from "bootstrap"
 
@@ -55,12 +55,15 @@ const Login = () => {
         </h1>
         <form className="w-75 mt-5 mx-auto" onSubmit={handleLogin}>
           <div className="mb-3">
-            <label htmlFor="username" className="form-label">
+            <label
+              htmlFor="username"
+              className="form-label text-info fw-semibold"
+            >
               Username
             </label>
             <input
               type="text"
-              className="form-control"
+              className="form-control bg-info"
               id="username"
               name="username"
               value={username}
@@ -76,12 +79,15 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">
+            <label
+              htmlFor="password"
+              className="form-label text-info fw-semibold"
+            >
               Password
             </label>
             <input
               type="password"
-              className="form-control"
+              className="form-control bg-info"
               id="password"
               name="password"
               value={password}
@@ -101,7 +107,7 @@ const Login = () => {
           )}
           <button
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-success fs-5 fw-semibold shadow-sm"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -117,6 +123,12 @@ const Login = () => {
               "Login"
             )}
           </button>
+          <Link
+            to="/register"
+            className="fs-5 fw-semibold ms-3 text-info text-decoration-underline"
+          >
+            Create account
+          </Link>
           <p id="error-message" className="text-danger"></p>
         </form>
       </div>

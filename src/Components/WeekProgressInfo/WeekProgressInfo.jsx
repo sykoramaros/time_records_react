@@ -74,7 +74,7 @@ const WeekProgressInfo = () => {
 
   return (
     <div>
-      <h3 className="text-center text-primary fs-4 fw-light">Week Progress</h3>
+      <h3 className="text-center text-primary fs-3 fw-light">Week Progress</h3>
       <div className="d-flex justify-content-center mt-4">
         <div
           className="progress rounded-5 w-75"

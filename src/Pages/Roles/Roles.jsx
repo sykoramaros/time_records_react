@@ -60,9 +60,11 @@ const Roles = () => {
 
   return (
     <div className="container">
-      <h1 className="text-center text-white display-3 text-shadow-primary py-4">Roles</h1>
+      <h1 className="text-center text-white display-3 text-shadow-primary py-4">
+        Roles
+      </h1>
       <button
-        className="btn btn-success mb-3"
+        className="btn btn-success fw-semibold shadow-sm fs-5 mb-3"
         onClick={() => setShowModal(true)}
       >
         Create a Role
@@ -71,7 +73,7 @@ const Roles = () => {
         {roles.map((role, id) => (
           <li
             key={id}
-            className="list-group-item d-flex justify-content-between align-items-start"
+            className="list-group-item d-flex justify-content-between align-items-center bg-info fs-5 shadow"
           >
             <div className="ms-2 me-auto">
               <div className="fw-bold">ID: {role.id}</div>
@@ -81,14 +83,14 @@ const Roles = () => {
             </div>
             <div className="d-flex flex-column">
               <Link
-                className="btn btn-sm btn-warning text-white mb-2"
+                className="btn btn-sm btn-warning text-info mb-2 fs-5 fw-medium"
                 to={`/roles/edit/${role.id}`}
               >
                 Edit
               </Link>
               <button
                 onClick={() => handleDelete(role.id)}
-                className="btn btn-sm btn-danger"
+                className="btn btn-sm btn-danger text-info fs-5 fw-medium"
               >
                 Delete
               </button>
