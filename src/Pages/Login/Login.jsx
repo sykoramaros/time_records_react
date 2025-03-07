@@ -124,7 +124,7 @@ const Login = () => {
             )}
           </button>
           <Link
-            to="/register"
+            to="/create-account"
             className="fs-5 fw-semibold ms-3 text-info text-decoration-underline"
           >
             Create account

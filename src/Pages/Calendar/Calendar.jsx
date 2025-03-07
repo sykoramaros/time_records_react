@@ -2,7 +2,7 @@ import React from "react"
 import ReactDatepickerCalendar from "../../Components/ReactDatepickerCalendar/ReactDatepickerCalendar"
 
 const Calendar = () => {
-  const user = JSON.parse(localStorage.getItem("user"))
+  // const user = JSON.parse(localStorage.getItem("user"))
   // console.log("Celý user objekt:", user)
 
   return (

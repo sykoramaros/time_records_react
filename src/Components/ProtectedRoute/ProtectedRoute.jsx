@@ -1,24 +1,21 @@
-import React from "react"
-import { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { Navigate, useLocation } from "react-router-dom"
+import { useAuth } from "../../Services/GoogleAuthService/GoogleAuthService"
 
 const ProtectedRoutes = ({ children, roles = [] }) => {
-  const [isLoading, setIsLoading] = useState(true)
-  const user = JSON.parse(localStorage.getItem("user"))
+  const { isAuthenticated, loading, token } = useAuth()
   const location = useLocation()
 
-  useEffect(() => {
-    setIsLoading(false)
-  }, [])
-
-  if (isLoading) {
+  if (loading) {
     return <div>Loading...</div>
   }
 
-  if (!user) {
+  if (!isAuthenticated) {
     // Přesměrování na login, pokud uživatel není přihlášen
     return <Navigate to="/login" state={{ from: location }} />
   }
+
+  const user = JSON.parse(localStorage.getItem("user"))
 
   const hasAccess =
     roles.length === 0 ||
@@ -34,3 +31,40 @@ const ProtectedRoutes = ({ children, roles = [] }) => {
 }
 
 export default ProtectedRoutes
+
+// import React from "react"
+// import { useState, useEffect } from "react"
+// import { Navigate, useLocation } from "react-router-dom"
+
+// const ProtectedRoutes = ({ children, roles = [] }) => {
+//   const [isLoading, setIsLoading] = useState(true)
+//   const user = JSON.parse(localStorage.getItem("user"))
+//   const location = useLocation()
+
+//   useEffect(() => {
+//     setIsLoading(false)
+//   }, [])
+
+//   if (isLoading) {
+//     return <div>Loading...</div>
+//   }
+
+//   if (!user) {
+//     // Přesměrování na login, pokud uživatel není přihlášen
+//     return <Navigate to="/login" state={{ from: location }} />
+//   }
+
+//   const hasAccess =
+//     roles.length === 0 ||
+//     (user.roles && roles.some((role) => user.roles.includes(role)))
+
+//   if (!hasAccess) {
+//     // Přesměrování na stránku "Přístup odepřen", pokud nemá uživatel požadovanou roli
+//     return <Navigate to="/access-denied" state={{ from: location }} />
+//   }
+
+//   // Pokud má uživatel přístup, vykreslí děti
+//   return children
+// }
+
+// export default ProtectedRoutes

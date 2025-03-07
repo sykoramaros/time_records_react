@@ -1,9 +1,13 @@
 import React from "react"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google"
 import AddModal from "../Users/AddModal"
 
 const CreateAccount = () => {
   const [showCreateModal, setShowCreateModal] = useState(false)
+
+  const navigate = useNavigate()
 
   const handleOpenCreateModal = () => setShowCreateModal(true)
 
@@ -31,6 +35,20 @@ const CreateAccount = () => {
           >
             Google
           </button>
+          <GoogleOAuthProvider clientId="680830179798-oquu7npstv9ofbpv781kq9usq7nfjqtg.apps.googleusercontent.com">
+            <GoogleLogin
+              onSuccess={(response) => {
+                // console.log("Login successful:", response)
+                console.log(
+                  "Login successful:",
+                  response.clientId + " " + response.credential
+                )
+                navigate("/login")
+              }}
+              onError={(error) => console.error("Login failed:", error)}
+              useOneTap
+            />
+          </GoogleOAuthProvider>
         </div>
       </div>
 
