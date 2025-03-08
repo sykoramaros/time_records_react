@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react"
 import { authService } from "../GoogleLoginService/GoogleLoginService"
-
+// 2.
 // Vytvoření AuthContext bez typových anotací
 const AuthContext = createContext(undefined)
 
@@ -28,10 +28,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token, expiration])
 
-  const login = async (idToken) => {
+  const login = async (idToken) => {  // 2.
     setLoading(true)
     try {
-      const result = await authService.googleLogin(idToken)
+      const result = await authService.googleLogin(idToken) // 3.
+      console.log("Login result:", result)
       setToken(result.token)
       setExpiration(result.expiration)
       localStorage.setItem("auth_token", result.token)

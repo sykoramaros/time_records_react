@@ -1,5 +1,6 @@
 import React from "react"
-import { useEffect, useRef } from "react"
+// import { useEffect, useRef } from "react"
+// 1.
 import { GoogleLogin } from "@react-oauth/google"
 import { useAuth } from "../../Services/GoogleAuthService/GoogleAuthService" // Import AuthProvider hook
 // Nezapomeňte přidat React Google Login knihovnu:
@@ -10,6 +11,7 @@ export const GoogleLoginButton = ({ onSuccess, onError }) => {
 
   const handleSuccess = async (response) => {
     try {
+      console.log("Google response:", response);
       // Získáme id_token z Google odpovědi
       const idToken = response.credential
 
@@ -17,7 +19,8 @@ export const GoogleLoginButton = ({ onSuccess, onError }) => {
         throw new Error("Google neposkytl ID token")
       }
 
-      await login(idToken)
+      await login(idToken)  // 1.
+      console.log("Google login successful", idToken)
       onSuccess?.()
     } catch (error) {
       console.error("Chyba při přihlášení:", error)
@@ -26,7 +29,7 @@ export const GoogleLoginButton = ({ onSuccess, onError }) => {
   }
 
   const handleError = () => {
-    const errorMessage = "Google přihlášení selhalo"
+    const errorMessage = "Google login failed"
     console.error(errorMessage)
     onError?.(errorMessage)
   }

@@ -130,6 +130,12 @@ const Login = () => {
             Create account
           </Link>
           <p id="error-message" className="text-danger"></p>
+          <Link
+            to="/google-login"
+            className="fs-5 fw-semibold ms-3 text-info text-decoration-underline"
+          >
+            Google login
+          </Link>
         </form>
       </div>
     </div>

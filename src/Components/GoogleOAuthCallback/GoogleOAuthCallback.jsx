@@ -16,7 +16,7 @@ const OAuthCallback = () => {
       try {
         if (idToken) {
           await login(idToken)
-          navigate("/home")
+          navigate("/calendar")
         } else {
           console.error("Chybí přihlašovací token")
           navigate("/login")

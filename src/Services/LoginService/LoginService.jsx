@@ -34,26 +34,34 @@ export const login = async ({ userName, password }) => {
     localStorage.setItem(
       "user",
       JSON.stringify({
-        username:
-          decodedToken[
-            ["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
-          ],
-        roles:
-          decodedToken[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-          ],
         userId:
           decodedToken[
-            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+            "https://schemas.xmlsoap.org/ws/2005/05/identity/claims/Id"
+          ],
+        username:
+          decodedToken[
+            ["https://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
           ],
         email:
           decodedToken[
-            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
+            "https://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"
           ],
+        googleId:
+            decodedToken[
+                "https://schemas.xmlsoap.org/ws/2005/05/identity/claims/GoogleId"
+                ],
         phoneNumber:
           decodedToken[
-            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone"
+            "https://schemas.xmlsoap.org/ws/2005/05/identity/claims/PhoneNumber"
           ],
+        monthTimeGoal:
+          decodedToken[
+              "https://schemas.xmlsoap.org/ws/2005/05/identity/claims/MonthTimeGoal"
+              ],
+        roles:
+          decodedToken[
+            "https://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ]
       })
     )
 
