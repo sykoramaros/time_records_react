@@ -7,6 +7,9 @@ import {
 const Settings = () => {
   const [user, setUser] = useState([])
 
+  const userJson = localStorage.getItem("user")
+  const userLocal = userJson ? JSON.parse(localStorage.getItem("user")) : null
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -80,7 +83,7 @@ const Settings = () => {
                 style={{ maxWidth: "7ch" }}
                 id="monthTimeGoal"
                 name="monthTimeGoal"
-                defaultValue={user.monthTimeGoal}
+                defaultValue={userLocal["MonthTimeGoal"]}
                 onChange={handleDataChange}
                 min="1"
               />
@@ -94,7 +97,7 @@ const Settings = () => {
                 className="form-control bg-info fs-5 fw-semibold text-primary"
                 id="userName"
                 name="userName"
-                value={user.userName || ""}
+                value={userLocal["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}
                 onChange={handleDataChange}
               />
             </div>
@@ -107,7 +110,7 @@ const Settings = () => {
                 className="form-control bg-info fs-5 fw-semibold text-primary"
                 id="email"
                 name="email"
-                value={user.email || ""}
+                value={userLocal["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"]}
                 onChange={handleDataChange}
               />
             </div>
@@ -120,7 +123,7 @@ const Settings = () => {
                 className="form-control bg-info fs-5 fw-semibold text-primary"
                 id="phoneNumber"
                 name="phoneNumber"
-                value={user.phoneNumber || ""}
+                value={userLocal["PhoneNumber"]}
                 onChange={handleDataChange}
               />
             </div>

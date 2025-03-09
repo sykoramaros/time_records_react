@@ -19,6 +19,7 @@ import EditRole from "./Pages/Roles/EditRole"
 import Settings from "./Pages/Settings/Settings"
 import AccessDenied from "./Pages/AccessDenied/AccessDenied"
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute"
+// import {UserProvider} from "./Services/UserContext/UserContext";
 
 const App = () => {
   const GOOGLE_CLIENT_ID =
@@ -27,6 +28,7 @@ const App = () => {
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <AuthProvider>
+          {/*<UserProvider>*/}
         <HashRouter>
           <Routes>
             <Route index element={<Login />} />
@@ -68,6 +70,7 @@ const App = () => {
             </Route>
           </Routes>
         </HashRouter>
+          {/*</UserProvider>*/}
       </AuthProvider>
     </GoogleOAuthProvider>
   )
