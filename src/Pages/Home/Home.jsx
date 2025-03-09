@@ -22,10 +22,10 @@ const Home = () => {
     <div>
       <div className="container">
         <h1 className="text-center text-white display-3 text-shadow-primary py-4">
-          Welcome {user.username}
+          🤓😊Welcome {user.username}
         </h1>
         <h1 className="text-center text-white display-3 text-shadow-primary py-4">
-          Welcome {user["https://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}
+          🤓😊Welcome {user["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}
         </h1>
         <p>{user.id}</p>
         <p>{user["Id"]}</p>

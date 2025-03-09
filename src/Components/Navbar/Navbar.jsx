@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import { getUserRole } from "../../Services/AuthenticationService/AuthenticationService"
+import { getUserRole } from "../../Services/AuthService/AuthService"
 import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {

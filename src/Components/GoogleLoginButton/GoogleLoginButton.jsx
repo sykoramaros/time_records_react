@@ -2,12 +2,13 @@ import React from "react"
 // import { useEffect, useRef } from "react"
 // 1.
 import { GoogleLogin } from "@react-oauth/google"
-import { useAuth } from "../../Services/GoogleAuthService/GoogleAuthService" // Import AuthProvider hook
+// import { useAuth } from "../../Services/GoogleAuthService/GoogleAuthService" // Import AuthProvider hook
+import { useAuth } from "../../Services/AuthService/AuthService"
 // Nezapomeňte přidat React Google Login knihovnu:
 // npm install @react-oauth/google
 
 export const GoogleLoginButton = ({ onSuccess, onError }) => {
-  const { login, loading } = useAuth()
+  const { loginWithGoogle, loading } = useAuth()
 
   const handleSuccess = async (response) => {
     try {
@@ -19,7 +20,7 @@ export const GoogleLoginButton = ({ onSuccess, onError }) => {
         throw new Error("Google neposkytl ID token")
       }
 
-      await login(idToken)  // 1.
+      await loginWithGoogle(idToken) // 1.
       console.log("Google login successful", idToken)
       onSuccess?.()
     } catch (error) {

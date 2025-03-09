@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "../../Services/GoogleAuthService/GoogleAuthService"
-import { GoogleLoginButton } from "../../Components/GoogleLogin/GoogleLogin"
+// import { useAuth } from "../../Services/GoogleAuthService/GoogleAuthService"
+import { useAuth } from "../../Services/AuthService/AuthService"
+import { GoogleLoginButton } from "../../Components/GoogleLoginButton/GoogleLoginButton"
 
 const LoginPage = () => {
   const { isAuthenticated } = useAuth()

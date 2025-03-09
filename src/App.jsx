@@ -1,7 +1,8 @@
 import React from "react"
 import { HashRouter, Routes, Route } from "react-router-dom"
 import { GoogleOAuthProvider } from "@react-oauth/google"
-import { AuthProvider } from "./Services/GoogleAuthService/GoogleAuthService"
+// import { AuthProvider } from "./Services/GoogleAuthService/GoogleAuthService"
+import { AuthProvider } from "./Services/AuthService/AuthService"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 

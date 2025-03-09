@@ -1,11 +1,11 @@
 import React, { useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
-import { useAuth } from "../../Services/GoogleAuthService/GoogleAuthService" // Import AuthProvider hook
+import { useAuth } from "../../Services/AuthService/AuthService"
 
 const OAuthCallback = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const { login } = useAuth()
+  const { loginWithGoogle } = useAuth()  // Změna názvu funkce
 
   useEffect(() => {
     // Extrakce token parametru z URL
@@ -15,10 +15,11 @@ const OAuthCallback = () => {
     const handleCallback = async () => {
       try {
         if (idToken) {
-          await login(idToken)
+          await loginWithGoogle(idToken)
+          console.log("Navigating to calendar")
           navigate("/calendar")
         } else {
-          console.error("Chybí přihlašovací token")
+          console.error("Chybí přihlašovací token. Navigate to login")
           navigate("/login")
         }
       } catch (error) {
@@ -27,14 +28,17 @@ const OAuthCallback = () => {
       }
     }
 
-    handleCallback()
-  }, [location, login, navigate])
+    handleCallback().catch(error => {
+      console.error("Neošetřená chyba v callback:", error)
+      navigate("/login", { state: { error: "Neočekávaná chyba" } })
+    })
+  }, [location, loginWithGoogle, navigate])
 
   return (
-    <div className="oauth-callback-container">
-      <h2>Probíhá přihlašování...</h2>
-      <p>Prosím čekejte, budete přesměrováni.</p>
-    </div>
+      <div className="oauth-callback-container">
+        <h2>Probíhá přihlašování...</h2>
+        <p>Prosím čekejte, budete přesměrováni.</p>
+      </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Navigate, useLocation } from "react-router-dom"
-import { useAuth } from "../../Services/GoogleAuthService/GoogleAuthService"
+import { useAuth } from "../../Services/AuthService/AuthService"
 
 const ProtectedRoutes = ({ children, roles = [] }) => {
   const { isAuthenticated, loading, token } = useAuth()
