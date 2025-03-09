@@ -9,7 +9,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import "./App.css"
 import Layout from "./Pages/Layout/Layout"
 import Login from "./Pages/Login/Login"
-import GoogleLoginPage from "./Pages/GoogleLoginPage/GoogleLoginPage"
 import GoogleOAuthCallback from "./Components/GoogleOAuthCallback/GoogleOAuthCallback"
 import CreateAccount from "./Pages/CreateAccount/CreateAccount"
 import Home from "./Pages/Home/Home"
@@ -32,7 +31,6 @@ const App = () => {
           <Routes>
             <Route index element={<Login />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/google-login" element={<GoogleLoginPage />} />
             <Route path="/google-callback" element={<GoogleOAuthCallback />} />
             <Route path="/create-account" element={<CreateAccount />} />
             <Route path="/access-denied" element={<AccessDenied />} />

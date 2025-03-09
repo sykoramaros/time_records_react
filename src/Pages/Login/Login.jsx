@@ -273,11 +273,6 @@ const Login = () => {
                   "Login"
               )}
             </button>
-            <GoogleLoginButton
-                onSuccess={() => navigate("/home")}
-                onError={(err) => setError(err)}
-            />
-            {error && <div className="error-message">{error}</div>}
             <Link
                 to="/create-account"
                 className="fs-5 fw-semibold ms-3 text-info text-decoration-underline"
@@ -285,12 +280,14 @@ const Login = () => {
               Create account
             </Link>
             <p id="error-message" className="text-danger"></p>
-            <Link
-                to="/google-login"
-                className="fs-5 fw-semibold ms-3 text-info text-decoration-underline"
-            >
-              Google login
-            </Link>
+            <hr />
+            <div className="ms-2">
+            <GoogleLoginButton
+                onSuccess={() => navigate("/home")}
+                onError={(err) => setError(err)}
+            />
+            </div>
+            {error && <div className="error-message">{error}</div>}
           </form>
         </div>
       </div>

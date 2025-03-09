@@ -1,0 +1,13 @@
+.google-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 3px 3px 15px #27555f;
+    padding: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+

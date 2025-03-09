@@ -66,7 +66,7 @@ const Navbar = () => {
             aria-label="Toggle navigation"
           >
             <img
-              src={`${process.env.PUBLIC_URL}/Photos/Menu.svg`}
+              src={`${process.env.PUBLIC_URL}/Photos/menu.svg`}
               className=""
               width={40}
               height={40}
