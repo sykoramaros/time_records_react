@@ -4,6 +4,9 @@ import axios from "axios"
 // const baseURL = "https://localhost:7081/api/RecordsTime"
 const baseURL = "https://recordsapi.runasp.net/api/RecordsTime"
 
+// console.log(JSON.parse(localStorage.getItem('user')));
+
+
 export const getSumTotalRecordTime = async () => {
   const response = await axios.get(`${baseURL}/SumTotalRecordTime`)
   return response.data
@@ -18,13 +21,14 @@ export const getSumTotalRecordTime = async () => {
 
 export const getSumActualMinistryYearTotalRecordTimeQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.get(
-      `${baseURL}/SumActualMinistryYearTotalRecordTimeQuery?userId=${user.userId}`
+      `${baseURL}/SumActualMinistryYearTotalRecordTimeQuery?userId=${user.Id}`
     )
     return response.data
   } catch (error) {
@@ -40,13 +44,14 @@ export const getSumActualMinistryYearTotalRecordTimeQuery = async () => {
 
 export const getYearRecordProgressQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.get(
-      `${baseURL}/YearRecordProgressQuery?userId=${user.userId}`
+      `${baseURL}/YearRecordProgressQuery?userId=${user.Id}`
     )
     return response.data
   } catch (error) {
@@ -62,13 +67,14 @@ export const getYearRecordProgressQuery = async () => {
 
 export const getYearRemainingTimeQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.get(
-      `${baseURL}/YearRemainingTimeQuery?userId=${user.userId}`
+      `${baseURL}/YearRemainingTimeQuery?userId=${user.Id}`
     )
     return response.data
   } catch (error) {
@@ -84,13 +90,14 @@ export const getYearRemainingTimeQuery = async () => {
 
 export const getSumActualMonthTotalRecordTimeQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.get(
-      `${baseURL}/SumActualMonthTotalRecordTimeQuery?userId=${user.userId}`
+      `${baseURL}/SumActualMonthTotalRecordTimeQuery?userId=${user.Id}`
     )
     return response.data
   } catch (error) {
@@ -106,13 +113,14 @@ export const getSumActualMonthTotalRecordTimeQuery = async () => {
 
 export const getMonthRecordProgressQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.get(
-      `${baseURL}/MonthRecordProgressQuery?userId=${user.userId}`
+      `${baseURL}/MonthRecordProgressQuery?userId=${user.Id}`
     )
     return response.data
   } catch (error) {
@@ -128,13 +136,14 @@ export const getMonthRecordProgressQuery = async () => {
 
 export const getMonthRemainingTimeQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.get(
-      `${baseURL}/MonthRemainingTimeQuery?userId=${user.userId}`
+      `${baseURL}/MonthRemainingTimeQuery?userId=${user.Id}`
     )
     return response.data
   } catch (error) {
@@ -150,13 +159,14 @@ export const getMonthRemainingTimeQuery = async () => {
 
 export const getSumActualWeekTotalRecordTimeQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.get(
-      `${baseURL}/SumActualWeekTotalRecordTimeQuery?userId=${user.userId}`
+      `${baseURL}/SumActualWeekTotalRecordTimeQuery?userId=${user.Id}`
     )
     return response.data
   } catch (error) {
@@ -172,13 +182,14 @@ export const getSumActualWeekTotalRecordTimeQuery = async () => {
 
 export const getWeekRecordProgressQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.get(
-      `${baseURL}/WeekRecordProgressQuery?userId=${user.userId}`
+      `${baseURL}/WeekRecordProgressQuery?userId=${user.Id}`
     )
     return response.data
   } catch (error) {
@@ -192,19 +203,47 @@ export const getWeekRecordProgressQuery = async () => {
 //   return response.data
 // }
 
+
+// export const getWeekRemainingTimeQuery = async () => {
+//   try {
+//     // Získání dat uživatele z localStorage
+//     const user = JSON.parse(localStorage.getItem("user"))
+//   // Získání tokenu z localStorage
+//     const token = localStorage.getItem("token")
+//
+//     if (!user || !user.userId) {
+//       throw new Error("User information not found")
+//     }
+//   // Vytvoření API požadavku s autorizační hlavičkou a správným ID uživatele
+//     const response = await axios.get(
+//         `${baseURL}/WeekRemainingTimeQuery?userId=${user.Id}`,
+//         {
+//             headers: {
+//                 Authorization: `Bearer ${token}`
+//             }
+//         }
+//     )
+//     return response.data
+//   } catch (error) {
+//     console.error("Error fetching total week time:", error)
+//     throw error
+//   }
+// }
+
 export const getWeekRemainingTimeQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
-      throw new Error("User information not found")
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) { // Zkontrolujte, zda je přítomno Id
+      throw new Error("User information not found");
     }
 
     const response = await axios.get(
-      `${baseURL}/WeekRemainingTimeQuery?userId=${user.userId}`
-    )
-    return response.data
+        `${baseURL}/WeekRemainingTimeQuery?userId=${user.Id}`
+    );
+    return response.data;
   } catch (error) {
-    console.error("Error fetching total week time:", error)
-    throw error
+    console.error("Error fetching total week time:", error);
+    throw error;
   }
-}
+};

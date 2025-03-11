@@ -15,13 +15,14 @@ const baseURL = "https://recordsapi.runasp.net/api/Records"
 // }
 
 export const getRecordByDateQuery = async (date) => {
-  const user = JSON.parse(localStorage.getItem("user"))
-  if (!user || !user.userId) {
+  const userJson = localStorage.getItem("user");
+  const user = userJson ? JSON.parse(userJson) : null;
+  if (!user || !user.Id) {
     throw new Error("User information not found")
   }
   const formattedDate = date.toISOString().split("T")[0] // například '2025-02-13'
   const response = await axios.get(
-    `${baseURL}/GetRecordByDateQuery?userId=${user.userId}&date=${formattedDate}`
+    `${baseURL}/GetRecordByDateQuery?userId=${user.Id}&date=${formattedDate}`
   )
   return response.data
 }
@@ -55,13 +56,14 @@ export const getRecordByDateQuery = async (date) => {
 
 export const editRecordByDateQuery = async (date, editedRecord) => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.put(
-      `${baseURL}/EditRecordByDateQuery?userId=${user.userId}&date=${date}`,
+      `${baseURL}/EditRecordByDateQuery?userId=${user.Id}&date=${date}`,
       editedRecord
     )
     return response.data
@@ -86,15 +88,16 @@ export const editRecordByDateQuery = async (date, editedRecord) => {
 
 export const deleteRecordByDateQuery = async (date) => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const formattedDate = date.toISOString().split("T")[0] // Konvertuje datum do formátu YYYY-MM-DD
 
     const response = await axios.delete(
-      `${baseURL}/DeleteRecordByDateQuery?userId=${user.userId}&date=${formattedDate}`
+      `${baseURL}/DeleteRecordByDateQuery?userId=${user.Id}&date=${formattedDate}`
     )
     return response.data
   } catch (error) {

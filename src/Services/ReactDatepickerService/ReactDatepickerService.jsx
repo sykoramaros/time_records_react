@@ -16,13 +16,14 @@ const baseURL = "https://recordsapi.runasp.net/api/Records"
 
 export const getAllRecordsQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user")) // Přidáno získání user objektu
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null; // Přidáno získání user objektu
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
 
     const response = await axios.get(
-      `${baseURL}/GetAllRecordsQuery?userId=${user.userId}`
+      `${baseURL}/GetAllRecordsQuery?userId=${user.Id}`
     )
     return response.data
   } catch (error) {
