@@ -15,7 +15,8 @@ const ProtectedRoutes = ({ children, roles = [] }) => {
     return <Navigate to="/login" state={{ from: location }} />
   }
 
-  const user = JSON.parse(localStorage.getItem("user"))
+  const userJson = localStorage.getItem("user");
+  const user = userJson ? JSON.parse(userJson) : null;
 
   const hasAccess =
     roles.length === 0 ||

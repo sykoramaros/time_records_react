@@ -21,7 +21,7 @@
 
 /* 🔵 */
 .datepicker-wrapper {
-  width: 80vw;
+  width: 100vw;
   /* overflow: hidden; */
 }
 
@@ -29,7 +29,7 @@
 .react-datepicker {
   font-family: "Krub", sans-serif;
   font-weight: 600;
-  font-size: 2.5vw;
+  font-size: 4vw;
   background-color: #faf6e3;
   color: #000;
   border: 1px solid #aeaeae;
@@ -39,6 +39,7 @@
   line-height: initial;
   width: 100%;
 }
+
 
 .react-datepicker--time-only .react-datepicker__time-container {
   border-left: 0;
@@ -70,7 +71,8 @@
   text-align: center;
   background-color: #e9e4cc;
   border-bottom: 1px dotted #27555f;
-  /* border-top-left-radius: 0.3rem; */
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
   padding: 8px 0;
   position: relative;
 }
@@ -103,7 +105,22 @@
   margin-top: 0;
   color: #27555f;
   font-weight: 600;
-  font-size: 2vw;
+  font-size: 3.15vw;
+}
+
+/*🔵 Responzivita */
+@media (min-width: 743px) {
+  .datepicker-wrapper {
+    width: 80vw;
+  }
+  .react-datepicker {
+    font-size: 2.5vw;
+  }
+  .react-datepicker__current-month,
+  .react-datepicker-time__header,
+  .react-datepicker-year-header {
+    font-size: 2.15vw;
+  }
 }
 
 h2.react-datepicker__current-month {

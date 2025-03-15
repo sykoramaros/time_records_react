@@ -197,7 +197,7 @@ const Login = () => {
   }
 
   return (
-      <div>
+      <div style={{height: "100vh"}}>
         <div className="container">
           <h1 className="text-center text-white display-3 text-shadow-primary py-4">
             Login

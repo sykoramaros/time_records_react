@@ -7,14 +7,13 @@ import {
 const Settings = () => {
   const [user, setUser] = useState([])
 
-  const userJson = localStorage.getItem("user")
-  const userLocal = userJson ? JSON.parse(localStorage.getItem("user")) : null
+  const userJson = localStorage.getItem("user");
+  const userLocal = userJson ? JSON.parse(userJson) : null;
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const fetchedUser = await getUserByIdQuery()
-        console.log("fetchedUser:", fetchedUser)
         if (!fetchedUser) {
           console.error("Failed to fetch user data")
           return
@@ -34,13 +33,15 @@ const Settings = () => {
       ...prevUser,
       [id]: value,
     }))
+    console.log("handleDataChange:", user)
   }
 
   const handleEditUser = async (e) => {
     e.preventDefault()
     try {
       const payload = {
-        name: user.userName,
+        id: user.id,
+        userName: user.userName,
         email: user.email,
         phoneNumber: user.phoneNumber,
         monthTimeGoal:
@@ -48,7 +49,7 @@ const Settings = () => {
       }
       console.log("handleEditUser - Input user:", user)
       console.log("handleEditUser - Prepared payload:", payload)
-      const editedUser = await editUserByIdQuery(payload)
+      const editedUser = await editUserByIdQuery(user.id, payload)
       console.log("handleEditUser - Response:", editedUser)
       alert("User edited successfully")
     } catch (error) {
@@ -83,7 +84,8 @@ const Settings = () => {
                 style={{ maxWidth: "7ch" }}
                 id="monthTimeGoal"
                 name="monthTimeGoal"
-                defaultValue={userLocal["MonthTimeGoal"]}
+                defaultValue={user.monthTimeGoal}
+                // defaultValue={userLocal["MonthTimeGoal"]}
                 onChange={handleDataChange}
                 min="1"
               />
@@ -97,7 +99,7 @@ const Settings = () => {
                 className="form-control bg-info fs-5 fw-semibold text-primary"
                 id="userName"
                 name="userName"
-                value={userLocal["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}
+                defaultValue={user.userName}
                 onChange={handleDataChange}
               />
             </div>
@@ -110,8 +112,9 @@ const Settings = () => {
                 className="form-control bg-info fs-5 fw-semibold text-primary"
                 id="email"
                 name="email"
-                value={userLocal["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"]}
-                onChange={handleDataChange}
+                defaultValue={user.email}
+                readOnly
+                // onChange={handleDataChange}
               />
             </div>
             <div className="form-group col-8 col-md-9">
@@ -123,7 +126,7 @@ const Settings = () => {
                 className="form-control bg-info fs-5 fw-semibold text-primary"
                 id="phoneNumber"
                 name="phoneNumber"
-                value={userLocal["PhoneNumber"]}
+                defaultValue={user.phoneNumber || ""}
                 onChange={handleDataChange}
               />
             </div>

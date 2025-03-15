@@ -20,12 +20,13 @@ const baseURL = "https://recordsapi.runasp.net/api/Records"
 
 export const createRecordQuery = async (record) => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-    if (!user || !user.userId) {
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user || !user.Id) {
       throw new Error("User information not found")
     }
     const response = await axios.post(
-      `${baseURL}/CreateRecordQuery?userId=${user.userId}`,
+      `${baseURL}/CreateRecordQuery?userId=${user.Id}`,
       record
     )
     return response.data

@@ -24,13 +24,13 @@ export const getUserByEmail = async (email) => {
   }
 }
 
-export const getUserById = async (id) => {
+export const getUserById = async (Id) => {
   try {
-    const response = await axios.get(baseURL + `/GetUserById/${id}`)
+    const response = await axios.get(baseURL + `/GetUserById/${Id}`)
     console.log("response.data:", response.data)
     return response.data
   } catch (error) {
-    console.log("userId:", id)
+    console.log("User Id:", Id)
     console.error("Error fetching user:", error)
     return null
   }
@@ -55,11 +55,11 @@ export const createUser = async (user) => {
   }
 }
 
-export const editUser = async (userId, user) => {
+export const editUser = async (Id, user) => {
   console.log("editUser:", user)
   try {
     const response = await axios.put(
-      baseURL + `/EditUser/${userId}`,
+      baseURL + `/EditUser/${Id}`,
       {
         Name: user.name,
         Email: user.email,
@@ -78,9 +78,9 @@ export const editUser = async (userId, user) => {
   }
 }
 
-export const deleteUser = async (userId) => {
+export const deleteUser = async (Id) => {
   try {
-    const response = await axios.delete(baseURL + `/DeleteUser/${userId}`)
+    const response = await axios.delete(baseURL + `/DeleteUser/${Id}`)
     console.log("User deleted successfully:", response.data)
     return response.data
   } catch (error) {

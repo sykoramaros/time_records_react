@@ -93,8 +93,8 @@ const WeekProgressInfo = () => {
           </div>
         </div>
       </div>
-      <div className="row row-cols-3 d-flex justify-content-center mt-4 mx-auto">
-        <div className="col">
+      <div className="row mt-4 w-75 mx-auto">
+        <div className="col-12 col-sm-6">
           <p
             className={`text-center ${sumTextColor} fs-5 fw-bold mt-4`}
             ref={sumActualWeekTotalRecordTimeRef}
@@ -108,7 +108,7 @@ const WeekProgressInfo = () => {
             {sumActualWeekTotalRecordTime.minutes}
           </p>
         </div>
-        <div className="col">
+        <div className="col-12 col-sm-6">
           <p
             className={`text-center text-primary fs-5 mt-4`}
             ref={weekRemainingTimeRef}
@@ -118,7 +118,7 @@ const WeekProgressInfo = () => {
             data-bs-title="Remaining <strong>week's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            - {weekRemainingTime.hours} : {weekRemainingTime.minutes}
+            {weekRemainingTime.hours} : {weekRemainingTime.minutes}
           </p>
         </div>
       </div>

@@ -1,0 +1,24 @@
+/*.dashboard-container {*/
+/*    position: absolute;*/
+/*    background-image: -ms-linear-gradient(40deg,*/
+/*    #faf6e3 0%,*/
+/*    #b6dad8 100%) !important;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-image: -webkit-linear-gradient(40deg,*/
+/*    #faf6e3 0%,*/
+/*    #b6dad8 100%) !important;*/
+/*    background-image: -moz-linear-gradient(40deg,*/
+/*    #faf6e3 0%,*/
+/*    #b6dad8 100%) !important;*/
+/*    background-image: linear-gradient(40deg,*/
+/*    #faf6e3 0%,*/
+/*    #b6dad8 100%) !important;*/
+/*}*/
+
+.dashboard-container {
+    position: absolute;
+    background-image: linear-gradient(40deg,
+    #faf6e3 -15%,
+    #b6dad8 100%) !important;
+}

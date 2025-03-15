@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react"
+import "./Dashboard.css"
 import YearProgressInfo from "../YearProgressInfo/YearProgressInfo"
 import MonthProgressInfo from "../MonthProgressInfo/MonthProgressInfo"
 import WeekProgressInfo from "../WeekProgressInfo/WeekProgressInfo"
@@ -30,8 +31,7 @@ const Dashboard = () => {
   return (
     <div className="d-flex justify-content-center">
       <div
-        className="w-75 bg-info p-5 rounded-4 shadow"
-        style={{ position: "absolute" }}
+        className="dashboard-container w-75 p-5 rounded-4 shadow"
       >
         <Sticker />
         <h2 className="text-center text-primary text-uppercase">Dashboard</h2>

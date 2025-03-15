@@ -42,7 +42,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar fixed-top navbar-expand-sm bg-primary">
+      <nav className="navbar fixed-top navbar-expand-sm bg-primary shadow">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/home" onClick={closeMenu}>
             <svg

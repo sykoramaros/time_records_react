@@ -78,5 +78,8 @@ body {
   font-family: "Krub", sans-serif !important;
   font-weight: 700;
   font-style: normal;
-  background-color: #27555fb6 !important;
+  background-image: linear-gradient(250deg,
+  #27555f 0%,
+  #3f979f 100%) !important;
+  /*background-color: #27555fb6 !important;*/
 }

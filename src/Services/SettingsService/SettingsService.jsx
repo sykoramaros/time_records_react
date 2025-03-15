@@ -6,21 +6,21 @@ const baseURL = "https://recordsapi.runasp.net/api/Users"
 
 export const getUserByIdQuery = async () => {
   try {
-    const user = JSON.parse(localStorage.getItem("user"))
-
-    if (!user?.userId) {
-      console.error(
-        "getCurrentUserQuery error: UserId not found in localStorage"
+    const userJson = localStorage.getItem("user");
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user?.Id) {
+      console.warn(
+        "getUserByIdQuery error: UserId not found in localStorage"
       )
       return null
     }
     const response = await axios.get(
-      `${baseURL}/GetUserByIdQuery?userId=${user.userId}`
+      `${baseURL}/GetUserByIdQuery?userId=${user.Id}`
     )
-    console.log("getCurrentUserQuery data:", response.data)
+    console.log("getUserByIdQuery data:", response.data)
     return response.data
   } catch (error) {
-    console.error("Error in getCurrentUserQuery:", error.message)
+    console.error("Error in getUserByIdQuery:", error.message)
     return null
   }
 }
@@ -90,31 +90,33 @@ export const getUserByIdQuery = async () => {
 //   }
 // }
 
-export const editUserByIdQuery = async (userData) => {
+export const editUserByIdQuery = async (id, payload) => {
   try {
     const userFromStorage = JSON.parse(localStorage.getItem("user"))
 
-    const payload = {
-      name: userData.name,
-      email: userData.email,
-      password: "",
-      phoneNumber: userData.phoneNumber,
-      monthTimeGoal: userData.monthTimeGoal,
-    }
+    // const id = id || userFromStorage.id
+    //
+    // if (!id) {
+    //   throw new Error("User ID not found")
+    // }
+
+    // const payload = {
+    //   name: userData.name,
+    //   email: userData.email,
+    //   password: "",
+    //   phoneNumber: userData.phoneNumber,
+    //   monthTimeGoal: userData.monthTimeGoal,
+    // }
     console.log("editUserByIdQuery - Payload:", payload)
-    console.log("editUserByIdQuery - UserId:", userFromStorage.userId)
-    console.log(
-      "editUserByIdQuery - Full URL:",
-      `${baseURL}/EditUserByIdQuery?userId=${userFromStorage.userId}`
-    )
+    console.log("editUserByIdQuery - UserId:", userFromStorage.id)
     const response = await axios.put(
-      `${baseURL}/EditUserByIdQuery?userId=${userFromStorage.userId}`,
+      `${baseURL}/EditUserByIdQuery?userId=${id || userFromStorage.id}`,
       payload,
       {
         headers: {
           "Content-Type": "application/json",
           accept: "*/*",
-        },
+        }
       }
     )
     return response.data
@@ -127,3 +129,9 @@ export const editUserByIdQuery = async (userData) => {
     throw error
   }
 }
+
+// export const editUserByIdQuery = async (payload) => {
+//   // Zde chybí userId
+//   const response = await api.put(`/api/Users/EditUserByIdQuery?userId=${user.id}`, payload);
+//   return response.data;
+// }

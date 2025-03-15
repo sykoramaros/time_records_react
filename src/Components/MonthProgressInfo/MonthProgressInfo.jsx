@@ -93,8 +93,8 @@ const MonthProgressInfo = () => {
           </div>
         </div>
       </div>
-      <div className="row row-cols-3 d-flex justify-content-center mt-4 mx-auto">
-        <div className="col">
+      <div className="row d-flex mt-4 w-75 mx-auto">
+        <div className="col-12 col-sm-6">
           <p
             className={`text-center ${sumTextColor} fs-5 fw-bold mt-4`}
             ref={sumActualMonthTotalRecordTimeRef}
@@ -108,7 +108,7 @@ const MonthProgressInfo = () => {
             {sumActualMonthTotalRecordTime.minutes}
           </p>
         </div>
-        <div className="col">
+        <div className="col-12 col-sm-6">
           <p
             className={`text-center text-primary fs-5 mt-4`}
             ref={monthRemainingTimeRef}

@@ -332,8 +332,8 @@ export const AuthProvider = ({ children }) => {
     loading,
 
     // Přihlašovací metody
-    loginWithGoogle,
     loginWithCredentials,
+    loginWithGoogle,
     setAuthToken, // Pro manuální nastavení
     logout,
 
