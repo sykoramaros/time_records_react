@@ -26,7 +26,6 @@ export const getSumActualMinistryYearTotalRecordTimeQuery = async () => {
     if (!user || !user.Id) {
       throw new Error("User information not found")
     }
-
     const response = await axios.get(
       `${baseURL}/SumActualMinistryYearTotalRecordTimeQuery?userId=${user.Id}`
     )

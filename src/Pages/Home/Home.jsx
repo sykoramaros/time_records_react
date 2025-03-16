@@ -39,7 +39,7 @@ const Home = () => {
         {/*  <p>{user.monthTimeGoal}</p>*/}
         {/*</h1>*/}
         <h1 className="text-center text-white display-3 text-shadow-primary py-4">
-          🤓Welcome {userLocal["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}😊
+          Welcome {userLocal["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}
         </h1>
         {/*<p>{userLocal["Id"]}</p>*/}
         <Dashboard />

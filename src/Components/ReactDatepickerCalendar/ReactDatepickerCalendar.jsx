@@ -11,7 +11,7 @@ import AddRecordModal from "../AddRecordModal/AddRecordModal"
 import EditRecordModal from "../EditRecordModal/EditRecordModal"
 import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min"
 
-const ReactDatepickerCalendar = () => {
+const ReactDatepickerCalendar = ({onCalendarChange}) => {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [showModal, setShowModal] = useState(false)
   const [highlightedDates, setHighlightedDates] = useState([])
@@ -176,6 +176,7 @@ const ReactDatepickerCalendar = () => {
         className="custom-datepicker"
         highlightDates={highlightedDates}
         renderDayContents={renderDayContents}
+        onMonthChange={onCalendarChange}
       />
 
       {/* Zobrazí AddRecordModal, pokud datum není zvýrazněné */}
