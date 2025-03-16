@@ -14,7 +14,7 @@ export const getChosenMonthStatus = async (userId, chosenMonth, chosenYear) => {
     const response = await axios.get(`${baseURL}/SumChosenMonthTotalRecordTimeQuery`, {
         params: {
             userId: user.Id,
-            chosenMonth: chosenMonth,
+            chosenMonth: chosenMonth + 1,
             chosenYear: chosenYear
         }
     })

@@ -6,7 +6,7 @@ import ChosenMonthStatus   from "../../Components/ChosenMonthStatus/ChosenMonthS
 const Calendar = () => {
   // const user = JSON.parse(localStorage.getItem("user"))
   // console.log("Celý user objekt:", user)
-  const [currentViewMonth, setCurrentViewMonth] = useState(new Date().getMonth() + 1)
+  const [currentViewMonth, setCurrentViewMonth] = useState(new Date().getMonth())
   const [currentViewYear, setCurrentViewYear] = useState(new Date().getFullYear())
 
   const handleMonthChange = (date) => {

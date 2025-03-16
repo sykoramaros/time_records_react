@@ -38,7 +38,7 @@ const ChosenMonthStatus = ({ month, year }) => {
             }
             fetchData();
         }
-    })
+    }, [month, year]);
 
 
 
