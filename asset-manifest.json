@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/time_records_react/static/css/main.7adf8ce3.css",
-    "main.js": "/time_records_react/static/js/main.3d7b8b16.js",
+    "main.css": "/time_records_react/static/css/main.ca845fdf.css",
+    "main.js": "/time_records_react/static/js/main.c3a9696c.js",
     "static/media/Krub-ExtraLightItalic.ttf": "/time_records_react/static/media/Krub-ExtraLightItalic.9578c141a71e136c82e1.ttf",
     "static/media/Krub-LightItalic.ttf": "/time_records_react/static/media/Krub-LightItalic.ed8b8a2d174024affd66.ttf",
     "static/media/Krub-Italic.ttf": "/time_records_react/static/media/Krub-Italic.e136c47ac68c90e46e05.ttf",
@@ -15,11 +15,11 @@
     "static/media/Krub-SemiBold.ttf": "/time_records_react/static/media/Krub-SemiBold.6b3ed8e009d9de71aafd.ttf",
     "static/media/Krub-Bold.ttf": "/time_records_react/static/media/Krub-Bold.e962a8bb79744ba427ed.ttf",
     "index.html": "/time_records_react/index.html",
-    "main.7adf8ce3.css.map": "/time_records_react/static/css/main.7adf8ce3.css.map",
-    "main.3d7b8b16.js.map": "/time_records_react/static/js/main.3d7b8b16.js.map"
+    "main.ca845fdf.css.map": "/time_records_react/static/css/main.ca845fdf.css.map",
+    "main.c3a9696c.js.map": "/time_records_react/static/js/main.c3a9696c.js.map"
   },
   "entrypoints": [
-    "static/css/main.7adf8ce3.css",
-    "static/js/main.3d7b8b16.js"
+    "static/css/main.ca845fdf.css",
+    "static/js/main.c3a9696c.js"
   ]
 }
