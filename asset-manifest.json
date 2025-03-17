@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/time_records_react/static/css/main.61591de3.css",
+    "main.css": "/time_records_react/static/css/main.10d8fdea.css",
     "main.js": "/time_records_react/static/js/main.c36157da.js",
     "static/media/Krub-ExtraLightItalic.ttf": "/time_records_react/static/media/Krub-ExtraLightItalic.9578c141a71e136c82e1.ttf",
     "static/media/Krub-LightItalic.ttf": "/time_records_react/static/media/Krub-LightItalic.ed8b8a2d174024affd66.ttf",
@@ -15,11 +15,11 @@
     "static/media/Krub-SemiBold.ttf": "/time_records_react/static/media/Krub-SemiBold.6b3ed8e009d9de71aafd.ttf",
     "static/media/Krub-Bold.ttf": "/time_records_react/static/media/Krub-Bold.e962a8bb79744ba427ed.ttf",
     "index.html": "/time_records_react/index.html",
-    "main.61591de3.css.map": "/time_records_react/static/css/main.61591de3.css.map",
+    "main.10d8fdea.css.map": "/time_records_react/static/css/main.10d8fdea.css.map",
     "main.c36157da.js.map": "/time_records_react/static/js/main.c36157da.js.map"
   },
   "entrypoints": [
-    "static/css/main.61591de3.css",
+    "static/css/main.10d8fdea.css",
     "static/js/main.c36157da.js"
   ]
 }
