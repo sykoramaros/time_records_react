@@ -1,8 +1,8 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
-import "./Sticker.css"
 import { getSumActualMonthRecorStudyQuery } from "../../Services/StudyStickerService/StudyStickerService"
 import { Tooltip } from "bootstrap"
+import "./Sticker.css"
 
 const Sticker = () => {
   const [sumActualMonthYearRecordStudy, setSumActualMonthYearRecordStudy] =
@@ -25,18 +25,17 @@ const Sticker = () => {
   return (
     <div
       ref={divRef}
-      className="position"
       data-bs-toggle="tooltip"
       data-bs-placement="top"
       data-bs-html="true"
       data-bs-title="Number of <strong>studies</strong> during <strong>actual</strong> month"
       style={{ cursor: "pointer" }}
-      required
+      className="sticker d-flex justify-content-center align-items-center"
     >
-      <div className="rounded p-4 d-flex justify-content-center align-items-center">
-        <span className="text-primary text fw-semibold">
+      <div>
+        <p className="text-primary text-center fw-semibold mt-3">
           {sumActualMonthYearRecordStudy}
-        </span>
+        </p>
       </div>
     </div>
   )

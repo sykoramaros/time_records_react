@@ -29,11 +29,13 @@ const Dashboard = () => {
   }, [monthTimeGoal])
 
   return (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center position-relative">
       <div
         className="dashboard-container w-75 p-5 rounded-4 shadow"
       >
-        <Sticker />
+        <div className="sticker-container position-absolute">
+          <Sticker />
+        </div>
         <h2 className="text-center text-primary text-uppercase">Dashboard</h2>
         <h3 className={`text-center ${titleZero}`}>
           Your month time goal is zero or not set!

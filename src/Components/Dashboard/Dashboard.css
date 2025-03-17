@@ -21,3 +21,21 @@
     #faf6e3 -15%,
     #b6dad8 100%) !important;
 }
+
+.sticker-container {
+    position: absolute;
+    z-index: 1000;
+    top: -3%;
+    right: 10%;
+    rotate: 2.5deg;
+    /*aspect-ratio: 1 / 1;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 400px) {
+    .sticker-container {
+        top: -1.5%;
+    }
+}
