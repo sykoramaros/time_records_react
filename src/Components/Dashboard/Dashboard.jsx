@@ -29,9 +29,9 @@ const Dashboard = () => {
   }, [monthTimeGoal])
 
   return (
-    <div className="d-flex justify-content-center position-relative">
+    <div className="w-100 d-flex justify-content-center position-relative">
       <div
-        className="dashboard-container w-75 p-5 rounded-4 shadow"
+        className="dashboard-container p-5 rounded-4 shadow"
       >
         <div className="sticker-container position-absolute">
           <Sticker />
@@ -40,12 +40,18 @@ const Dashboard = () => {
         <h3 className={`text-center ${titleZero}`}>
           Your month time goal is zero or not set!
         </h3>
-        <div className="row row-cols-1 mt-5 gap-4">
-          <WeekProgressInfo />
+        <div className="row row-cols-1 mt-5 gap-4 d-flex justify-content-center">
+          <div className="week-progress-container">
+            <WeekProgressInfo />
+          </div>
           <hr className="mx-auto w-75 border-primary" />
-          <MonthProgressInfo />
+          <div className="month-progress-container">
+            <MonthProgressInfo />
+          </div>
           <hr className="mx-auto w-75 border-primary" />
-          <YearProgressInfo />
+          <div className="year-progress-container">
+            <YearProgressInfo />
+          </div>
         </div>
       </div>
     </div>

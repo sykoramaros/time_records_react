@@ -8,13 +8,13 @@ const Home = () => {
 
   return (
   <div>
-      <div className="container">
+      <div className="w-100">
         <h1 className="text-center text-white display-3 text-shadow-primary py-4">
           Welcome {userLocal["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]}
         </h1>
         {/*<p>{userLocal["Id"]}</p>*/}
-        <div>
-        <Dashboard />
+        <div className="">
+          <Dashboard />
         </div>
       </div>
   </div>

@@ -1,0 +1,11 @@
+.year-total-time,
+.year-remaining-time {
+    font-size: 2rem;
+}
+
+@media (max-width: 430px) {
+    .year-total-time,
+    .year-remaining-time {
+        font-size: 1.5rem;
+    }
+}

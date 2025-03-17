@@ -1,0 +1,11 @@
+.week-total-time,
+.week-remaining-time {
+    font-size: 2rem;
+}
+
+@media (max-width: 430px) {
+    .week-total-time,
+    .week-remaining-time {
+        font-size: 1.5rem;
+    }
+}

@@ -22,6 +22,12 @@
     #b6dad8 100%) !important;
 }
 
+.week-progress-container,
+.month-progress-container,
+.year-progress-container {
+    width: 88%;
+}
+
 .sticker-container {
     position: absolute;
     z-index: 1000;
@@ -37,5 +43,10 @@
 @media (max-width: 430px) {
     .sticker-container {
         top: -1.5%;
+    }
+    .week-progress-container,
+    .month-progress-container,
+    .year-progress-container {
+        width: 100%;
     }
 }

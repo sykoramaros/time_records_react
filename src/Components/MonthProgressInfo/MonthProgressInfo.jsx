@@ -6,6 +6,7 @@ import {
   getMonthRemainingTimeQuery,
 } from "../../Services/DashboardService/DashboardService"
 import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min"
+import "./MonthProgressInfo.css"
 
 const MonthProgressInfo = () => {
   const [sumActualMonthTotalRecordTime, setSumActualMonthTotalRecordTime] =
@@ -75,9 +76,9 @@ const MonthProgressInfo = () => {
   return (
     <div>
       <h3 className="text-center fs-3 fw-light text-primary">Month Progress</h3>
-      <div className="d-flex justify-content-center mt-4">
+      <div className="d-flex justify-content-center mt-4 w-100">
         <div
-          className="progress rounded-5 w-75"
+          className="progress rounded-5 w-100"
           style={{ height: "25px" }}
           role="progressbar"
           aria-label="Example progress bar"
@@ -93,10 +94,10 @@ const MonthProgressInfo = () => {
           </div>
         </div>
       </div>
-      <div className="row d-flex mt-4 w-75 mx-auto">
-        <div className="col-12 col-sm-6">
+      <div className="row w-100 mx-auto">
+        <div className="col-6">
           <p
-            className={`text-center ${sumTextColor} fs-5 fw-bold mt-4`}
+            className={`month-total-time text-center ${sumTextColor} fw-bold mt-4`}
             ref={sumActualMonthTotalRecordTimeRef}
             data-bs-toggle="tooltip"
             data-bs-placement="top"
@@ -108,9 +109,9 @@ const MonthProgressInfo = () => {
             {sumActualMonthTotalRecordTime.minutes}
           </p>
         </div>
-        <div className="col-12 col-sm-6">
+        <div className="col-6">
           <p
-            className={`text-center text-primary fs-5 mt-4`}
+            className="month-remaining-time text-center text-primary mt-4"
             ref={monthRemainingTimeRef}
             data-bs-toggle="tooltip"
             data-bs-placement="top"
