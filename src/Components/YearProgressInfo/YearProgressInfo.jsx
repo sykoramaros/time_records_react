@@ -118,7 +118,7 @@ const YearProgressInfo = () => {
             data-bs-title="Current <strong>year's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            - {yearRemainingTime.hours} : {yearRemainingTime.minutes}
+            {yearRemainingTime.hours} : {Math.abs(yearRemainingTime.minutes)}
           </p>
         </div>
       </div>

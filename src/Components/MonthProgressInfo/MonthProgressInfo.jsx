@@ -104,7 +104,7 @@ const MonthProgressInfo = () => {
             data-bs-title="Current <strong>month's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {sumActualMonthTotalRecordTime.hours} :{" "}
+            {sumActualMonthTotalRecordTime.hours} :
             {sumActualMonthTotalRecordTime.minutes}
           </p>
         </div>
@@ -118,8 +118,7 @@ const MonthProgressInfo = () => {
             data-bs-title="Remaining <strong>month's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {" "}
-            - {monthRemainingTime.hours} : {monthRemainingTime.minutes}
+            {monthRemainingTime.hours} : {Math.abs(monthRemainingTime.minutes)}
           </p>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import { getChosenMonthStatus } from "../../Services/ChosenMonthStatusService/ChosenMonthStatusService";
+import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min";
 
 const ChosenMonthStatus = ({ month, year }) => {
     const [chosenMonth, setChosenMonth] = useState(0);
@@ -24,6 +25,10 @@ const ChosenMonthStatus = ({ month, year }) => {
         console.error("Error fetching data:", error);
         }
     };
+
+    useEffect(() => {
+
+    }, []);
 
     useEffect(() => {
         if(month !== null && year !== null) {
@@ -75,7 +80,16 @@ const ChosenMonthStatus = ({ month, year }) => {
             {/*<p>{result?.hours || "0"} : {result?.minutes || "0"}</p>*/}
             {/*<h2 className="text-center text-white display-3 text-shadow-primary py-4">{result?.hours || "0"} : {result?.minutes || "0"}</h2>*/}
 
-            <h2 className="display-4 text-center fw-normal d-inline-block bg-primary text-info py-3 px-4 rounded-5">{result?.hours || "0"} : {result?.minutes || "0"}</h2>
+            <h2
+                className="display-4 text-center fw-normal d-inline-block bg-primary text-info py-3 px-4 rounded-5"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                data-bs-html="true"
+                data-bs-title="<strong>Time</strong> records during <strong>chosen</strong> month"
+                style={{ cursor: "pointer" }}
+            >
+                {result?.hours || "0"} : {result?.minutes || "0"}
+            </h2>
 
         </div>
     );

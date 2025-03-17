@@ -118,7 +118,7 @@ const WeekProgressInfo = () => {
             data-bs-title="Remaining <strong>week's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {weekRemainingTime.hours} : {weekRemainingTime.minutes}
+            {weekRemainingTime.hours} : {Math.abs(weekRemainingTime.minutes)}
           </p>
         </div>
       </div>
