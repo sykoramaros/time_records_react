@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }) => {
       const role = extractUserRole(token)
       setUserRole(role)
     }
-  }, [])
+  }, [ token ])
 
   // Kontrola expirace tokenu
   useEffect(() => {
@@ -153,17 +153,17 @@ export const AuthProvider = ({ children }) => {
   }
 
   // Google přihlášení
-  const loginWithGoogle = async (idToken) => {
+  const loginWithGoogle = async (importedGoogleLoginToken) => {
     setLoading(true)
     try {
-      const result = await authService.googleLogin(idToken)
+      const result = await authService.googleLogin(importedGoogleLoginToken)
 
       // Ověření formátu výsledku
-      if (!result || !result.token) {
+      if (!result || !result.importedGoogleLoginToken) {
         throw new Error("Google přihlášení neposkytlo platný token")
       }
 
-      saveToken(result.token, result.expiration)
+      saveToken(result.importedGoogleLoginToken, result.expiration)
       return result
     } catch (error) {
       console.error("Google přihlášení selhalo:", error)

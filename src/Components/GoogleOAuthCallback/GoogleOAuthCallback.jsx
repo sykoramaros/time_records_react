@@ -10,12 +10,12 @@ const OAuthCallback = () => {
   useEffect(() => {
     // Extrakce token parametru z URL
     const params = new URLSearchParams(location.search)
-    const idToken = params.get("id_token") || params.get("credential")
+    const importedGoogleLoginToken = params.get("id_token") || params.get("credential")
 
     const handleCallback = async () => {
       try {
-        if (idToken) {
-          await loginWithGoogle(idToken)
+        if (importedGoogleLoginToken) {
+          await loginWithGoogle(importedGoogleLoginToken)
           console.log("Navigating to calendar")
           navigate("/calendar")
         } else {

@@ -10,7 +10,6 @@ import "./App.css"
 import Layout from "./Pages/Layout/Layout"
 import Login from "./Pages/Login/Login"
 import GoogleOAuthCallback from "./Components/GoogleOAuthCallback/GoogleOAuthCallback"
-import CreateAccount from "./Pages/CreateAccount/CreateAccount"
 import Home from "./Pages/Home/Home"
 import Calendar from "./Pages/Calendar/Calendar"
 import Users from "./Pages/Users/Users"
@@ -34,7 +33,6 @@ const App = () => {
             <Route index element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route path="/google-callback" element={<GoogleOAuthCallback />} />
-            <Route path="/create-account" element={<CreateAccount />} />
             <Route path="/access-denied" element={<AccessDenied />} />
             <Route path="/" element={<Layout />}>
               <Route path="/home" element={<Home />} />

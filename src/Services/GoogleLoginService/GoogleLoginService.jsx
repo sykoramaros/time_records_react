@@ -9,35 +9,35 @@ const EXPIRATION_KEY = 'auth_expiration';
 const USER_KEY = 'auth_user';
 
 export const authService = {  // 3.
-  async googleLogin(idToken) {
+  async googleLogin(importedGoogleLoginToken) {
     try {
-      console.log("Odesílám požadavek na server s idToken:", idToken.substring(0, 10) + "...");
+      console.log("Odesílám požadavek na server s idToken:", importedGoogleLoginToken.substring(0, 10) + "...");
 
       const response = await axios.post(`${baseURL}/GoogleLogin`, {
-        idToken,
+        importedGoogleLoginToken,
       })
 
       console.log("Odpověď ze serveru:", response);
       console.log("Data z odpovědi:", response.data);
 
-      if (!response.data.token || !response.data.expiration) {
+      if (!response.data.importedGoogleLoginToken || !response.data.expiration) {
         console.error("Server nevrátil očekávaná data (token nebo expiration):", response.data);
         throw new Error("Neplatná odpověď ze serveru");
       }
       
       const authData = {
-        token: response.data.token,
+        importedGoogleLoginToken: response.data.importedGoogleLoginToken,
         expiration: new Date(response.data.expiration),
       }
 
       console.log("Zpracovaná autentizační data:", authData);
       
       // Uložení do local storage
-      localStorage.setItem(TOKEN_KEY, authData.token);
+      localStorage.setItem(TOKEN_KEY, authData.importedGoogleLoginToken);
       localStorage.setItem(EXPIRATION_KEY, authData.expiration.toISOString());
       
       // 🐿️ DESERIALIZACE JWT DAT Z BACKENDU do klice "user"
-      const userData = this.parseJwt(authData.token);
+      const userData = this.parseJwt(authData.importedGoogleLoginToken);
       localStorage.setItem("user", JSON.stringify(userData));
       console.log("Deserializovana data z backendu: ", userData)
       
@@ -99,29 +99,3 @@ export const authService = {  // 3.
     localStorage.removeItem(USER_KEY);
   }
 };
-
-// import axios from "axios"
-
-// // const baseURL = "http://localhost:5113/api/GoogleAccount"
-// // const baseURL = "https://localhost:7081/api/GoogleAccount"
-// const baseURL = "https://recordsapi.runasp.net/api/GoogleAccount"
-
-// export const authService = {
-//   async googleLogin(idToken) {
-//     try {
-//       const response = await axios.post(`${baseURL}/GoogleLoginButton`, {
-//         idToken,
-//       })
-//       console.log(response.data)
-//       return {
-//         token: response.data.token,
-//         expiration: new Date(response.data.expiration),
-//       }
-//     } catch (error) {
-//       console.error("An error occured during Google login:", error)
-//       throw new Error(
-//         error.response?.data?.message || "Google login error appeared"
-//       )
-//     }
-//   },
-// }
