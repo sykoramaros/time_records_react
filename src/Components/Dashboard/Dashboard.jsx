@@ -33,9 +33,9 @@ const Dashboard = () => {
   }, [monthTimeGoal])
 
   return (
-    <div className="w-100 d-flex justify-content-center position-relative">
+    <div className="w-100 d-flex justify-content-center ">
       <div
-        className="dashboard-container p-5 rounded-4 shadow"
+        className="dashboard-container p-5 rounded-4 shadow position-relative"
       >
         <div className="sticker-container position-absolute">
           <Sticker />
