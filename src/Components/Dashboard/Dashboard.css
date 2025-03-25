@@ -39,6 +39,14 @@
     justify-content: center;
     align-items: center;
 }
+
+@media (max-width: 1280px) {
+    .sticker-container {
+        top: -2.5%;
+        right: 10%;
+    }
+}
+
 @media (max-width: 1024px) {
     .sticker-container {
         top: -2.5%;

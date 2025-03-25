@@ -134,7 +134,7 @@ const Login = () => {
             {/*>*/}
             {/*  Create account*/}
             {/*</Link>*/}
-            <span className="text-white fw-normal ms-5 fs-5">Please, for this time use for login your Google account</span>
+            <span className="text-white fw-normal ms-5 fs-5">Please, for this time use only Google login</span>
             <p id="error-message" className="text-danger"></p>
             <hr />
             <div className="">
