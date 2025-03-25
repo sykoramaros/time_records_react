@@ -4,66 +4,18 @@ import axios from "axios"
 // const baseURL = "https://localhost:7081/api/Records"
 const baseURL = "https://recordsapi.runasp.net/api/Records"
 
-// export const getRecordByDate = async (date) => {
-//   // Převod datumu na formát YYYY-MM-DD
-//   const formattedDate = date.toISOString().split("T")[0] // například '2025-02-13'
-//   // Vytvoření správné URL cesty
-//   const response = await axios.get(
-//     `${baseURL}/GetRecordByDate/${formattedDate}`
-//   )
-//   return response.data
-// }
-
-export const getRecordByDateQuery = async (date) => {
-  const userJson = localStorage.getItem("user");
-  const user = userJson ? JSON.parse(userJson) : null;
-  if (!user || !user.Id) {
-    throw new Error("User information not found")
-  }
+export const getRecordByDateQuery = async (id, date) => {
   const formattedDate = date.toISOString().split("T")[0] // například '2025-02-13'
   const response = await axios.get(
-    `${baseURL}/GetRecordByDateQuery?userId=${user.Id}&date=${formattedDate}`
+    `${baseURL}/GetRecordByDateQuery?userId=${id}&date=${formattedDate}`
   )
   return response.data
 }
 
-// export const editRecordByDate = async (recordData, selectedDate) => {
-//   try {
-//     // Vytvoříme správný formát dat pro API
-//     const formattedData = {
-//       date: selectedDate.toISOString().split("T")[0],
-//       recordTime: recordData.recordTime,
-//       recordStudy: parseInt(recordData.recordStudy), // Zajistíme, že study je číslo
-//       description: recordData.description,
-//     }
-//     // Log pro kontrolu dat před odesláním
-//     console.log("Odesílaná data:", formattedData)
-//     const response = await axios.put(
-//       `${baseURL}/EditRecordByDate/${formattedData.date}`,
-//       formattedData
-//     )
-//     return response.data
-//   } catch (error) {
-//     console.error("Error updating record:", error)
-//     // Přidáme více detailů o chybě
-//     if (error.response) {
-//       console.error("Response data:", error.response.data)
-//       console.error("Response status:", error.response.status)
-//     }
-//     throw error
-//   }
-// }
-
-export const editRecordByDateQuery = async (date, editedRecord) => {
+export const editRecordByDateQuery = async (id ,date, editedRecord) => {
   try {
-    const userJson = localStorage.getItem("user");
-    const user = userJson ? JSON.parse(userJson) : null;
-    if (!user || !user.Id) {
-      throw new Error("User information not found")
-    }
-
     const response = await axios.put(
-      `${baseURL}/EditRecordByDateQuery?userId=${user.Id}&date=${date}`,
+      `${baseURL}/EditRecordByDateQuery?userId=${id}&date=${date}`,
       editedRecord
     )
     return response.data
@@ -73,31 +25,12 @@ export const editRecordByDateQuery = async (date, editedRecord) => {
   }
 }
 
-// export const deleteRecordByDate = async (date) => {
-//   try {
-//     const formattedDate = date.toISOString().split("T")[0]
-//     const response = await axios.delete(
-//       `${baseURL}/DeleteRecordByDate/${formattedDate}`
-//     )
-//     return response.data
-//   } catch (error) {
-//     console.error("Error deleting record:", error)
-//     throw error
-//   }
-// }
-
-export const deleteRecordByDateQuery = async (date) => {
+export const deleteRecordByDateQuery = async (id, date) => {
   try {
-    const userJson = localStorage.getItem("user");
-    const user = userJson ? JSON.parse(userJson) : null;
-    if (!user || !user.Id) {
-      throw new Error("User information not found")
-    }
-
     const formattedDate = date.toISOString().split("T")[0] // Konvertuje datum do formátu YYYY-MM-DD
 
     const response = await axios.delete(
-      `${baseURL}/DeleteRecordByDateQuery?userId=${user.Id}&date=${formattedDate}`
+      `${baseURL}/DeleteRecordByDateQuery?userId=${id}&date=${formattedDate}`
     )
     return response.data
   } catch (error) {

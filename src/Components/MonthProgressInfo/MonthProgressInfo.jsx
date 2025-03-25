@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
 import {
   getSumActualMonthTotalRecordTimeQuery,
   getMonthRecordProgressQuery,
@@ -18,10 +19,12 @@ const MonthProgressInfo = () => {
   const sumActualMonthTotalRecordTimeRef = useRef(null)
   const monthRemainingTimeRef = useRef(null)
 
+  const userLocal = getUserFromLocalStorage()
+
   useEffect(() => {
     const fetchSumActualMonthTotalRecordTime = async () => {
       try {
-        const response = await getSumActualMonthTotalRecordTimeQuery()
+        const response = await getSumActualMonthTotalRecordTimeQuery(userLocal.id)
         setSumActualMonthTotalRecordTime(response)
         console.log(response)
       } catch (error) {
@@ -32,7 +35,7 @@ const MonthProgressInfo = () => {
 
     const fetchMonthRecordProgress = async () => {
       try {
-        const response = await getMonthRecordProgressQuery()
+        const response = await getMonthRecordProgressQuery(userLocal.id)
         setMonthRecordProgress(response)
         console.log(response)
       } catch (error) {
@@ -43,7 +46,7 @@ const MonthProgressInfo = () => {
 
     const fetchMonthRemainingTime = async () => {
       try {
-        const response = await getMonthRemainingTimeQuery()
+        const response = await getMonthRemainingTimeQuery(userLocal.id)
         setMonthRemainingTime(response)
         console.log(response)
       } catch (error) {

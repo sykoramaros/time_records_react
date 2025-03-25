@@ -1,7 +1,6 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
-import { getUserRole } from "../../Services/AuthService/AuthService"
 import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
@@ -10,35 +9,14 @@ const Navbar = () => {
   const navbarCollapseRef = useRef(null)
 
   useEffect(() => {
-    const fetchRole = async () => {
-      const fetchedRole = await getUserRole()
-      setRole(fetchedRole)
-    }
-    fetchRole()
-  }, [])
+    // Simulace načtení role uživatele (např. z API nebo localStorage)
+    const userRole = localStorage.getItem("userRole") || "User";
+    setRole(userRole);
+  }, []);
 
-  // Funkce pro přepínání stavu menu
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen)
-  }
-
-  // Funkce pro zavření menu
-  const closeMenu = () => {
-    if (menuOpen) {
-      setMenuOpen(false)
-    }
-  }
-
-  // Aktualizace tříd po změně stavu
-  useEffect(() => {
-    if (navbarCollapseRef.current) {
-      if (menuOpen) {
-        navbarCollapseRef.current.classList.add("show")
-      } else {
-        navbarCollapseRef.current.classList.remove("show")
-      }
-    }
-  }, [menuOpen])
+  // Funkce pro přepínání a zavírání menu
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <div>

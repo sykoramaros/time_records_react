@@ -4,10 +4,8 @@ import axios from "axios"
 // const baseURL = "https://localhost:7081/api/Roles"
 const baseURL = "https://recordsapi.runasp.net/api/Studies"
 
-export const getSumActualMonthRecorStudyQuery = async () => {
-  const userJson = localStorage.getItem("user");
-  const user = userJson ? JSON.parse(userJson) : null;
+export const getSumActualMonthRecorStudyQuery = async (id) => {
   const response = await axios.get(
-    `${baseURL}/GetSumActualMonthRecordStudyQuery?userId=${user.Id}`)
+    `${baseURL}/GetSumActualMonthRecordStudyQuery?userId=${id}`)
   return response.data
 }

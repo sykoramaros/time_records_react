@@ -6,15 +6,18 @@ import MonthProgressInfo from "../MonthProgressInfo/MonthProgressInfo"
 import WeekProgressInfo from "../WeekProgressInfo/WeekProgressInfo"
 import Sticker from "../Sticker/Sticker"
 import { getUserByIdQuery } from "../../Services/SettingsService/SettingsService"
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
 
 const Dashboard = () => {
   const [monthTimeGoal, setMonthTimeGoal] = useState(null)
   const [titleZero, setTitleZero] = useState("d-none")
 
+  const userLocal = getUserFromLocalStorage()
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getUserByIdQuery()
+        const response = await getUserByIdQuery(userLocal.id)
         console.log("Settings fetchData:", response.monthTimeGoal)
         setMonthTimeGoal(response.monthTimeGoal)
         console.log("fetchData", response.monthTimeGoal + " " + response.userId)

@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
+import { getUserFromLocalStorage} from "../../Services/GoogleService/GoogleService";
 import { getSumActualMonthRecorStudyQuery } from "../../Services/StudyStickerService/StudyStickerService"
 import { Tooltip } from "bootstrap"
 import "./Sticker.css"
@@ -8,10 +9,11 @@ const Sticker = () => {
   const [sumActualMonthYearRecordStudy, setSumActualMonthYearRecordStudy] =
     useState(null)
   const divRef = useRef(null)
+  const userLocal = getUserFromLocalStorage()
 
   useEffect(() => {
     const fetchSumActualMonthRecordStudy = async () => {
-      const response = await getSumActualMonthRecorStudyQuery()
+      const response = await getSumActualMonthRecorStudyQuery(userLocal.id)
       setSumActualMonthYearRecordStudy(response)
       console.log(response)
     }

@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
 import {
   getSumActualMinistryYearTotalRecordTimeQuery,
   getYearRecordProgressQuery,
@@ -17,11 +18,13 @@ const YearProgressInfo = () => {
   const [sumTextColor, setSumTextColor] = useState("text-danger")
   const sumMinistryYearTotalRecordTimeRef = useRef(null)
   const yearRemainingTimeRef = useRef(null)
+  const userLocal = getUserFromLocalStorage()
+
 
   useEffect(() => {
     const fetchSumMinistryYearTotalRecordTime = async () => {
       try {
-        const response = await getSumActualMinistryYearTotalRecordTimeQuery()
+        const response = await getSumActualMinistryYearTotalRecordTimeQuery(userLocal.id)
         setSumMinistryYearTotalRecordTime(response)
         console.log(response)
       } catch (error) {
@@ -32,7 +35,7 @@ const YearProgressInfo = () => {
 
     const fetchYearRecordProgress = async () => {
       try {
-        const response = await getYearRecordProgressQuery()
+        const response = await getYearRecordProgressQuery(userLocal.id)
         setYearRecordProgress(response)
         console.log(response)
       } catch (error) {
@@ -43,7 +46,7 @@ const YearProgressInfo = () => {
 
     const fetchYearRemainingTime = async () => {
       try {
-        const response = await getYearRemainingTimeQuery()
+        const response = await getYearRemainingTimeQuery(userLocal.id)
         setYearRemainingTime(response)
         console.log(response)
       } catch (error) {

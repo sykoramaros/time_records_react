@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "bootstrap"
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
 import { createRecordQuery } from "../../Services/AddRecordModalService/AddRecordModalService"
 
 const AddRecordModal = ({ selectedDate, show, onClose }) => {
@@ -9,6 +10,8 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
   const [recordText, setRecordText] = useState("")
   const modalRef = useRef(null)
   const modalInstance = useRef(null)
+
+  const userLocal = getUserFromLocalStorage()
 
   useEffect(() => {
     if (!modalRef.current) return
@@ -49,7 +52,7 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
         description: formattedText, // Nastavte podle potřeby
       }
 
-      const response = await createRecordQuery(recordData)
+      const response = await createRecordQuery(userLocal.id ,recordData)
       console.log("Record created:", response)
       alert("Record created successfully!")
       // Zavření modálu po úspěšném vytvoření

@@ -3,17 +3,17 @@ import {
   getUserByIdQuery,
   editUserByIdQuery,
 } from "../../Services/SettingsService/SettingsService"
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
 
 const Settings = () => {
   const [user, setUser] = useState([])
 
-  const userJson = localStorage.getItem("user");
-  const userLocal = userJson ? JSON.parse(userJson) : null;
+  const userLocal = getUserFromLocalStorage()
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const fetchedUser = await getUserByIdQuery()
+        const fetchedUser = await getUserByIdQuery(userLocal.id)
         if (!fetchedUser) {
           console.error("Failed to fetch user data")
           return
@@ -49,7 +49,8 @@ const Settings = () => {
       }
       console.log("handleEditUser - Input user:", user)
       console.log("handleEditUser - Prepared payload:", payload)
-      const editedUser = await editUserByIdQuery(user.id, payload)
+
+      const editedUser = await editUserByIdQuery(userLocal.id, payload)
       console.log("handleEditUser - Response:", editedUser)
       alert("User edited successfully")
     } catch (error) {

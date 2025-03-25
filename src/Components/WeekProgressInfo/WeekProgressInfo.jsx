@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
 import {
   getSumActualWeekTotalRecordTimeQuery,
   getWeekRecordProgressQuery,
@@ -17,11 +18,12 @@ const WeekProgressInfo = () => {
   const [sumTextColor, setSumTextColor] = useState("text-danger")
   const sumActualWeekTotalRecordTimeRef = useRef(null)
   const weekRemainingTimeRef = useRef(null)
+  const userLocal = getUserFromLocalStorage()
 
   useEffect(() => {
     const fetchSumActualWeekTotalRecordTime = async () => {
       try {
-        const response = await getSumActualWeekTotalRecordTimeQuery()
+        const response = await getSumActualWeekTotalRecordTimeQuery(userLocal.id)
         setSumActualWeekTotalRecordTime(response)
         console.log(response)
       } catch (error) {
@@ -32,7 +34,7 @@ const WeekProgressInfo = () => {
 
     const fetchWeekRecordProgress = async () => {
       try {
-        const response = await getWeekRecordProgressQuery()
+        const response = await getWeekRecordProgressQuery(userLocal.id)
         setWeekRecordProgress(response)
         console.log(response)
       } catch (error) {
@@ -43,7 +45,7 @@ const WeekProgressInfo = () => {
 
     const fetchWeekRemainingTime = async () => {
       try {
-        const response = await getWeekRemainingTimeQuery()
+        const response = await getWeekRemainingTimeQuery(userLocal.id)
         setWeekRemainingTime(response)
         console.log(response)
       } catch (error) {

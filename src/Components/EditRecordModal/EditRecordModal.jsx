@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "bootstrap"
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
 import {
   getRecordByDateQuery,
   editRecordByDateQuery,
@@ -15,12 +16,14 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
   const modalRef = useRef(null)
   const modalInstance = useRef(null)
 
+  const userLocal = getUserFromLocalStorage()
+
   // První useEffect pro načtení dat
   useEffect(() => {
     const fetchData = async () => {
       if (selectedDate) {
         try {
-          const recordData = await getRecordByDateQuery(selectedDate)
+          const recordData = await getRecordByDateQuery(userLocal.id, selectedDate)
           if (recordData) {
             setRecordTime(recordData.recordTime || "00:00")
             setRecordStudy(recordData.recordStudy || 0)
@@ -109,6 +112,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
 
       // Posíláme recordData přímo
       const response = await editRecordByDateQuery(
+        userLocal.id,
         recordData.date, // datum pro query parametr
         recordData // celý objekt jako tělo požadavku
       )
@@ -126,7 +130,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
 
   const handleDeleteRecord = async () => {
     try {
-      const response = await deleteRecordByDateQuery(selectedDate)
+      const response = await deleteRecordByDateQuery(userLocal.id ,selectedDate)
       console.log("Record deleted:", response)
       alert("Record deleted successfully!")
       handleCloseModal()

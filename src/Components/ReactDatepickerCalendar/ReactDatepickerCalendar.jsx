@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react"
 import ReactDatepicker from "react-datepicker"
 import "./ReactDatePickerCalendar.css"
 import { cs } from "date-fns/locale"
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
 import {
   getAllRecordsQuery,
   getRecordByDate,
@@ -20,10 +21,12 @@ const ReactDatepickerCalendar = ({onCalendarChange}) => {
   const [error, setError] = useState(null)
   const tooltipInstancesRef = useRef([])
 
+  const userLocal = getUserFromLocalStorage()
+
   useEffect(() => {
     const fetchHighlightedDates = async () => {
       try {
-        const records = await getAllRecordsQuery()
+        const records = await getAllRecordsQuery(userLocal.id)
         setRecords(records)
         const dates = records.map((record) => new Date(record.date))
         setHighlightedDates(dates)
