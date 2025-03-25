@@ -1,8 +1,16 @@
 {
-  "login": "Login",
-  "username": "Username",
-  "password": "Password",
-  "login.button": "Sign in",
-  "login.info": "Please sign in with Google",
-  "login.loading": "Loading..."
+  "login.h1": "Login",
+  "login.username": "Username",
+  "login.password": "Password",
+  "login.login-button": "Log in",
+  "login.info": "Please log in via Google",
+  "login.loading": "Loading...",
+  "home.h1": "Hello",
+  "calendar.h1": "Calendar",
+  "settings.h1": "Settings",
+  "settings.goal": "Goal",
+  "settings.name": "Name",
+  "settings.email": "Email",
+  "settings.phone": "Phone",
+  "settings.save-button": "Save"
 }

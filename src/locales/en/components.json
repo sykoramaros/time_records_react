@@ -1,0 +1,22 @@
+{
+  "addRecordModal.recorded-time": "Time",
+  "addRecordModal.study": "Study",
+  "addRecordModal.message": "Message",
+  "addRecordModal.close-button": "Close",
+  "addRecordModal.save-button": "Save",
+  "dashboard.h2": "Dashboard",
+  "dashboard.h3": "Your service is not assigned",
+  "editRecordModal.recorded-time": "Time",
+  "editRecordModal.study": "Study",
+  "editRecordModal.message": "Message",
+  "editRecordModal.close-button": "Close",
+  "editRecordModal.save-button": "Save",
+  "editRecordModal.delete-button": "Delete",
+  "logout.logout-button": "Log out",
+  "monthProgressInfo.actual-month-progress": "Current month",
+  "navbar.home": "Dashboard",
+  "navbar.calendar": "Calendar",
+  "navbar.settings": "Settings",
+  "weekProgressInfo.actual-week-progress": "Current week",
+  "yearProgressInfo.actual-year-progress": "Current year"
+}

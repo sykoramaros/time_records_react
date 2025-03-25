@@ -173,3 +173,11 @@ a:hover {
 .text-shadow-danger {
   text-shadow: 2px 0 5px #b42414;
 }
+
+.nav-link:hover {
+  color: #f3a142 !important;
+}
+
+.nav-link.active {
+  color: #f3a142 !important;
+}

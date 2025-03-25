@@ -24,10 +24,13 @@ import AccessDenied from "./Pages/AccessDenied/AccessDenied"
 import csPages from "./locales/cs/pages.json"
 import enPages from "./locales/en/pages.json"
 import csComponents from "./locales/cs/components.json"
+import enComponents from "./locales/en/components.json"
 
 i18n.load({cs: csPages})
 i18n.load({en: enPages})
 i18n.load({cs: csComponents})
+i18n.load({en: enComponents})
+
 
 i18n.activate("cs")
 
