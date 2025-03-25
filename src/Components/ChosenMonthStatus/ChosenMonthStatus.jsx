@@ -5,33 +5,33 @@ import { getChosenMonthStatus } from "../../Services/ChosenMonthStatusService/Ch
 import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min";
 
 const ChosenMonthStatus = ({ month, year }) => {
-    const [chosenMonth, setChosenMonth] = useState(0);
-    const [chosenYear, setChosenYear] = useState(0);
-    const [handleResult, setHandleResult] = useState(null);
+    // const [chosenMonth, setChosenMonth] = useState(0);
+    // const [chosenYear, setChosenYear] = useState(0);
+    // const [handleResult, setHandleResult] = useState(null);
     const [result, setResult] = useState(null);
 
     const userLocal = getUserFromLocalStorage();
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        try {
-        const handleData = await getChosenMonthStatus(userLocal.id, chosenMonth, chosenYear);
-        console.log("HandleSubmitData:", handleData);
-        setHandleResult(handleData);
-        } catch (error) {
-        console.error("Error fetching data:", error);
-        }
-    };
-
-    useEffect(() => {
-
-    }, []);
+    // const handleSubmit = async (event) => {
+    //     event.preventDefault();
+    //     try {
+    //     const handleData = await getChosenMonthStatus(userLocal.id, chosenMonth, chosenYear);
+    //     console.log("HandleSubmitData:", handleData);
+    //     setHandleResult(handleData);
+    //     } catch (error) {
+    //     console.error("Error fetching data:", error);
+    //     }
+    // };
+    //
+    // useEffect(() => {
+    //
+    // }, []);
 
     useEffect(() => {
         if(month !== null && year !== null) {
             const fetchData = async () => {
                 try {
-                    const data = await getChosenMonthStatus(null, month, year);
+                    const data = await getChosenMonthStatus(userLocal.id, month, year);
                     console.log("Data:", data);
                     setResult(data);
                 } catch (error) {
@@ -56,7 +56,6 @@ const ChosenMonthStatus = ({ month, year }) => {
             >
                 {result?.hours || "0"} : {result?.minutes || "0"}
             </h2>
-
         </div>
     );
 };

@@ -35,7 +35,7 @@ const Sticker = () => {
       className="sticker d-flex justify-content-center align-items-center"
     >
       <div>
-        <p className="text-primary text-center fw-semibold mt-3">
+        <p className="text-white text-center fw-semibold mt-3">
           {sumActualMonthYearRecordStudy}
         </p>
       </div>

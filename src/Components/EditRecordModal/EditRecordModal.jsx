@@ -105,7 +105,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
         recordTime: formattedTime,
         recordStudy: parseInt(recordStudy),
         description: recordText,
-        identityUserId: JSON.parse(localStorage.getItem("user")).userId, // Získáme userId rovnou zde
+        identityUserId: userLocal.id,
       }
 
       console.log("Sending data:", recordData)
