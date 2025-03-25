@@ -2,7 +2,7 @@ import React from "react"
 import { useState, useEffect, useRef } from "react"
 import ReactDatepicker from "react-datepicker"
 import "./ReactDatePickerCalendar.css"
-import { cs } from "date-fns/locale"
+import { enAU, cs } from "date-fns/locale"
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
 import {
   getAllRecordsQuery,

@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react";
+import { Trans } from "@lingui/react";
 import ReactDatepickerCalendar from "../../Components/ReactDatepickerCalendar/ReactDatepickerCalendar"
 import ChosenMonthStatus   from "../../Components/ChosenMonthStatus/ChosenMonthStatus";
 
@@ -27,7 +28,7 @@ const Calendar = () => {
     <div>
       <div className="container">
         <h1 className="text-center text-white display-3 text-shadow-primary py-4">
-          Calendar
+          <Trans id="calendar.h1">Calendar</Trans>
         </h1>
         {/* <h2>User ID: {user.userId || "No user ID found"}</h2>
         <h3>Role: {user.email}</h3>

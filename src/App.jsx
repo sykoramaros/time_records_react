@@ -21,13 +21,15 @@ import AccessDenied from "./Pages/AccessDenied/AccessDenied"
 // import {UserProvider} from "./Services/UserContext/UserContext";
 // import GoogleLoginPage from "./Pages/GoogleLoginPage/GoogleLoginPage";
 
-import csLogin from "./locales/cs/login.json"
-import enLogin from "./locales/en/login.json"
+import csPages from "./locales/cs/pages.json"
+import enPages from "./locales/en/pages.json"
+import csComponents from "./locales/cs/components.json"
 
-i18n.load({cs: csLogin})
-i18n.load({en: enLogin})
+i18n.load({cs: csPages})
+i18n.load({en: enPages})
+i18n.load({cs: csComponents})
 
-i18n.activate("en")
+i18n.activate("cs")
 
 const App = () => {
   const GOOGLE_CLIENT_ID =

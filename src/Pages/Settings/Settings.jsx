@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Trans } from "@lingui/react";
 import {
   getUserByIdQuery,
   editUserByIdQuery,
@@ -18,7 +19,7 @@ const Settings = () => {
           console.error("Failed to fetch user data")
           return
         }
-        console.log("fetchedUser:", fetchedUser)
+        // console.log("fetchedUser:", fetchedUser)
         setUser(fetchedUser)
       } catch (error) {
         console.error("Error in fetchUsers:", error)
@@ -33,7 +34,7 @@ const Settings = () => {
       ...prevUser,
       [id]: value,
     }))
-    console.log("handleDataChange:", user)
+    // console.log("handleDataChange:", user)
   }
 
   const handleEditUser = async (e) => {
@@ -47,11 +48,11 @@ const Settings = () => {
         monthTimeGoal:
           Number(user.monthTimeGoal) === 0 ? 15 : Number(user.monthTimeGoal),
       }
-      console.log("handleEditUser - Input user:", user)
-      console.log("handleEditUser - Prepared payload:", payload)
+      // console.log("handleEditUser - Input user:", user)
+      // console.log("handleEditUser - Prepared payload:", payload)
 
       const editedUser = await editUserByIdQuery(userLocal.id, payload)
-      console.log("handleEditUser - Response:", editedUser)
+      // console.log("handleEditUser - Response:", editedUser)
       alert("User edited successfully")
     } catch (error) {
       console.log("handleEditUser - Full error response:", error.response)
@@ -65,7 +66,7 @@ const Settings = () => {
     <div>
       <div className="container">
         <h1 className="text-center text-white display-3 text-shadow-primary py-4">
-          Settings
+          <Trans id="settings.h1">Settings</Trans>
         </h1>
         <div className="mx-auto">
           <form
@@ -77,7 +78,7 @@ const Settings = () => {
                 htmlFor="monthTimeGoal"
                 className="fs-5 text-info fw-medium"
               >
-                Goal
+                <Trans id="settings.goal">Goal</Trans>
               </label>
               <input
                 type="number"
@@ -93,7 +94,7 @@ const Settings = () => {
             </div>
             <div className="form-group col-12">
               <label htmlFor="userName" className="fs-5 text-info fw-medium">
-                Name
+                <Trans id="settings.name">Name</Trans>
               </label>
               <input
                 type="text"
@@ -106,7 +107,7 @@ const Settings = () => {
             </div>
             <div className="form-group col-12">
               <label htmlFor="email" className="fs-5 text-info fw-medium">
-                Email
+                <Trans id="settings.email">Email</Trans>
               </label>
               <input
                 type="email"
@@ -120,7 +121,7 @@ const Settings = () => {
             </div>
             <div className="form-group col-8 col-md-9">
               <label htmlFor="phoneNumber" className="fs-5 text-info fw-medium">
-                Phone number
+                <Trans id="settings.phone">Phone</Trans>
               </label>
               <input
                 type="text"
@@ -136,7 +137,7 @@ const Settings = () => {
                 type="submit"
                 className="btn btn-success fw-semibold shadow-sm fs-5"
               >
-                Save
+                <Trans id="settings.save-button">Save</Trans>
               </button>
             </div>
           </form>

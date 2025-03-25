@@ -32,7 +32,7 @@ const ChosenMonthStatus = ({ month, year }) => {
             const fetchData = async () => {
                 try {
                     const data = await getChosenMonthStatus(userLocal.id, month, year);
-                    console.log("Data:", data);
+                    // console.log("Data:", data);
                     setResult(data);
                 } catch (error) {
                     console.error("Error fetching data:", error);

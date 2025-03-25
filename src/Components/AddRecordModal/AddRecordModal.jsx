@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "bootstrap"
+import { Trans } from "@lingui/react"
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
 import { createRecordQuery } from "../../Services/AddRecordModalService/AddRecordModalService"
 
@@ -98,7 +99,7 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
                     htmlFor="time-picker"
                     className="col-form-label d-block text-center"
                   >
-                    Recorded time
+                    <Trans id="addRecordModal.recorded-time">Recorded time</Trans>
                   </label>
                   <input
                     type="time"
@@ -113,7 +114,7 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
                     htmlFor="study"
                     className="col-form-label d-block text-center"
                   >
-                    Study
+                    <Trans id="addRecordModal.study">Study</Trans>
                   </label>
                   <input
                     type="number"
@@ -129,7 +130,7 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
                     htmlFor="message-text"
                     className="col-form-label d-block text-center"
                   >
-                    Message:
+                    <Trans id="addRecordModal.message">Message</Trans>
                   </label>
                   <textarea
                     className="form-control w-75 mx-auto"
@@ -148,7 +149,7 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
                 onClick={onClose}
                 data-bs-target="#staticBackdrop"
               >
-                Close
+                <Trans id="addRecordModal.close-button">Close</Trans>
               </button>
               <button
                 type="button"
@@ -156,7 +157,7 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
                 onClick={handleAddRecord}
                 disabled={!recordTime}
               >
-                Add time
+                <Trans id="addRecordModal.save-button">Save</Trans>
               </button>
             </div>
           </div>

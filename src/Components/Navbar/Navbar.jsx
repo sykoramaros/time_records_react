@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
+import { Trans } from "@lingui/react";
 import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
@@ -64,7 +65,7 @@ const Navbar = () => {
                   to="/home"
                   onClick={closeMenu}
                 >
-                  Home
+                  <Trans id="navbar.home">Home</Trans>
                 </Link>
               </li>
               <li className="nav-item">
@@ -73,7 +74,7 @@ const Navbar = () => {
                   to="/calendar"
                   onClick={closeMenu}
                 >
-                  Calendar
+                  <Trans id="navbar.calendar">Calendar</Trans>
                 </Link>
               </li>
               <li className="nav-item">
@@ -82,7 +83,7 @@ const Navbar = () => {
                   to="/settings"
                   onClick={closeMenu}
                 >
-                  Settings
+                  <Trans id="navbar.settings">Settings</Trans>
                 </Link>
               </li>
               {role === "Admin" && (

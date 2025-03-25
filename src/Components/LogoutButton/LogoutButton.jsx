@@ -1,5 +1,6 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
+import { Trans } from "@lingui/react";
 import { logoutUser } from "../../Services/GoogleService/GoogleService";
 
 const LogoutButton = () => {
@@ -18,7 +19,7 @@ const LogoutButton = () => {
           className="btn bg-danger text-white fs-5 ms-auto"
           style={{ fontWeight: "600" }}
       >
-        Logout
+        <Trans id="logout.logout-button">Logout</Trans>
       </button>
   )
 }

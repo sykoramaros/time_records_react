@@ -1,5 +1,6 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
+import { Trans } from "@lingui/react"
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
 import {
   getSumActualWeekTotalRecordTimeQuery,
@@ -77,7 +78,7 @@ const WeekProgressInfo = () => {
 
   return (
     <div>
-      <h3 className="text-center text-primary fs-3 fw-light">Actual Week Progress</h3>
+      <h3 className="text-center text-primary fs-3 fw-light"><Trans id="weekProgressInfo.actual-week-progress">Actual Week Progress</Trans></h3>
       <div className="d-flex justify-content-center mt-4 w-100">
         <div
           className="progress rounded-5 w-100"

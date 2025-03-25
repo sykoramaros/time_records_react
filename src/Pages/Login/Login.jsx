@@ -54,7 +54,7 @@ const Login = () => {
       <div style={{height: "100vh"}}>
         <div className="container">
           <h1 className="text-center text-white display-3 text-shadow-primary py-4">
-            <Trans id="login">Login</Trans>
+            <Trans id="login.h1">Login</Trans>
           </h1>
           <form className="w-75 mt-5 mx-auto" onSubmit={""}>
             <div className="mb-3">
@@ -62,7 +62,7 @@ const Login = () => {
                   htmlFor="username"
                   className="form-label text-info fw-semibold text-decoration-line-through"
               >
-                <Trans id="username">Username</Trans>
+                <Trans id="login.username">Username</Trans>
               </label>
               <input
                   type="text"
@@ -76,7 +76,7 @@ const Login = () => {
                   data-bs-title="Username: '<strong class='text-warning'>sef</strong>' or '<strong class='text-warning'>guest</strong>'"
                   data-bs-html="true"
                   data-bs-placement="top"
-                  style={{ cursor: "pointer" }}
+                  // style={{ cursor: "pointer" }}
                   autoFocus
                   // required
                   readOnly
@@ -87,7 +87,7 @@ const Login = () => {
                   htmlFor="password"
                   className="form-label text-info fw-semibold text-decoration-line-through"
               >
-                <Trans id="password">Password</Trans>
+                <Trans id="login.password">Password</Trans>
               </label>
               <input
                   type="password"
@@ -101,6 +101,7 @@ const Login = () => {
                   data-bs-title="Password: '<strong class='text-warning'>Abcd1234.</strong>' (same for sef and guest)"
                   data-bs-html="true"
                   data-bs-placement="top"
+                  // style={{ cursor: "pointer" }}
                   // required
                   readOnly
               />
@@ -126,7 +127,7 @@ const Login = () => {
                     <Trans id="login.loading">Loading...</Trans>
                   </>
               ) : (
-                  <Trans id="login.button">Login</Trans>
+                  <Trans id="login.login-button">Login</Trans>
               )}
             </button>
             {/*<Link*/}

@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "bootstrap"
+import { Trans } from "@lingui/react"
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
 import {
   getRecordByDateQuery,
@@ -180,7 +181,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                   htmlFor="time-picker"
                   className="col-form-label d-block text-center"
                 >
-                  Recorded time
+                  <Trans id="editRecordModal.recorded-time">Recorded time</Trans>
                 </label>
                 <input
                   type="time"
@@ -195,7 +196,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                   htmlFor="study"
                   className="col-form-label d-block text-center"
                 >
-                  Study
+                  <Trans id="editRecordModal.study">Study</Trans>
                 </label>
                 <input
                   type="number"
@@ -211,7 +212,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                   htmlFor="message-text"
                   className="col-form-label d-block text-center"
                 >
-                  Message:
+                  <Trans id="editRecordModal.message">Message</Trans>
                 </label>
                 <textarea
                   className="form-control text-center w-75 mx-auto"
@@ -230,7 +231,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                   className="btn btn-secondary d-block mx-auto"
                   onClick={handleCloseModal}
                 >
-                  Close
+                  <Trans id="editRecordModal.close-button">Close</Trans>
                 </button>
               </div>
               <div className="col-6">
@@ -240,7 +241,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                   onClick={handleEditRecord}
                   // disabled={!recordTime || !recordStudy || !recordText}
                 >
-                  Save
+                  <Trans id="editRecordModal.save-button">Save</Trans>
                 </button>
               </div>
               <div className="col-12">
@@ -249,7 +250,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                   className="btn btn-danger d-block mx-auto"
                   onClick={handleDeleteRecord}
                 >
-                  Delete
+                  <Trans id="editRecordModal.delete-button">Delete</Trans>
                 </button>
               </div>
             </div>

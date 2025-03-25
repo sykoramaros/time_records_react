@@ -1,0 +1,16 @@
+{
+  "login.h1": "Přihlášení",
+  "login.username": "Uživatelské jméno",
+  "login.password": "Heslo",
+  "login.login-button": "Přihlásit se",
+  "login.info": "Přihlaste se prosím přes Google",
+  "login.loading": "Načitání...",
+  "home.h1": "Ahoj",
+  "calendar.h1": "Kalendář",
+  "settings.h1": "Nastavení",
+  "settings.goal": "Cíl",
+  "settings.name": "Jméno",
+  "settings.email": "E-mail",
+  "settings.phone": "Telefon",
+  "settings.save-button": "Uložit"
+}

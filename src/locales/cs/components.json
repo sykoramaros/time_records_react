@@ -1,0 +1,22 @@
+{
+  "addRecordModal.recorded-time": "Čas",
+  "addRecordModal.study": "Studium",
+  "addRecordModal.message": "Zpráva",
+  "addRecordModal.close-button": "Zavřít",
+  "addRecordModal.save-button": "Uložit",
+  "dashboard.h2": "Nástěnka",
+  "dashboard.h3": "Vaše služba není zadána",
+  "editRecordModal.recorded-time": "Čas",
+  "editRecordModal.study": "Studium",
+  "editRecordModal.message": "Zpráva",
+  "editRecordModal.close-button": "Zavřít",
+  "editRecordModal.save-button": "Uložit",
+  "editRecordModal.delete-button": "Smazat",
+  "logout.logout-button": "Odhlasit se",
+  "monthProgressInfo.actual-month-progress": "Aktualní měsic",
+  "navbar.home": "Nástěnka",
+  "navbar.calendar": "Kalendář",
+  "navbar.settings": "Nastavení",
+  "weekProgressInfo.actual-week-progress": "Aktualní tyden",
+  "yearProgressInfo.actual-year-progress": "Aktualní rok"
+}

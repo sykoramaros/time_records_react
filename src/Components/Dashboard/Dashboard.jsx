@@ -1,6 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import "./Dashboard.css"
+import { Trans } from "@lingui/react";
 import YearProgressInfo from "../YearProgressInfo/YearProgressInfo"
 import MonthProgressInfo from "../MonthProgressInfo/MonthProgressInfo"
 import WeekProgressInfo from "../WeekProgressInfo/WeekProgressInfo"
@@ -39,9 +40,9 @@ const Dashboard = () => {
         <div className="sticker-container position-absolute">
           <Sticker />
         </div>
-        <h2 className="text-center text-primary text-uppercase">Dashboard</h2>
+        <h2 className="text-center text-primary text-uppercase"><Trans id="dashboard.h2">Dashboard</Trans></h2>
         <h3 className={`text-center ${titleZero}`}>
-          Your month time goal is zero or not set!
+          <Trans id="dashboard.h3">Your month time goal is zero or not set!</Trans>
         </h3>
         <div className="row row-cols-1 mt-5 gap-4 d-flex justify-content-center">
           <div className="week-progress-container">
