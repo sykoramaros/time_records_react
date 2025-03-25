@@ -15,7 +15,7 @@ const Sticker = () => {
     const fetchSumActualMonthRecordStudy = async () => {
       const response = await getSumActualMonthRecorStudyQuery(userLocal.id)
       setSumActualMonthYearRecordStudy(response)
-      console.log(response)
+      // console.log(response)
     }
     fetchSumActualMonthRecordStudy()
 

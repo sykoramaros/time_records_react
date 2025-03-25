@@ -1,6 +1,8 @@
 import React from "react"
 import { HashRouter, Routes, Route } from "react-router-dom"
 import { GoogleOAuthProvider } from "@react-oauth/google"
+import { I18nProvider } from "@lingui/react";
+import { i18n } from "@lingui/core";
 // import { AuthProvider } from "./Services/GoogleAuthService/GoogleAuthService"
 // import { AuthProvider } from "./Services/AuthService/AuthService"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -19,11 +21,20 @@ import AccessDenied from "./Pages/AccessDenied/AccessDenied"
 // import {UserProvider} from "./Services/UserContext/UserContext";
 // import GoogleLoginPage from "./Pages/GoogleLoginPage/GoogleLoginPage";
 
+import csLogin from "./locales/cs/login.json"
+import enLogin from "./locales/en/login.json"
+
+i18n.load({cs: csLogin})
+i18n.load({en: enLogin})
+
+i18n.activate("en")
+
 const App = () => {
   const GOOGLE_CLIENT_ID =
     "680830179798-oquu7npstv9ofbpv781kq9usq7nfjqtg.apps.googleusercontent.com"
 
   return (
+    <I18nProvider i18n={i18n}>
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       {/*<AuthProvider>*/}
           {/*<UserProvider>*/}
@@ -58,6 +69,7 @@ const App = () => {
           {/*</UserProvider>*/}
       {/*</AuthProvider>*/}
     </GoogleOAuthProvider>
+    </I18nProvider>
   )
 }
 

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { GoogleLogin } from "@react-oauth/google"
 import { sendGoogleCredentialToApi, getUserFromToken } from "../../Services/GoogleService/GoogleService";
+import { Trans } from "@lingui/react"
 import { Tooltip } from "bootstrap"
 
 const Login = () => {
@@ -28,12 +29,12 @@ const Login = () => {
   async function handleSendGoogleCredential() {
     if (googleCredential) {
       try {
-        console.log("Sent google credential from Login page", googleCredential.credential)
+        // console.log("Sent google credential from Login page", googleCredential.credential)
         const response = await sendGoogleCredentialToApi(googleCredential.credential)
         const decodedUser = getUserFromToken(response.googleLoginToken)
 
         if (decodedUser) {
-          console.log("Login.jsx Decoded user:", decodedUser)
+          // console.log("Login.jsx Decoded user:", decodedUser)
           setGoogleLoginSuccess(true)
           navigate("/home")
         } else {
@@ -53,7 +54,7 @@ const Login = () => {
       <div style={{height: "100vh"}}>
         <div className="container">
           <h1 className="text-center text-white display-3 text-shadow-primary py-4">
-            Login
+            <Trans id="login">Login</Trans>
           </h1>
           <form className="w-75 mt-5 mx-auto" onSubmit={""}>
             <div className="mb-3">
@@ -61,7 +62,7 @@ const Login = () => {
                   htmlFor="username"
                   className="form-label text-info fw-semibold text-decoration-line-through"
               >
-                Username
+                <Trans id="username">Username</Trans>
               </label>
               <input
                   type="text"
@@ -86,7 +87,7 @@ const Login = () => {
                   htmlFor="password"
                   className="form-label text-info fw-semibold text-decoration-line-through"
               >
-                Password
+                <Trans id="password">Password</Trans>
               </label>
               <input
                   type="password"
@@ -122,10 +123,10 @@ const Login = () => {
                     role="status"
                     aria-hidden="true"
                 ></span>
-                    Loading...
+                    <Trans id="login.loading">Loading...</Trans>
                   </>
               ) : (
-                  "Login"
+                  <Trans id="login.button">Login</Trans>
               )}
             </button>
             {/*<Link*/}
@@ -134,13 +135,13 @@ const Login = () => {
             {/*>*/}
             {/*  Create account*/}
             {/*</Link>*/}
-            <span className="text-white fw-normal ms-5 fs-5">Please, for this time use only Google login</span>
+            <span className="text-white fw-normal ms-5"><Trans id="login.info">Please, for this time use only Google login</Trans></span>
             <p id="error-message" className="text-danger"></p>
             <hr />
             <div className="">
             <GoogleLogin
                 onSuccess={credentialResponse => {
-                  console.log(credentialResponse);
+                  // console.log(credentialResponse);
                   // credential je parametr se musi tak jmenovat a je z prichazejiciho objektu z Googlu
                   setGoogleCredential(credentialResponse)
                 }}

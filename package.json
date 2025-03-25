@@ -4,6 +4,10 @@
   "private": true,
   "homepage": "https://sykoramaros.github.io/time_records_react",
   "dependencies": {
+    "@lingui/core": "^5.3.0",
+    "@lingui/loader": "^5.3.0",
+    "@lingui/macro": "^5.3.0",
+    "@lingui/react": "^5.3.0",
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",

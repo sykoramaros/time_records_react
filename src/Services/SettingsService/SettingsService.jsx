@@ -8,7 +8,7 @@ export const getUserByIdQuery = async (id) => {
   const response = await axios.get(
       `${baseURL}/GetUserByIdQuery?userId=${id}`
   )
-  console.log("getUserByIdQuery data:", response.data)
+  // console.log("getUserByIdQuery data:", response.data)
   return response.data
 }
 

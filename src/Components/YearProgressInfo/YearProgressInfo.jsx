@@ -26,7 +26,7 @@ const YearProgressInfo = () => {
       try {
         const response = await getSumActualMinistryYearTotalRecordTimeQuery(userLocal.id)
         setSumMinistryYearTotalRecordTime(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -37,7 +37,7 @@ const YearProgressInfo = () => {
       try {
         const response = await getYearRecordProgressQuery(userLocal.id)
         setYearRecordProgress(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -48,7 +48,7 @@ const YearProgressInfo = () => {
       try {
         const response = await getYearRemainingTimeQuery(userLocal.id)
         setYearRemainingTime(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -78,7 +78,7 @@ const YearProgressInfo = () => {
 
   return (
     <div>
-      <h3 className="text-center fs-3 fw-light text-primary">Year Progress</h3>
+      <h3 className="text-center fs-3 fw-light text-primary">Actual Year Progress</h3>
       <div className="d-flex justify-content-center mt-4 w-100">
         <div
           className="progress rounded-5 w-100"

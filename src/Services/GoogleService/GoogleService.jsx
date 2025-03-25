@@ -1,55 +1,3 @@
-// import axios from "axios"
-// import { jwtDecode} from "jwt-decode";
-//
-// // const baseURL = "http://localhost:5113/api/GoogleAccount"
-// const baseURL = "https://localhost:7081/api/GoogleAccount"
-// // const baseURL = "https://recordsapi.runasp.net/api/GoogleAccount"
-//
-// // metoda nemuze byt asynchronni, jinak hlasi chyby
-// export const SendGoogleCredentialToApi = async (googleCredential) => {
-//     if (!googleCredential) {
-//         console.error("Error: googleCredential is null or undefined")
-//         throw new Error("googleCredential is null or undefined")
-//     }
-//     console.log("SendGoogleCredentialToApi:", googleCredential)
-//     try {
-//         const receivingDataFromApi = await axios.post(`${baseURL}/GoogleLogin`,
-//             {
-//                 importedGoogleLoginToken: googleCredential
-//             }
-//         )
-//         if (!receivingDataFromApi || !receivingDataFromApi.data) {
-//             console.error("Error: receivingDataFromApi is null or undefined")
-//             throw new Error("receivingDataFromApi is null or undefined")
-//         }
-//         console.log("receivingDataFromApi:", receivingDataFromApi)
-//
-//         if (receivingDataFromApi.data.token) {
-//             localStorage.setItem("googleUserToken", receivingDataFromApi.data.token)
-//         } else {
-//             console.error("Error: receivingDataFromApi.data.token is null or undefined")
-//         }
-//         return receivingDataFromApi.data
-//     } catch (error) {
-//         console.error("Error:", error)
-//         throw error
-//     }
-// }
-//
-// export const extractUserFromGoogleToken = () => {
-//     const googleUserToken = localStorage.getItem("googleUserToken")
-//     if (!googleUserToken) return null
-//
-//     try {
-//         const decodedToken = jwtDecode(googleUserToken)
-//         console.log("Decoded Token:", decodedToken)
-//         return decodedToken
-//     } catch (error) {
-//         console.error("Chyba při získávání role:", error)
-//         return null
-//     }
-// }
-
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
@@ -68,7 +16,7 @@ export const sendGoogleCredentialToApi = async (googleCredential) => {
         console.error("Error: googleCredential je prázdný");
         throw new Error("GoogleCredential je prázdný");
     }
-    console.log("Odesílám Google credential:", googleCredential);
+    // console.log("Odesílám Google credential:", googleCredential);
     try {
         const response = await axios.post(`${baseURL}/GoogleLogin`, {
             googleLoginToken: googleCredential
@@ -77,11 +25,11 @@ export const sendGoogleCredentialToApi = async (googleCredential) => {
             console.error("Error: Prázdná odpověď ze serveru");
             throw new Error("Prázdná odpověď ze serveru");
         }
-        console.log("Odpověď z API:", response);
+        // console.log("Odpověď z API:", response);
         // Předpokládáme, že token je v response.data.token
         if (response.data.token) {
             localStorage.setItem("googleUserToken", response.data.token);
-            console.log("Token uložen do localStorage:", response.data.token);
+            // console.log("Token uložen do localStorage:", response.data.token);
         } else {
             console.warn("Varování: Token nebyl v odpovědi nalezen, ukládám celou odpověď");
             localStorage.setItem("googleUserData", JSON.stringify(response.data));
@@ -106,15 +54,15 @@ export const getUserFromToken = (token) => {
     }
     try {
         const decodedToken = jwtDecode(token);
-        console.log("getUserFromToken:", decodedToken);
-        console.log("getUserFromToken exp:", decodedToken.exp);
-        console.log("getUserFromToken name:", decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
-        console.log("getUserFromToken email:", decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"]);
-        console.log("getUserFromToken id:", decodedToken.Id);
-        console.log("getUserFromToken GoogleId:", decodedToken.GoogleId);
-        console.log("getUserFromToken PhoneNumber:", decodedToken.PhoneNumber);
-        console.log("getUserFromToken MonthTimeGoal:", decodedToken.MonthTimeGoal);
-        console.log(Object.keys(decodedToken));
+        // console.log("getUserFromToken:", decodedToken);
+        // console.log("getUserFromToken exp:", decodedToken.exp);
+        // console.log("getUserFromToken name:", decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]);
+        // console.log("getUserFromToken email:", decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"]);
+        // console.log("getUserFromToken id:", decodedToken.Id);
+        // console.log("getUserFromToken GoogleId:", decodedToken.GoogleId);
+        // console.log("getUserFromToken PhoneNumber:", decodedToken.PhoneNumber);
+        // console.log("getUserFromToken MonthTimeGoal:", decodedToken.MonthTimeGoal);
+        // console.log(Object.keys(decodedToken));
         return {
             id: decodedToken.id || decodedToken.Id,
             googleId: decodedToken.googleId || decodedToken.GoogleId,
@@ -155,8 +103,9 @@ export const getUserFromLocalStorage = () => {
  * Odhlásí uživatele odstraněním tokenu z localStorage
  */
 export const logoutUser = () => {
-    localStorage.removeItem("googleUserToken");
-    localStorage.removeItem("googleUserData");
+    localStorage.clear();
+    // localStorage.removeItem("googleUserToken");
+    // localStorage.removeItem("googleUserData");
     console.log("Uživatel byl odhlášen");
 };
 /**

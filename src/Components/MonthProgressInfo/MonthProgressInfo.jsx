@@ -26,7 +26,7 @@ const MonthProgressInfo = () => {
       try {
         const response = await getSumActualMonthTotalRecordTimeQuery(userLocal.id)
         setSumActualMonthTotalRecordTime(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -37,7 +37,7 @@ const MonthProgressInfo = () => {
       try {
         const response = await getMonthRecordProgressQuery(userLocal.id)
         setMonthRecordProgress(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -48,7 +48,7 @@ const MonthProgressInfo = () => {
       try {
         const response = await getMonthRemainingTimeQuery(userLocal.id)
         setMonthRemainingTime(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -78,7 +78,7 @@ const MonthProgressInfo = () => {
 
   return (
     <div>
-      <h3 className="text-center fs-3 fw-light text-primary">Month Progress</h3>
+      <h3 className="text-center fs-3 fw-light text-primary">Actual Month Progress</h3>
       <div className="d-flex justify-content-center mt-4 w-100">
         <div
           className="progress rounded-5 w-100"

@@ -5,7 +5,7 @@ import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleServ
 
 const Home = () => {
     const userLocal = getUserFromLocalStorage();
-    console.log("userLocal:", userLocal.userName)
+    // console.log("userLocal:", userLocal.userName)
 
   return (
   <div>

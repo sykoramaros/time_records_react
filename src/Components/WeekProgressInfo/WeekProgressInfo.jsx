@@ -25,7 +25,7 @@ const WeekProgressInfo = () => {
       try {
         const response = await getSumActualWeekTotalRecordTimeQuery(userLocal.id)
         setSumActualWeekTotalRecordTime(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -36,7 +36,7 @@ const WeekProgressInfo = () => {
       try {
         const response = await getWeekRecordProgressQuery(userLocal.id)
         setWeekRecordProgress(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -47,7 +47,7 @@ const WeekProgressInfo = () => {
       try {
         const response = await getWeekRemainingTimeQuery(userLocal.id)
         setWeekRemainingTime(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -77,7 +77,7 @@ const WeekProgressInfo = () => {
 
   return (
     <div>
-      <h3 className="text-center text-primary fs-3 fw-light">Week Progress</h3>
+      <h3 className="text-center text-primary fs-3 fw-light">Actual Week Progress</h3>
       <div className="d-flex justify-content-center mt-4 w-100">
         <div
           className="progress rounded-5 w-100"

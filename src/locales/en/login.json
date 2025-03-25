@@ -1,0 +1,8 @@
+{
+  "login": "Login",
+  "username": "Username",
+  "password": "Password",
+  "login.button": "Sign in",
+  "login.info": "Please sign in with Google",
+  "login.loading": "Loading..."
+}

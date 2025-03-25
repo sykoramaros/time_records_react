@@ -18,9 +18,9 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const response = await getUserByIdQuery(userLocal.id)
-        console.log("Settings fetchData:", response.monthTimeGoal)
+        // console.log("Settings fetchData:", response.monthTimeGoal)
         setMonthTimeGoal(response.monthTimeGoal)
-        console.log("fetchData", response.monthTimeGoal + " " + response.userId)
+        // console.log("fetchData", response.monthTimeGoal + " " + response.userId)
       } catch (error) {
         console.error(error)
       }
