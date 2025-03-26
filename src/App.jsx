@@ -17,6 +17,7 @@ import Users from "./Pages/Users/Users"
 import Roles from "./Pages/Roles/Roles"
 import EditRole from "./Pages/Roles/EditRole"
 import Settings from "./Pages/Settings/Settings"
+import Privacy from "./Pages/Privacy/Privacy"
 import AccessDenied from "./Pages/AccessDenied/AccessDenied"
 // import {UserProvider} from "./Services/UserContext/UserContext";
 // import GoogleLoginPage from "./Pages/GoogleLoginPage/GoogleLoginPage";
@@ -53,6 +54,7 @@ const App = () => {
               <Route path="/home" element={<Home />} />
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/privacy" element={<Privacy />} />
 
               {/* Layout s chranenymi trasami */}
               <Route

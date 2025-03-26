@@ -12,11 +12,11 @@
   "editRecordModal.close-button": "Zavřít",
   "editRecordModal.save-button": "Uložit",
   "editRecordModal.delete-button": "Smazat",
-  "logout.logout-button": "Odhlasit se",
-  "monthProgressInfo.actual-month-progress": "Aktualní měsic",
+  "logout.logout-button": "Odhlásit se",
+  "monthProgressInfo.actual-month-progress": "Aktuální měsíc",
   "navbar.home": "Nástěnka",
   "navbar.calendar": "Kalendář",
   "navbar.settings": "Nastavení",
-  "weekProgressInfo.actual-week-progress": "Aktualní tyden",
-  "yearProgressInfo.actual-year-progress": "Aktualní rok"
+  "weekProgressInfo.actual-week-progress": "Aktuální týden",
+  "yearProgressInfo.actual-year-progress": "Aktuální rok"
 }

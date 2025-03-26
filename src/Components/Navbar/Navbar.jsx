@@ -70,7 +70,7 @@ const Navbar = () => {
                   <Trans id="navbar.home">Home</Trans>
                 </NavLink>
               </li>
-              <span className="d-none d-xl-block my-auto text-white fw-normal">|</span>
+              <span className="d-none d-lg-block my-auto text-white fw-normal">|</span>
               <li className="nav-item">
                 <NavLink
                   className="nav-link fs-4 text-white"
@@ -80,7 +80,7 @@ const Navbar = () => {
                   <Trans id="navbar.calendar">Calendar</Trans>
                 </NavLink>
               </li>
-              <span className="d-none d-xl-block my-auto text-white fw-normal">|</span>
+              <span className="d-none d-lg-block my-auto text-white fw-normal">|</span>
               <li className="nav-item">
                 <NavLink
                   className="nav-link fs-4 text-white"
