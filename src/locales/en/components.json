@@ -12,6 +12,7 @@
   "editRecordModal.close-button": "Close",
   "editRecordModal.save-button": "Save",
   "editRecordModal.delete-button": "Delete",
+  "footer.privacy": "Privacy",
   "logout.logout-button": "Log out",
   "monthProgressInfo.actual-month-progress": "Current month",
   "navbar.home": "Dashboard",

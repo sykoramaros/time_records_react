@@ -1,4 +1,5 @@
 import React from "react"
+import "./Privacy.css"
 import { Trans } from "@lingui/react"
 
 const Privacy = () => {
@@ -8,7 +9,7 @@ const Privacy = () => {
                 <h1 className="text-center text-white display-3 text-shadow-primary py-4">
                     <Trans id="privacy.h1">Privacy</Trans>
                 </h1>
-                <div className="card p-4">
+                <div className="privacy-container text-info text-center bg-primary p-5 w-75 mx-auto">
                     <h2><Trans id="privacy.intro_h2">Introduction</Trans></h2>
                     <p>
                         <Trans id="privacy.intro_p">
