@@ -14,12 +14,14 @@ const WeekProgressInfo = () => {
   const [sumActualWeekTotalRecordTime, setSumActualWeekTotalRecordTime] =
     useState(0)
   const [weekRecordProgress, setWeekRecordProgress] = useState(0)
-  const [weekRemainingTime, setWeekRemainingTime] = useState(0)
+  const [weekRemainingTime, setWeekRemainingTime] = useState({})
+  const [formattedRemainingTime, setFormattedRemainingTime] = useState({})
   const [bgProgress, setBgProgress] = useState("bg-danger")
   const [sumTextColor, setSumTextColor] = useState("text-danger")
   const sumActualWeekTotalRecordTimeRef = useRef(null)
   const weekRemainingTimeRef = useRef(null)
   const userLocal = getUserFromLocalStorage()
+  const [numberSign, setNumberSign] = useState("")
 
   useEffect(() => {
     const fetchSumActualWeekTotalRecordTime = async () => {
@@ -48,7 +50,7 @@ const WeekProgressInfo = () => {
       try {
         const response = await getWeekRemainingTimeQuery(userLocal.id)
         setWeekRemainingTime(response)
-        // console.log(response)
+        console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -61,7 +63,24 @@ const WeekProgressInfo = () => {
     if (weekRemainingTimeRef.current) {
       new Tooltip(weekRemainingTimeRef.current)
     }
-  }, [])
+  }, [userLocal.id])
+
+  useEffect(() => {
+  console.log(weekRemainingTime)
+    const formatted = {
+      hours: Math.abs(weekRemainingTime.hours),
+      minutes: Math.abs(weekRemainingTime.minutes),
+    }
+  if (weekRemainingTime?.hours + weekRemainingTime?.minutes > 0) {
+    setNumberSign("- ")
+  } else if (weekRemainingTime?.hours + weekRemainingTime?.minutes < 0) {
+    setNumberSign("+ ")
+  } else {
+    setNumberSign("")
+  }
+  setFormattedRemainingTime(formatted)
+  console.log(numberSign)
+  }, [numberSign, weekRemainingTime]);
 
   useEffect(() => {
     if (weekRecordProgress > 30 && weekRecordProgress < 50) {
@@ -108,8 +127,8 @@ const WeekProgressInfo = () => {
             data-bs-title="Current <strong>week's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {sumActualWeekTotalRecordTime.hours} :{" "}
-            {sumActualWeekTotalRecordTime.minutes}
+            {sumActualWeekTotalRecordTime.hours?.toLocaleString("en-US", { minimumIntegerDigits: 2 })} :{" "}
+            {sumActualWeekTotalRecordTime.minutes?.toLocaleString("en-US", { minimumIntegerDigits: 2 })}
           </p>
         </div>
         <div className="col-6">
@@ -122,7 +141,8 @@ const WeekProgressInfo = () => {
             data-bs-title="Remaining <strong>week's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {weekRemainingTime.hours} : {Math.abs(weekRemainingTime.minutes)}
+            {numberSign} {formattedRemainingTime.hours?.toLocaleString("en-US", { minimumIntegerDigits: 2 })} : {" "}
+            {formattedRemainingTime.minutes?.toLocaleString("en-US", { minimumIntegerDigits: 2 })}
           </p>
         </div>
       </div>
