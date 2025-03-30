@@ -14,11 +14,13 @@ const MonthProgressInfo = () => {
   const [sumActualMonthTotalRecordTime, setSumActualMonthTotalRecordTime] =
     useState(0)
   const [monthRecordProgress, setMonthRecordProgress] = useState(0)
-  const [monthRemainingTime, setMonthRemainingTime] = useState(0)
+  const [monthRemainingTime, setMonthRemainingTime] = useState({})
+  const [formattedRemainingTime, setFormattedRemainingTime] = useState({})
   const [bgProgress, setBgProgress] = useState("bg-danger")
   const [sumTextColor, setSumTextColor] = useState("text-danger")
   const sumActualMonthTotalRecordTimeRef = useRef(null)
   const monthRemainingTimeRef = useRef(null)
+  const [numberSign, setNumberSign] = useState("")
 
   const userLocal = getUserFromLocalStorage()
 
@@ -62,7 +64,7 @@ const MonthProgressInfo = () => {
     if (monthRemainingTimeRef.current) {
       new Tooltip(monthRemainingTimeRef.current)
     }
-  }, [])
+  }, [userLocal.id])
 
   useEffect(() => {
     if (monthRecordProgress > 30 && monthRecordProgress < 50) {
@@ -77,9 +79,26 @@ const MonthProgressInfo = () => {
     }
   }, [monthRecordProgress])
 
+  useEffect(() => {
+    const formatted = {
+      hours: Math.abs(monthRemainingTime.hours),
+      minutes: Math.abs(monthRemainingTime.minutes)
+    }
+    if (monthRemainingTime?.hours + monthRemainingTime?.minutes > 0) {
+      setNumberSign("-")
+    } else if (monthRemainingTime?.hours + monthRemainingTime?.minutes < 0) {
+      setNumberSign("+")
+    } else {
+      setNumberSign("")
+    }
+    setFormattedRemainingTime(formatted)
+  }, [monthRemainingTime, numberSign])
+
   return (
     <div>
-      <h3 className="text-center fs-3 fw-light text-primary"><Trans id="monthProgressInfo.actual-month-progress">Actual Month Progress</Trans></h3>
+      <h3 className="text-center fs-3 fw-light text-primary">
+        <Trans id="monthProgressInfo.actual-month-progress">Actual Month Progress</Trans>
+      </h3>
       <div className="d-flex justify-content-center mt-4 w-100">
         <div
           className="progress rounded-5 w-100"
@@ -122,7 +141,7 @@ const MonthProgressInfo = () => {
             data-bs-title="Remaining <strong>month's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {monthRemainingTime.hours} : {Math.abs(monthRemainingTime.minutes)}
+            {numberSign} {formattedRemainingTime.hours?.toLocaleString("en-US", {minimumIntegerDigits: 2})} : {formattedRemainingTime.minutes?.toLocaleString("en-US", {minimumIntegerDigits: 2})}
           </p>
         </div>
       </div>
