@@ -128,7 +128,7 @@ const MonthProgressInfo = () => {
             data-bs-title="Current <strong>month's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {sumActualMonthTotalRecordTime.hours} : {sumActualMonthTotalRecordTime.minutes}
+            {sumActualMonthTotalRecordTime.hours?.toLocaleString("en-US", {minimumIntegerDigits: 2})} : {sumActualMonthTotalRecordTime.minutes?.toLocaleString("en-US", {minimumIntegerDigits: 2})}
           </p>
         </div>
         <div className="col-6">

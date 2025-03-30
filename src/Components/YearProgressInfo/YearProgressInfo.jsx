@@ -14,12 +14,14 @@ const YearProgressInfo = () => {
   const [sumMinistryYearTotalRecordTime, setSumMinistryYearTotalRecordTime] =
     useState(0)
   const [yearRecordProgress, setYearRecordProgress] = useState(0)
-  const [yearRemainingTime, setYearRemainingTime] = useState(0)
+  const [yearRemainingTime, setYearRemainingTime] = useState({})
+  const [formattedRemainingTime, setFormattedRemainingTime] = useState({})
   const [bgProgress, setBgProgress] = useState("bg-danger")
   const [sumTextColor, setSumTextColor] = useState("text-danger")
   const sumMinistryYearTotalRecordTimeRef = useRef(null)
   const yearRemainingTimeRef = useRef(null)
   const userLocal = getUserFromLocalStorage()
+  const [numberSign, setNumberSign] = useState("")
 
 
   useEffect(() => {
@@ -62,7 +64,22 @@ const YearProgressInfo = () => {
     if (yearRemainingTimeRef.current) {
       new Tooltip(yearRemainingTimeRef.current)
     }
-  }, [])
+  }, [userLocal.id])
+
+  useEffect(() => {
+    const formatted = {
+      hours: Math.abs(yearRemainingTime.hours),
+      minutes: Math.abs(yearRemainingTime.minutes),
+    }
+    if (yearRemainingTime?.hours + yearRemainingTime?.minutes > 0) {
+      setNumberSign("-")
+    } else if (yearRemainingTime?.hours + yearRemainingTime?.minutes < 0) {
+      setNumberSign("+")
+    } else {
+      setNumberSign("")
+    }
+    setFormattedRemainingTime(formatted)
+  }, [numberSign, yearRemainingTime]);
 
   useEffect(() => {
     if (yearRecordProgress > 30 && yearRecordProgress < 50) {
@@ -109,8 +126,8 @@ const YearProgressInfo = () => {
             data-bs-title="Current <strong>year's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {sumMinistryYearTotalRecordTime.hours} :{" "}
-            {sumMinistryYearTotalRecordTime.minutes}
+            {sumMinistryYearTotalRecordTime.hours?.toLocaleString("en-US", {minimumIntegerDigits: 2})} :{" "}
+            {sumMinistryYearTotalRecordTime.minutes?.toLocaleString("en-US", {minimumIntegerDigits: 2})}
           </p>
         </div>
         <div className="col-6">
@@ -123,7 +140,7 @@ const YearProgressInfo = () => {
             data-bs-title="Current <strong>year's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {yearRemainingTime.hours} : {Math.abs(yearRemainingTime.minutes)}
+            {numberSign} {formattedRemainingTime.hours?.toLocaleString("en-US", {minimumIntegerDigits: 2})} : {formattedRemainingTime.minutes?.toLocaleString("en-US", {minimumIntegerDigits: 2})}
           </p>
         </div>
       </div>
