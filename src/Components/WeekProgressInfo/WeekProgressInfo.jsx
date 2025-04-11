@@ -50,7 +50,7 @@ const WeekProgressInfo = () => {
       try {
         const response = await getWeekRemainingTimeQuery(userLocal.id)
         setWeekRemainingTime(response)
-        console.log(response)
+        // console.log(response)
       } catch (error) {
         console.error(error)
       }
@@ -66,7 +66,7 @@ const WeekProgressInfo = () => {
   }, [userLocal.id])
 
   useEffect(() => {
-  console.log(weekRemainingTime)
+  // console.log(weekRemainingTime)
     const formatted = {
       hours: Math.abs(weekRemainingTime.hours),
       minutes: Math.abs(weekRemainingTime.minutes),
@@ -79,7 +79,7 @@ const WeekProgressInfo = () => {
     setNumberSign("")
   }
   setFormattedRemainingTime(formatted)
-  console.log(numberSign)
+  // console.log(numberSign)
   }, [numberSign, weekRemainingTime]);
 
   useEffect(() => {
@@ -127,7 +127,7 @@ const WeekProgressInfo = () => {
             data-bs-title="Current <strong>week's</strong> time"
             style={{ cursor: "pointer" }}
           >
-            {sumActualWeekTotalRecordTime.hours?.toLocaleString("en-US", { minimumIntegerDigits: 2 })} :{" "}
+            {sumActualWeekTotalRecordTime.hours?.toLocaleString("en-US", { minimumIntegerDigits: 2 })} : {" "}
             {sumActualWeekTotalRecordTime.minutes?.toLocaleString("en-US", { minimumIntegerDigits: 2 })}
           </p>
         </div>

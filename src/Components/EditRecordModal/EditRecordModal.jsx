@@ -2,6 +2,8 @@ import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "bootstrap"
 import { Trans } from "@lingui/react"
+import DualSelectTimePicker from "../TimeSelect/DualSelectTimePicker";
+// import TimeSelect from "../TimeSelect/TimeSelect";
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
 import {
   getRecordByDateQuery,
@@ -183,13 +185,25 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                 >
                   <Trans id="editRecordModal.recorded-time">Recorded time</Trans>
                 </label>
-                <input
-                  type="time"
-                  className="form-control text-center w-75 mx-auto"
-                  id="time-picker"
-                  value={recordTime}
-                  onChange={handleTimeChange}
+                {/*<input*/}
+                {/*  type="time"*/}
+                {/*  className="form-control text-center w-75 mx-auto"*/}
+                {/*  id="time-picker"*/}
+                {/*  value={recordTime}*/}
+                {/*  onChange={handleTimeChange}*/}
+                {/*/>*/}
+
+                <DualSelectTimePicker
+                    id="time-picker"
+                    value={recordTime}
+                    onChange={handleTimeChange}
                 />
+                
+                {/*<TimeSelect*/}
+                {/*    id="time-picker"*/}
+                {/*    value={recordTime}*/}
+                {/*    onChange={handleTimeChange}*/}
+                {/*/>*/}
               </div>
               <div className="mb-3">
                 <label

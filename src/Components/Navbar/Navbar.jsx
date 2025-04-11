@@ -8,7 +8,7 @@ import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [role, setRole] = useState(null)
+  const [role, setRole] = useState("")
   const [menuOpen, setMenuOpen] = useState(false)
   const navbarCollapseRef = useRef(null)
 
@@ -90,6 +90,15 @@ const Navbar = () => {
                   <Trans id="navbar.settings">Settings</Trans>
                 </NavLink>
               </li>
+                  <li className="nav-item">
+                    <NavLink
+                      className="nav-link fs-4 text-white"
+                      to="/parrent"
+                      onClick={closeMenu}
+                    >
+                      Parrent
+                    </NavLink>
+                  </li>
               {role === "Admin" && (
                 <>
                   <li className="nav-item">

@@ -2,6 +2,7 @@ import React from "react"
 import { useState, useEffect, useRef } from "react"
 import ReactDatepicker from "react-datepicker"
 import "./ReactDatePickerCalendar.css"
+import {i18n} from "@lingui/core";
 import { enAU, cs } from "date-fns/locale"
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
 import {
@@ -20,8 +21,20 @@ const ReactDatepickerCalendar = ({onCalendarChange}) => {
   const [currentRecord, setCurrentRecord] = useState(null)
   const [error, setError] = useState(null)
   const tooltipInstancesRef = useRef([])
+  const [currentLocale, setCurrentLocale] = useState(cs)
 
   const userLocal = getUserFromLocalStorage()
+
+  const locales = {
+    en: enAU,
+    cs: cs,
+  }
+
+  useEffect(() => {
+    if (i18n.locale && locales[i18n.locale]) {
+    setCurrentLocale(locales[i18n.locale] && locales[i18n.locale])
+    }
+  }, [i18n.locale])
 
   useEffect(() => {
     const fetchHighlightedDates = async () => {
@@ -38,7 +51,7 @@ const ReactDatepickerCalendar = ({onCalendarChange}) => {
       }
     }
     fetchHighlightedDates()
-  }, [])
+  }, [userLocal.id])
 
   // Inicializace tooltipů po načtení dat
   useEffect(() => {
@@ -100,7 +113,7 @@ const ReactDatepickerCalendar = ({onCalendarChange}) => {
   const handleCloseModal = () => {
     setShowModal(false)
     window.location.reload()
-    console.log("showModal set to:", false)
+    // console.log("showModal set to:", false)
   }
 
   // Asynchronní funkce pro získání záznamu pro konkrétní datum
@@ -171,7 +184,7 @@ const ReactDatepickerCalendar = ({onCalendarChange}) => {
         calendarStartDay={1}
         minDate={new Date(2024, 1, 1)}
         maxDate={new Date(2030, 12, 31)}
-        locale={cs}
+        locale={currentLocale}
         showYearDropdown
         dropdownMode=""
         fixedHeight

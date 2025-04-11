@@ -54,7 +54,7 @@ const ChosenMonthStatus = ({ month, year }) => {
                 data-bs-title="<strong>Time</strong> records during <strong>chosen</strong> month"
                 style={{ cursor: "pointer" }}
             >
-                {result?.hours || "00"} : {result?.minutes || "00"}
+                {result?.hours.toLocaleString("en-US", { minimumIntegerDigits: 2 })} : {result?.minutes.toLocaleString("en-US", { minimumIntegerDigits: 2 })}
             </h2>
         </div>
     );

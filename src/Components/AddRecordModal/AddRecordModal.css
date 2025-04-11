@@ -1,0 +1,17 @@
+.study-input {
+    transition: transform 0.5s ease-in-out;
+}
+
+.study-input:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.textarea-input {
+    transition: transform 0.5s ease-in-out;
+}
+
+.textarea-input:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}

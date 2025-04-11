@@ -2,6 +2,9 @@ import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "bootstrap"
 import { Trans } from "@lingui/react"
+import "./AddRecordModal.css"
+// import TimeSelect from "../TimeSelect/TimeSelect";
+import DualSelectTimePicker from "../TimeSelect/DualSelectTimePicker";
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
 import { createRecordQuery } from "../../Services/AddRecordModalService/AddRecordModalService"
 
@@ -54,8 +57,8 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
       }
 
       const response = await createRecordQuery(userLocal.id ,recordData)
-      console.log("Record created:", response)
-      alert("Record created successfully!")
+      // console.log("Record created:", response)
+      // alert("Record created successfully!")
       // Zavření modálu po úspěšném vytvoření
       window.location.reload()
       onClose()
@@ -81,12 +84,12 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content w-50 w-md-25 mx-auto">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="calendarModal">
+              <h1 className="modal-title fs-5 text-success fw-normal" id="calendarModal">
                 {selectedDate.toDateString()}
               </h1>
               <button
                 type="button"
-                className="btn-close"
+                className="btn-close bg-danger"
                 data-bs-dismiss="modal"
                 aria-label="Close"
                 onClick={onClose}
@@ -94,46 +97,60 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
             </div>
             <div className="modal-body">
               <form>
-                <div className="mb-3">
+                <div className="">
                   <label
                     htmlFor="time-picker"
-                    className="col-form-label d-block text-center"
+                    className="col-form-label fs-6 fw-lighter d-block text-center text-primary"
                   >
                     <Trans id="addRecordModal.recorded-time">Recorded time</Trans>
                   </label>
-                  <input
-                    type="time"
-                    className="form-control text-center w-75 mx-auto"
-                    id="time-picker"
-                    value={recordTime}
-                    onChange={handleTimeChange}
+                  {/*<input*/}
+                  {/*  type="time"*/}
+                  {/*  className="form-control text-center w-75 mx-auto"*/}
+                  {/*  id="time-picker"*/}
+                  {/*  value={recordTime}*/}
+                  {/*  onChange={handleTimeChange}*/}
+                  {/*/>*/}
+                  <div className="col-form-label d-block text-center">
+                  <DualSelectTimePicker
+                      id="time-picker"
+                      value={recordTime}
+                      onChange={handleTimeChange}
                   />
+                  </div>
+                  {/*<TimeSelect*/}
+                  {/*    id="time-picker"*/}
+                  {/*    value={recordTime}*/}
+                  {/*    onChange={handleTimeChange}*/}
+                  {/*/>*/}
                 </div>
-                <div>
+                <div className="mt-3">
                   <label
                     htmlFor="study"
-                    className="col-form-label d-block text-center"
+                    className="col-form-label fs-6 fw-lighter d-block text-center text-primary"
                   >
                     <Trans id="addRecordModal.study">Study</Trans>
                   </label>
                   <input
                     type="number"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     min={0}
-                    className="form-control text-center w-75 mx-auto"
+                    className="study-input text-center fs-5 w-25 border border-secondary border-2 rounded-top-3 text-success mx-auto d-block"
                     id="study"
                     value={recordStudy}
                     onChange={handleStudyChange}
                   />
                 </div>
-                <div>
+                <div className="mt-3">
                   <label
                     htmlFor="message-text"
-                    className="col-form-label d-block text-center"
+                    className="col-form-label fs-6 fw-lighter d-block text-center text-primary"
                   >
                     <Trans id="addRecordModal.message">Message</Trans>
                   </label>
                   <textarea
-                    className="form-control w-75 mx-auto"
+                    className="textarea-input form-control w-auto mx-auto fs-6 border border-secondary border-2 rounded-bottom-3 bg-secondary text-white text-shadow"
                     id="message-text"
                     value={recordText}
                     onChange={handleTextChange}

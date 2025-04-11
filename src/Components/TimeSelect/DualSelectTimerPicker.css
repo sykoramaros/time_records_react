@@ -1,0 +1,11 @@
+.timer-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: transform 0.5s ease-in-out;
+}
+
+.timer-select:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
