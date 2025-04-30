@@ -1,9 +1,8 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
-import {Link, NavLink} from "react-router-dom"
-import "./Navbar.css"
-import { Trans } from "@lingui/react";
-import { i18n } from "@lingui/core";
+import { Link, NavLink } from "react-router-dom"
+import { Trans } from "@lingui/react"
+import LanguageToggler from "../LanguageToggler/LanguageToggler"
 import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
@@ -17,8 +16,8 @@ const Navbar = () => {
   }
 
   // Funkce pro přepínání a zavírání menu
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
-  const closeMenu = () => setMenuOpen(false);
+  const toggleMenu = () => setMenuOpen((prev) => !prev)
+  const closeMenu = () => setMenuOpen(false)
 
   return (
     <div>
@@ -70,7 +69,9 @@ const Navbar = () => {
                   <Trans id="navbar.home">Home</Trans>
                 </NavLink>
               </li>
-              <span className="d-none d-lg-block my-auto text-white fw-normal">|</span>
+              <span className="d-none d-lg-block my-auto text-white fw-normal">
+                |
+              </span>
               <li className="nav-item">
                 <NavLink
                   className="nav-link fs-4 text-white"
@@ -80,7 +81,9 @@ const Navbar = () => {
                   <Trans id="navbar.calendar">Calendar</Trans>
                 </NavLink>
               </li>
-              <span className="d-none d-lg-block my-auto text-white fw-normal">|</span>
+              <span className="d-none d-lg-block my-auto text-white fw-normal">
+                |
+              </span>
               <li className="nav-item">
                 <NavLink
                   className="nav-link fs-4 text-white"
@@ -90,15 +93,6 @@ const Navbar = () => {
                   <Trans id="navbar.settings">Settings</Trans>
                 </NavLink>
               </li>
-                  <li className="nav-item">
-                    <NavLink
-                      className="nav-link fs-4 text-white"
-                      to="/parrent"
-                      onClick={closeMenu}
-                    >
-                      Parrent
-                    </NavLink>
-                  </li>
               {role === "Admin" && (
                 <>
                   <li className="nav-item">
@@ -123,65 +117,7 @@ const Navbar = () => {
               )}
             </ul>
             <div className="mx-auto">
-              <ul
-                  className="my-auto row row-cols-2 g-3"
-                  style={{ listStyle: "none" }}
-              >
-                <li className="my-auto lang-btn">
-                  <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault() // Zabrání výchozímu chování odkazu
-                        i18n.activate("cs") // Aktivuje češtinu
-                      }}
-                      aria-label="Switch to Czech language"
-                  >
-                    <img
-                        className="rounded-5 shadow-sm"
-                        src={`${process.env.PUBLIC_URL}/Photos/lang/czech.png`}
-                        alt="Czech language"
-                        width="35"
-                        height="auto"
-                    />
-                  </a>
-                </li>
-                <li className="my-auto lang-btn">
-                  <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault() // Zabrání výchozímu chování odkazu
-                        i18n.activate("en") // Aktivuje češtinu
-                      }}
-                      aria-label="Switch to English language"
-                  >
-                    <img
-                        className="rounded-5 shadow-sm"
-                        src={`${process.env.PUBLIC_URL}/Photos/lang/english.png`}
-                        alt="English language"
-                        width="35"
-                        height="auto"
-                    />
-                  </a>
-                </li>
-                {/*<li className="my-auto">*/}
-                {/*  <a*/}
-                {/*      href="#"*/}
-                {/*      onClick={(e) => {*/}
-                {/*        e.preventDefault() // Zabrání výchozímu chování odkazu*/}
-                {/*        i18n.activate("mn") // Aktivuje češtinu*/}
-                {/*      }}*/}
-                {/*      aria-label="Switch to Mongolian language"*/}
-                {/*  >*/}
-                {/*    <img*/}
-                {/*        className="border rounded-5 shadow-sm"*/}
-                {/*        src={`${process.env.PUBLIC_URL}/img/lang/mongolian.png`}*/}
-                {/*        alt="Mongolian language"*/}
-                {/*        width="35"*/}
-                {/*        height="auto"*/}
-                {/*    />*/}
-                {/*  </a>*/}
-                {/*</li>*/}
-              </ul>
+              <LanguageToggler />
             </div>
             <LogoutButton />
           </div>
