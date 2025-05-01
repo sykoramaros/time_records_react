@@ -163,10 +163,7 @@ const Login = () => {
               }}
             />
           </div>
-          <div
-            className="border border-info rounded-pill mx-auto my-3 d-flex justify-content-center align-content-center"
-            style={{ maxWidth: "100px" }}
-          >
+          <div className="my-3 d-flex justify-content-center">
             <LanguageToggler />
           </div>
         </form>

@@ -6,8 +6,8 @@ import "./LanguageToggler.css"
 const LanguageToggler = () => {
   return (
     <>
-      <div className="my-auto row row-cols-2">
-        <div className="my-auto lang-btn">
+      <div className="lang-container border border-2 border-info rounded-pill position-relative">
+        <div className="lang-btn btn-cs text-center position-absolute">
           <Link
             to={""}
             onClick={(e) => {
@@ -25,7 +25,7 @@ const LanguageToggler = () => {
             />
           </Link>
         </div>
-        <div className="my-auto lang-btn">
+        <div className="lang-btn btn-en text-center position-absolute">
           <Link
             to={""}
             onClick={(e) => {
