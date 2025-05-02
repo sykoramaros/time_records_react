@@ -1,0 +1,25 @@
+.info-box {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 20px 0;
+  position: relative;
+}
+
+
+
+.info-box legend {
+  /* Přepíše Bootstrap, který nastavuje width: 100% */
+  width: auto;
+  padding: 0 8px;
+  /* Přepíše Bootstrap margin */
+  margin-bottom: 0;
+  /* Odstraní případný Bootstrap border */ 
+  border: none; 
+  font-size: inherit; /* Zachová konzistentní velikost písma */
+  /* background-color: white; */
+  float: none; /* Některé verze Bootstrapu mohou používat float */
+  display: inline-block; /* Zajistí správné chování šířky */
+  position: relative; /* Potřebné pro správné umístění */
+  top: -1px; /* Jemné doladění pozice */
+}

@@ -1,10 +1,10 @@
 import React from "react"
 import { useState, useEffect, useRef } from "react"
-import ReactDatepicker from "react-datepicker"
+import ReactDatepicker, { registerLocale } from "react-datepicker"
 import "./ReactDatePickerCalendar.css"
-import {i18n} from "@lingui/core";
+import { i18n } from "@lingui/core"
 import { enAU, cs } from "date-fns/locale"
-import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
 import {
   getAllRecordsQuery,
   getRecordByDate,
@@ -13,7 +13,7 @@ import AddRecordModal from "../AddRecordModal/AddRecordModal"
 import EditRecordModal from "../EditRecordModal/EditRecordModal"
 import { Tooltip } from "bootstrap/dist/js/bootstrap.bundle.min"
 
-const ReactDatepickerCalendar = ({onCalendarChange}) => {
+const ReactDatepickerCalendar = ({ onCalendarChange }) => {
   const [selectedDate, setSelectedDate] = useState(new Date())
   const [showModal, setShowModal] = useState(false)
   const [highlightedDates, setHighlightedDates] = useState([])
@@ -21,20 +21,24 @@ const ReactDatepickerCalendar = ({onCalendarChange}) => {
   const [currentRecord, setCurrentRecord] = useState(null)
   const [error, setError] = useState(null)
   const tooltipInstancesRef = useRef([])
-  const [currentLocale, setCurrentLocale] = useState(cs)
-
   const userLocal = getUserFromLocalStorage()
+  const [currentLocale, setCurrentLocale] = useState(
+    i18n.locale === "cs" ? "cs" : "enAU"
+  )
 
-  const locales = {
-    en: enAU,
-    cs: cs,
-  }
+  registerLocale("cs", cs)
+  registerLocale("en", enAU)
 
   useEffect(() => {
-    if (i18n.locale && locales[i18n.locale]) {
-    setCurrentLocale(locales[i18n.locale] && locales[i18n.locale])
+    const originalActivate = i18n.activate
+    i18n.activate = (locale) => {
+      setCurrentLocale(locale === "cs" ? "cs" : "enAU")
+      return originalActivate.call(i18n, locale)
     }
-  }, [i18n.locale])
+    return () => {
+      i18n.activate = originalActivate
+    }
+  }, [])
 
   useEffect(() => {
     const fetchHighlightedDates = async () => {
@@ -189,7 +193,6 @@ const ReactDatepickerCalendar = ({onCalendarChange}) => {
         dropdownMode=""
         fixedHeight
         inline
-        className="custom-datepicker"
         highlightDates={highlightedDates}
         renderDayContents={renderDayContents}
         onMonthChange={onCalendarChange}

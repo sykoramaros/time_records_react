@@ -7,14 +7,14 @@ import LanguageToggler from "../LanguageToggler/LanguageToggler"
 import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  // const [isOpen, setIsOpen] = useState(false)
   const [role, setRole] = useState("")
   const [menuOpen, setMenuOpen] = useState(false)
   const navbarCollapseRef = useRef(null)
 
-  const handleIsOpen = () => {
-    setIsOpen(!isOpen)
-  }
+  // const handleIsOpen = () => {
+  //   setIsOpen(!isOpen)
+  // }
 
   // Funkce pro přepínání a zavírání menu
   const toggleMenu = () => setMenuOpen((prev) => !prev)
