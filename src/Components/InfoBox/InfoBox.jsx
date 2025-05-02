@@ -2,7 +2,7 @@ import React from "react"
 import "./InfoBox.css"
 import { Trans } from "@lingui/react"
 
-const InfoBox = ({ result, studies }) => {
+const InfoBox = ({ timeResult, studies }) => {
   return (
     <>
       <fieldset className="info-box border border-3 border-white rounded-4">
@@ -13,11 +13,11 @@ const InfoBox = ({ result, studies }) => {
           <p>
             <Trans id="infoBox.hours">Hours:</Trans>:{" "}
             <span>
-              {result?.hours.toLocaleString("en-US", {
+              {timeResult?.hours.toLocaleString("en-US", {
                 minimumIntegerDigits: 2,
               })}{" "}
               :{" "}
-              {result?.minutes.toLocaleString("en-US", {
+              {timeResult?.minutes.toLocaleString("en-US", {
                 minimumIntegerDigits: 2,
               })}
             </span>
