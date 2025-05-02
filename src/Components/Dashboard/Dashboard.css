@@ -1,27 +1,27 @@
 .dashboard-container {
-    background-image: linear-gradient(40deg,
+  background-image: linear-gradient(
+    40deg,
     #faf6e3 -15%,
-    #b6dad8 100%) !important;
+    #b6dad8 100%
+  ) !important;
 }
 
 .week-progress-container,
 .month-progress-container,
 .year-progress-container {
-    width: 88%;
+  width: 88%;
 }
 
-
-
 .sticker-container {
-    position: absolute;
-    z-index: 1000;
-    top: -3%;
-    right: -3%;
-    rotate: 2.5deg;
-    /*aspect-ratio: 1 / 1;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: absolute;
+  z-index: 1000;
+  top: -3%;
+  right: 0%;
+  rotate: 2.5deg;
+  /*aspect-ratio: 1 / 1;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*@media (min-width: 1120px) {*/
@@ -31,10 +31,10 @@
 /*}*/
 
 @media (max-width: 1024px) {
-    .sticker-container {
-        top: -3%;
-        right: 0;
-    }
+  .sticker-container {
+    top: -3%;
+    right: 0;
+  }
 }
 
 /*@media (min-width: 600px) {*/

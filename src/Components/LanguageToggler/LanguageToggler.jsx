@@ -1,9 +1,12 @@
 import React from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { i18n } from "@lingui/core"
 import "./LanguageToggler.css"
 
 const LanguageToggler = () => {
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language || "cs")
+
   return (
     <>
       <div className="lang-container border border-2 border-info rounded-pill position-relative">
@@ -12,12 +15,15 @@ const LanguageToggler = () => {
             to={""}
             onClick={(e) => {
               e.preventDefault() // Zabrání výchozímu chování odkazu
-              i18n.activate("cs") // Aktivuje češtinu
+              i18n.activate("cs")
+              setCurrentLanguage("cs") // Aktualizujeme stav ihned po změně
             }}
             aria-label="Switch to Czech language"
           >
             <img
-              className="rounded-5 shadow-sm"
+              className={`rounded-5 shadow-sm" ${
+                currentLanguage !== "cs" ? "grayscale" : ""
+              }`}
               src={`${process.env.PUBLIC_URL}/Photos/lang/czech.png`}
               alt="Czech language"
               width="35"
@@ -30,12 +36,15 @@ const LanguageToggler = () => {
             to={""}
             onClick={(e) => {
               e.preventDefault() // Zabrání výchozímu chování odkazu
-              i18n.activate("en") // Aktivuje češtinu
+              i18n.activate("en")
+              setCurrentLanguage("en") // Aktualizujeme stav ihned po změně
             }}
             aria-label="Switch to English language"
           >
             <img
-              className="rounded-5 shadow-sm"
+              className={`rounded-5 shadow-sm" ${
+                currentLanguage !== "en" ? "grayscale" : ""
+              }`}
               src={`${process.env.PUBLIC_URL}/Photos/lang/english.png`}
               alt="English language"
               width="35"

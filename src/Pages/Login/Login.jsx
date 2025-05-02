@@ -163,7 +163,7 @@ const Login = () => {
               }}
             />
           </div>
-          <div className="my-3 d-flex justify-content-center">
+          <div className="mt-3 d-flex justify-content-center">
             <LanguageToggler />
           </div>
         </form>

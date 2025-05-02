@@ -1,6 +1,7 @@
 import React from "react"
-import { useState, useEffect, useRef } from "react"
-import { Link, NavLink } from "react-router-dom"
+import { useState, useRef } from "react"
+import { NavLink } from "react-router-dom"
+import "./Navbar.css"
 import { Trans } from "@lingui/react"
 import LanguageToggler from "../LanguageToggler/LanguageToggler"
 import LogoutButton from "../LogoutButton/LogoutButton"
@@ -20,9 +21,12 @@ const Navbar = () => {
   const closeMenu = () => setMenuOpen(false)
 
   return (
-    <div>
+    <div className="">
+      <div className="language-container">
+        <LanguageToggler />
+      </div>
       <nav className="navbar fixed-top navbar-expand-md bg-primary shadow">
-        <div className="container-fluid">
+        <div className="container-fluid ">
           <NavLink className="navbar-brand" to="/home" onClick={closeMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,9 +120,6 @@ const Navbar = () => {
                 </>
               )}
             </ul>
-            <div className="mx-auto">
-              <LanguageToggler />
-            </div>
             <LogoutButton />
           </div>
         </div>

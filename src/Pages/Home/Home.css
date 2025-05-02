@@ -1,0 +1,21 @@
+.dashboard-container {
+  width: 100vw;
+}
+
+@media (min-width: 375px) {
+  .dashboard-container {
+    width: 90vw;
+  }
+}
+
+@media (min-width: 576px) {
+  .dashboard-container {
+    width: 80vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboard-container {
+    width: 70vw;
+  }
+}

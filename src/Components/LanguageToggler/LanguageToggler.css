@@ -17,3 +17,13 @@
   transition: transform 0.3s ease-in-out;
   transform: scale(1.1);
 }
+
+.grayscale {
+  filter: grayscale(90%);
+  opacity: 0.9;
+}
+
+.grayscale:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
