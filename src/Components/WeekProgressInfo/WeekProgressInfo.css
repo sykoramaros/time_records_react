@@ -1,11 +1,40 @@
 .week-total-time,
 .week-remaining-time {
-    font-size: 2rem;
+    font-size: 1.25rem;
 }
 
-@media (max-width: 430px) {
+@media (min-width: 375px) {
+    .week-total-time,
+    .week-remaining-time {
+        font-size: 1.25rem;
+    }
+    
+}
+
+@media (min-width: 430px) {
     .week-total-time,
     .week-remaining-time {
         font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 570px) {
+    .week-total-time,
+    .week-remaining-time {
+        font-size: 1.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .week-total-time,
+    .week-remaining-time {
+        font-size: 2.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .week-total-time,
+    .week-remaining-time {
+        font-size: 2.5rem;
     }
 }

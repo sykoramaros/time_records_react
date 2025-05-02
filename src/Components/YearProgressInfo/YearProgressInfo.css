@@ -1,11 +1,40 @@
 .year-total-time,
 .year-remaining-time {
-    font-size: 2rem;
+    font-size: 1.25rem;
 }
 
-@media (max-width: 430px) {
+@media (min-width: 375px) {
+    .year-total-time,
+    .year-remaining-time {
+        font-size: 1.25rem;
+    }
+    
+}
+
+@media (min-width: 430px) {
     .year-total-time,
     .year-remaining-time {
         font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 570px) {
+    .year-total-time,
+    .year-remaining-time {
+        font-size: 1.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .year-total-time,
+    .year-remaining-time {
+        font-size: 2.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .year-total-time,
+    .year-remaining-time {
+        font-size: 2.5rem;
     }
 }

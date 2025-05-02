@@ -1,11 +1,39 @@
 .month-total-time,
 .month-remaining-time {
-    font-size: 2rem;
+  font-size: 1.25rem;
 }
 
-@media (max-width: 430px) {
-    .month-total-time,
-    .month-remaining-time {
-        font-size: 1.5rem;
-    }
+@media (min-width: 375px) {
+  .month-total-time,
+  .month-remaining-time {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 430px) {
+  .month-total-time,
+  .month-remaining-time {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 570px) {
+  .month-total-time,
+  .month-remaining-time {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .month-total-time,
+  .month-remaining-time {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .month-total-time,
+  .month-remaining-time {
+    font-size: 2.5rem;
+  }
 }

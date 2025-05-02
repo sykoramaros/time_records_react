@@ -33,34 +33,36 @@ const Dashboard = () => {
   }, [monthTimeGoal])
 
   return (
-    <div className="w-100 d-flex justify-content-center ">
-      <div className="dashboard-container p-5 rounded-4 shadow position-relative">
-        <div className="sticker-container position-absolute">
-          <Sticker />
-        </div>
-        <h2 className="text-center text-primary text-uppercase">
-          <Trans id="dashboard.h2">Dashboard</Trans>
-        </h2>
-        <h3 className={`text-center ${titleZero}`}>
-          <Trans id="dashboard.h3">
-            Your month time goal is zero or not set!
-          </Trans>
-        </h3>
-        <div className="row row-cols-1 mt-5 gap-4 d-flex justify-content-center">
-          <div className="week-progress-container">
-            <WeekProgressInfo />
+    <>
+      <div className="w-100 d-flex justify-content-center ">
+        <div className="dashboard-container p-5 rounded-4 shadow position-relative">
+          <div className="sticker-container position-absolute">
+            <Sticker />
           </div>
-          <hr className="mx-auto w-75 border-primary" />
-          <div className="month-progress-container">
-            <MonthProgressInfo />
-          </div>
-          <hr className="mx-auto w-75 border-primary" />
-          <div className="year-progress-container">
-            <YearProgressInfo />
+          <h2 className="text-center text-primary text-uppercase">
+            <Trans id="dashboard.h2">Dashboard</Trans>
+          </h2>
+          <h3 className={`text-center ${titleZero}`}>
+            <Trans id="dashboard.h3">
+              Your month time goal is zero or not set!
+            </Trans>
+          </h3>
+          <div className="row row-cols-1 mt-5 gap-4 d-flex justify-content-center">
+            <div className="week-progress-container">
+              <WeekProgressInfo />
+            </div>
+            <hr className="mx-auto w-75 border-primary" />
+            <div className="month-progress-container">
+              <MonthProgressInfo />
+            </div>
+            <hr className="mx-auto w-75 border-primary" />
+            <div className="year-progress-container">
+              <YearProgressInfo />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -1,0 +1,8 @@
+.logout-btn:hover {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.03);
+}
+
+.logout-btn {
+  transition: transform 0.3s ease-in-out;
+}

@@ -12,8 +12,12 @@ const Home = () => {
   return (
     <div>
       <div className="container">
-        <h1 className="text-center text-white display-3 text-shadow-primary py-4">
-          <Trans id="home.h1">Welcome</Trans> {userLocal.userName}
+        <h1 className="text-center text-white display-4 text-shadow-primary py-4">
+          <Trans id="home.h1">Welcome</Trans>
+          <span className="text-warning text-uppercase fw-normal">
+            {" "}
+            {userLocal.userName}
+          </span>
         </h1>
         <div className="mx-auto dashboard-container rounded-4">
           <Dashboard />

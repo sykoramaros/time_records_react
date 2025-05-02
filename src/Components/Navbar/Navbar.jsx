@@ -21,7 +21,7 @@ const Navbar = () => {
   const closeMenu = () => setMenuOpen(false)
 
   return (
-    <div className="">
+    <>
       <div className="language-container">
         <LanguageToggler />
       </div>
@@ -55,7 +55,6 @@ const Navbar = () => {
               height={40}
               alt="Menu"
             />
-            {/* <span className="navbar-toggler-icon toggler-icon"></span> */}
           </button>
           <div
             className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`}
@@ -120,11 +119,13 @@ const Navbar = () => {
                 </>
               )}
             </ul>
-            <LogoutButton />
+            <div className="ms-auto">
+              <LogoutButton />
+            </div>
           </div>
         </div>
       </nav>
-    </div>
+    </>
   )
 }
 
