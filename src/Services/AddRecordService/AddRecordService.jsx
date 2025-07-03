@@ -6,10 +6,11 @@ const baseURL = "https://recordsapi.runasp.net/api/Records"
 
 export const createRecordQuery = async (id, record) => {
   try {
-    const response = await axios.post(
-      `${baseURL}/CreateRecordQuery?userId=${id}`,
-      record
-    )
+    const response = await axios.post(`${baseURL}/CreateRecordQuery`, record, {
+      params: {
+        userId: id,
+      },
+    })
     return response.data
   } catch (error) {
     console.error("Error creating record:", error)

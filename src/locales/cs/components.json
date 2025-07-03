@@ -1,5 +1,6 @@
 {
   "addRecordModal.recorded-time": "Čas",
+  "addRecordModal.credit-recorded-time": "Kredit",
   "addRecordModal.study": "Studium",
   "addRecordModal.message": "Zpráva",
   "addRecordModal.close-button": "Zavřít",
@@ -7,6 +8,7 @@
   "dashboard.h2": "Nástěnka",
   "dashboard.h3": "Vaše služba není zadána",
   "editRecordModal.recorded-time": "Čas",
+  "editRecordModal.credit-recorded-time": "Kredit",
   "editRecordModal.study": "Studium",
   "editRecordModal.message": "Zpráva",
   "editRecordModal.close-button": "Zavřít",
@@ -15,6 +17,7 @@
   "footer.privacy": "Zásady soukromí",
   "infoBox.legend": "Informace",
   "infoBox.hours": "Hodiny",
+  "infoBox.credit": "Kredit",
   "infoBox.studies": "Studia",
   "logout.logout-button": "Odhlásit se",
   "monthProgressInfo.actual-month-progress": "Aktuální měsíc",

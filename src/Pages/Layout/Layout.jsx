@@ -6,7 +6,7 @@ import Footer from "../../Components/Footer/Footer"
 
 const Layout = () => {
   return (
-    <div>
+    <div style={{ minHeight: "100vh" }}>
       <div className="navbar-container w-100">
         <Navbar />
       </div>

@@ -2,7 +2,7 @@ import React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Modal } from "bootstrap"
 import { Trans } from "@lingui/react"
-import DualSelectTimePicker from "../TimeSelect/DualSelectTimePicker";
+import DualSelectTimePicker from "../TimeSelect/DualSelectTimePicker"
 // import TimeSelect from "../TimeSelect/TimeSelect";
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
 import {
@@ -13,6 +13,7 @@ import {
 
 const EditRecordModal = ({ selectedDate, show, onClose }) => {
   const [recordTime, setRecordTime] = useState("00:00")
+  const [recordCreditTime, setRecordCreditTime] = useState("00:00")
   const [recordStudy, setRecordStudy] = useState(0)
   const [recordText, setRecordText] = useState("")
   const [isModalReady, setIsModalReady] = useState(false)
@@ -26,9 +27,13 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
     const fetchData = async () => {
       if (selectedDate) {
         try {
-          const recordData = await getRecordByDateQuery(userLocal.id, selectedDate)
+          const recordData = await getRecordByDateQuery(
+            userLocal.id,
+            selectedDate
+          )
           if (recordData) {
             setRecordTime(recordData.recordTime || "00:00")
+            setRecordCreditTime(recordData.recordCreditTime || "00:00")
             setRecordStudy(recordData.recordStudy || 0)
             setRecordText(recordData.description || "")
           }
@@ -87,6 +92,10 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
     setRecordTime(e.target.value)
   }
 
+  const handleCreditTimeChange = (e) => {
+    setRecordCreditTime(e.target.value)
+  }
+
   const handleStudyChange = (e) => {
     setRecordStudy(e.target.value)
   }
@@ -103,9 +112,15 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
           ? `${recordTime}:00` // Pokud je čas ve formátu HH:mm, přidáme sekundy
           : recordTime
 
+      const formattedCreditTime =
+        recordCreditTime.length < 6
+          ? `${recordCreditTime}:00` // Pokud je čas ve formátu HH:mm, přidáme sekundy
+          : recordCreditTime
+
       const recordData = {
         date: selectedDate.toISOString().split("T")[0],
         recordTime: formattedTime,
+        recordCreditTime: formattedCreditTime,
         recordStudy: parseInt(recordStudy),
         description: recordText,
         identityUserId: userLocal.id,
@@ -133,7 +148,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
 
   const handleDeleteRecord = async () => {
     try {
-      const response = await deleteRecordByDateQuery(userLocal.id ,selectedDate)
+      const response = await deleteRecordByDateQuery(userLocal.id, selectedDate)
       console.log("Record deleted:", response)
       alert("Record deleted successfully!")
       handleCloseModal()
@@ -150,6 +165,7 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
       window.location.reload()
     }
     setRecordTime("00:00")
+    setRecordCreditTime("00:00")
     setRecordStudy(0)
     setRecordText("")
     if (onClose) onClose()
@@ -183,7 +199,9 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                   htmlFor="time-picker"
                   className="col-form-label d-block text-center"
                 >
-                  <Trans id="editRecordModal.recorded-time">Recorded time</Trans>
+                  <Trans id="editRecordModal.recorded-time">
+                    Recorded time
+                  </Trans>
                 </label>
                 {/*<input*/}
                 {/*  type="time"*/}
@@ -194,16 +212,34 @@ const EditRecordModal = ({ selectedDate, show, onClose }) => {
                 {/*/>*/}
 
                 <DualSelectTimePicker
-                    id="time-picker"
-                    value={recordTime}
-                    onChange={handleTimeChange}
+                  id="time-picker"
+                  value={recordTime}
+                  onChange={handleTimeChange}
                 />
-                
+
                 {/*<TimeSelect*/}
                 {/*    id="time-picker"*/}
                 {/*    value={recordTime}*/}
                 {/*    onChange={handleTimeChange}*/}
                 {/*/>*/}
+
+                <label
+                  htmlFor="time-picker"
+                  className="col-form-label d-block text-center"
+                ></label>
+                <label
+                  htmlFor="time-picker"
+                  className="col-form-label d-block text-center"
+                >
+                  <Trans id="editRecordModal.credit-recorded-time">
+                    Credit recorded time
+                  </Trans>
+                </label>
+                <DualSelectTimePicker
+                  id="time-picker"
+                  value={recordCreditTime}
+                  onChange={handleCreditTimeChange}
+                />
               </div>
               <div className="mb-3">
                 <label

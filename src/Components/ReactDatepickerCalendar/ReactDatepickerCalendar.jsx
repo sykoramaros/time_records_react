@@ -141,9 +141,15 @@ const ReactDatepickerCalendar = ({ onCalendarChange }) => {
     const formattedTime = record.recordTime
       ? record.recordTime.substring(0, 5)
       : ""
+    const formattedCreditTime = record.recordCreditTime
+      ? record.recordCreditTime.substring(0, 5)
+      : ""
 
     // Upravte podle skutečné struktury vašich záznamů
     let tooltipContent = `<span class="fs-7">Recorded time:</span><br/><strong class="text-warning fs-3">${formattedTime}</strong>`
+    if (record.recordCreditTime) {
+      tooltipContent += `<hr class="my-0 mx-auto w-75"/><span class="fs-7">Credit time:</span><br/><strong class="text-success fs-3">${formattedCreditTime}</strong>`
+    }
     if (record.recordStudy) {
       tooltipContent += `<hr class="my-0 mx-auto w-75"/><span class="fs-7">Study:</span><br/><strong class="text-success fs-3">${record.recordStudy}</strong>`
     }

@@ -4,8 +4,7 @@ import { Trans } from "@lingui/react"
 import ReactDatepickerCalendar from "../../Components/ReactDatepickerCalendar/ReactDatepickerCalendar"
 import InfoBox from "../../Components/InfoBox/InfoBox"
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
-import { getChosenMonthStatus } from "../../Services/ChosenMonthStatusService/ChosenMonthStatusService"
-import { getSumChosenMonthRecordStudyQuery } from "../../Services/StudyStickerService/StudyStickerService"
+import { getChosenMonthTotalRecordQuery } from "../../Services/ChosenMonthStatusService/ChosenMonthStatusService"
 
 const Calendar = () => {
   // const user = JSON.parse(localStorage.getItem("user"))
@@ -16,40 +15,22 @@ const Calendar = () => {
   const [currentViewYear, setCurrentViewYear] = useState(
     new Date().getFullYear()
   )
+  const [chosenMonthRecord, setChosenMonthRecord] = useState(null)
 
   const userLocal = getUserFromLocalStorage()
-  const [timeResult, setTimeResult] = useState(null)
-  const [currentViewStudies, setCurrentViewStudies] = useState(0)
 
   useEffect(() => {
-    if (currentViewMonth !== null && currentViewYear !== null) {
-      const fetchData = async () => {
-        try {
-          const data = await getChosenMonthStatus(
-            userLocal.id,
-            currentViewMonth,
-            currentViewYear
-          )
-          setTimeResult(data)
-          // console.log("Time result:", data)
-        } catch (error) {
-          console.error("Error fetching data:", error)
-        }
-      }
-      fetchData()
-    }
-
-    const fetchSumChosenMonthRecordStudy = async () => {
-      const response = await getSumChosenMonthRecordStudyQuery(
+    const fetchRecordByChoosenMonthQuery = async () => {
+      const response = await getChosenMonthTotalRecordQuery(
         userLocal.id,
         currentViewMonth,
         currentViewYear
       )
-      setCurrentViewStudies(response)
-      // console.log("Studies: " + currentViewStudies)
+      console.log("Record: " + response)
+      setChosenMonthRecord(response)
     }
-    fetchSumChosenMonthRecordStudy()
-  }, [userLocal.id, currentViewMonth, currentViewYear, currentViewStudies])
+    fetchRecordByChoosenMonthQuery()
+  }, [userLocal.id, currentViewMonth, currentViewYear])
 
   const handleMonthChange = (date) => {
     setCurrentViewMonth(date.getMonth())
@@ -85,7 +66,7 @@ const Calendar = () => {
             <ReactDatepickerCalendar onCalendarChange={handleMonthChange} />
           </div>
           <div className="col-12 col-md-5 col-lg-4 col-xl-3">
-            <InfoBox timeResult={timeResult} studies={currentViewStudies} />
+            <InfoBox chosenMonthRecord={chosenMonthRecord} />
           </div>
         </div>
         {/* <div className="d-flex justify-content-center align-items-center mt-5">

@@ -1,5 +1,6 @@
 {
   "addRecordModal.recorded-time": "Time",
+  "addRecordModal.credit-recorded-time": "Credit time",
   "addRecordModal.study": "Study",
   "addRecordModal.message": "Message",
   "addRecordModal.close-button": "Close",
@@ -7,6 +8,7 @@
   "dashboard.h2": "Dashboard",
   "dashboard.h3": "Your service is not assigned",
   "editRecordModal.recorded-time": "Time",
+  "editRecordModal.credit-recorded-time": "Credit time",
   "editRecordModal.study": "Study",
   "editRecordModal.message": "Message",
   "editRecordModal.close-button": "Close",
@@ -15,6 +17,7 @@
   "footer.privacy": "Privacy",
   "infoBox.legend": "Info",
   "infoBox.hours": "Hours",
+  "infoBox.credit": "Credit",
   "infoBox.studies": "Studies",
   "logout.logout-button": "Log out",
   "monthProgressInfo.actual-month-progress": "Current month",

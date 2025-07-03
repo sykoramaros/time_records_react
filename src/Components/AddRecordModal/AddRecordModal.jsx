@@ -4,12 +4,13 @@ import { Modal } from "bootstrap"
 import { Trans } from "@lingui/react"
 import "./AddRecordModal.css"
 // import TimeSelect from "../TimeSelect/TimeSelect";
-import DualSelectTimePicker from "../TimeSelect/DualSelectTimePicker";
-import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService";
-import { createRecordQuery } from "../../Services/AddRecordModalService/AddRecordModalService"
+import DualSelectTimePicker from "../TimeSelect/DualSelectTimePicker"
+import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
+import { createRecordQuery } from "../../Services/AddRecordService/AddRecordService"
 
 const AddRecordModal = ({ selectedDate, show, onClose }) => {
   const [recordTime, setRecordTime] = useState("00:00")
+  const [recordCreditTime, setRecordCreditTime] = useState("00:00")
   const [recordStudy, setRecordStudy] = useState(0)
   const [recordText, setRecordText] = useState("")
   const modalRef = useRef(null)
@@ -35,6 +36,10 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
     setRecordTime(e.target.value)
   }
 
+  const handleCreditTimeChange = (e) => {
+    setRecordCreditTime(e.target.value)
+  }
+
   const handleStudyChange = (e) => {
     setRecordStudy(e.target.value)
   }
@@ -47,16 +52,18 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
     try {
       // Formátování času na HH:MM:SS
       const formattedTime = `${recordTime}:00`
+      const formattedCreditTime = `${recordCreditTime}:00`
       const formattedStudy = `${recordStudy}`
       const formattedText = `${recordText}`
       const recordData = {
         date: selectedDate.toISOString().split("T")[0], // Formát YYYY-MM-DD
         recordTime: formattedTime,
+        recordCreditTime: formattedCreditTime,
         recordStudy: formattedStudy, // Nastavte podle potřeby
         description: formattedText, // Nastavte podle potřeby
       }
 
-      const response = await createRecordQuery(userLocal.id ,recordData)
+      const response = await createRecordQuery(userLocal.id, recordData)
       // console.log("Record created:", response)
       // alert("Record created successfully!")
       // Zavření modálu po úspěšném vytvoření
@@ -84,7 +91,10 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content w-50 w-md-25 mx-auto">
             <div className="modal-header">
-              <h1 className="modal-title fs-5 text-success fw-normal" id="calendarModal">
+              <h1
+                className="modal-title fs-5 text-success fw-normal"
+                id="calendarModal"
+              >
                 {selectedDate.toDateString()}
               </h1>
               <button
@@ -102,7 +112,9 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
                     htmlFor="time-picker"
                     className="col-form-label fs-6 fw-lighter d-block text-center text-primary"
                   >
-                    <Trans id="addRecordModal.recorded-time">Recorded time</Trans>
+                    <Trans id="addRecordModal.recorded-time">
+                      Recorded time
+                    </Trans>
                   </label>
                   {/*<input*/}
                   {/*  type="time"*/}
@@ -112,11 +124,26 @@ const AddRecordModal = ({ selectedDate, show, onClose }) => {
                   {/*  onChange={handleTimeChange}*/}
                   {/*/>*/}
                   <div className="col-form-label d-block text-center">
-                  <DualSelectTimePicker
+                    <DualSelectTimePicker
                       id="time-picker"
                       value={recordTime}
                       onChange={handleTimeChange}
-                  />
+                    />
+                  </div>
+                  <label
+                    htmlFor="time-picker"
+                    className="col-form-label fs-6 fw-lighter d-block text-center text-primary"
+                  >
+                    <Trans id="addRecordModal.credit-recorded-time">
+                      Credit recorded time
+                    </Trans>
+                  </label>
+                  <div className="col-form-label d-block text-center">
+                    <DualSelectTimePicker
+                      id="time-picker"
+                      value={recordCreditTime}
+                      onChange={handleCreditTimeChange}
+                    />
                   </div>
                   {/*<TimeSelect*/}
                   {/*    id="time-picker"*/}

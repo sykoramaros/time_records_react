@@ -12,11 +12,17 @@ export const getRecordByDateQuery = async (id, date) => {
   return response.data
 }
 
-export const editRecordByDateQuery = async (id ,date, editedRecord) => {
+export const editRecordByDateQuery = async (id, date, editedRecord) => {
   try {
     const response = await axios.put(
-      `${baseURL}/EditRecordByDateQuery?userId=${id}&date=${date}`,
-      editedRecord
+      `${baseURL}/EditRecordByDateQuery`,
+      editedRecord,
+      {
+        params: {
+          userId: id,
+          date: date,
+        },
+      }
     )
     return response.data
   } catch (error) {
@@ -28,10 +34,12 @@ export const editRecordByDateQuery = async (id ,date, editedRecord) => {
 export const deleteRecordByDateQuery = async (id, date) => {
   try {
     const formattedDate = date.toISOString().split("T")[0] // Konvertuje datum do formátu YYYY-MM-DD
-
-    const response = await axios.delete(
-      `${baseURL}/DeleteRecordByDateQuery?userId=${id}&date=${formattedDate}`
-    )
+    const response = await axios.delete(`${baseURL}/DeleteRecordByDateQuery`, {
+      params: {
+        userId: id,
+        date: formattedDate,
+      },
+    })
     return response.data
   } catch (error) {
     console.error("Error deleting record:", error)

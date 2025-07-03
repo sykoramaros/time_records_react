@@ -1,26 +1,18 @@
 import React from "react"
-import { useState, useEffect, useRef } from "react"
-import { getUserFromLocalStorage} from "../../Services/GoogleService/GoogleService";
-import { getSumActualMonthRecorStudyQuery } from "../../Services/StudyStickerService/StudyStickerService"
+import { useEffect, useRef } from "react"
 import { Tooltip } from "bootstrap"
 import "./Sticker.css"
 
-const Sticker = () => {
-  const [sumActualMonthYearRecordStudy, setSumActualMonthYearRecordStudy] =
-    useState(null)
+const Sticker = ({ chosenMonthRecord }) => {
   const divRef = useRef(null)
-  const userLocal = getUserFromLocalStorage()
 
   useEffect(() => {
-    const fetchSumActualMonthRecordStudy = async () => {
-      const response = await getSumActualMonthRecorStudyQuery(userLocal.id)
-      setSumActualMonthYearRecordStudy(response)
-      // console.log(response)
-    }
-    fetchSumActualMonthRecordStudy()
+    // Inicializace tooltip při mount
+    const tooltipInstance = new Tooltip(divRef.current)
 
-    if (divRef.current) {
-      new Tooltip(divRef.current)
+    // Cleanup při unmount
+    return () => {
+      tooltipInstance.dispose()
     }
   }, [])
 
@@ -36,7 +28,7 @@ const Sticker = () => {
     >
       <div>
         <p className="text-white text-center fw-semibold mt-3">
-          {sumActualMonthYearRecordStudy}
+          {chosenMonthRecord?.recordStudy}
         </p>
       </div>
     </div>

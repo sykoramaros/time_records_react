@@ -8,12 +8,34 @@ import WeekProgressInfo from "../WeekProgressInfo/WeekProgressInfo"
 import Sticker from "../Sticker/Sticker"
 import { getUserByIdQuery } from "../../Services/SettingsService/SettingsService"
 import { getUserFromLocalStorage } from "../../Services/GoogleService/GoogleService"
+import { getChosenMonthTotalRecordQuery } from "../../Services/ChosenMonthStatusService/ChosenMonthStatusService"
 
 const Dashboard = () => {
+  const [chosenMonthRecord, setChosenMonthRecord] = useState(null)
   const [monthTimeGoal, setMonthTimeGoal] = useState(null)
   const [titleZero, setTitleZero] = useState("d-none")
 
+  const [currentViewMonth, setCurrentViewMonth] = useState(
+    new Date().getMonth()
+  )
+  const [currentViewYear, setCurrentViewYear] = useState(
+    new Date().getFullYear()
+  )
+
   const userLocal = getUserFromLocalStorage()
+
+  useEffect(() => {
+    const fetchRecordByChoosenMonthQuery = async () => {
+      const response = await getChosenMonthTotalRecordQuery(
+        userLocal.id,
+        currentViewMonth,
+        currentViewYear
+      )
+      console.log("Record: " + response)
+      setChosenMonthRecord(response)
+    }
+    fetchRecordByChoosenMonthQuery()
+  }, [userLocal.id, currentViewMonth, currentViewYear])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +59,7 @@ const Dashboard = () => {
       <div className="w-100 d-flex justify-content-center ">
         <div className="dashboard-container p-5 rounded-4 shadow position-relative">
           <div className="sticker-container position-absolute">
-            <Sticker />
+            <Sticker chosenMonthRecord={chosenMonthRecord} />
           </div>
           <h2 className="text-center text-primary text-uppercase">
             <Trans id="dashboard.h2">Dashboard</Trans>
